@@ -1,4 +1,4 @@
-package main.java;
+package main.java.module_test;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import main.java.main_commit_allign.Commit;
 
-public class arrayset {
+public class GitfilesaveSample {
 	public static void main(String[] args) throws IOException {
 		Integer[] arr = new Integer[48];
 		Arrays.fill(arr, 0);

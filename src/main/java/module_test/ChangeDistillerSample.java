@@ -1,4 +1,4 @@
-package main.java;
+package main.java.module_test;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,7 +12,7 @@ import ch.uzh.ifi.seal.changedistiller.ChangeDistiller.Language;
 import ch.uzh.ifi.seal.changedistiller.distilling.FileDistiller;
 import ch.uzh.ifi.seal.changedistiller.model.entities.SourceCodeChange;
 
-public class main {
+public class ChangeDistillerSample {
 
 	public static void main(String[] args) throws IOException {
 //		File left = new File("D:\\develop2\\workspace_ai\\platform_frameworks_base\\packages\\SystemUI\\src\\com\\android\\systemui\\accessibility\\AccessibilityButtonModeObserver.java");

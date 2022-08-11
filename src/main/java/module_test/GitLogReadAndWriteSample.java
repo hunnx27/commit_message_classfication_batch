@@ -1,4 +1,4 @@
-package main.java;
+package main.java.module_test;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,8 +17,9 @@ import ch.uzh.ifi.seal.changedistiller.ChangeDistiller;
 import ch.uzh.ifi.seal.changedistiller.ChangeDistiller.Language;
 import ch.uzh.ifi.seal.changedistiller.distilling.FileDistiller;
 import ch.uzh.ifi.seal.changedistiller.model.entities.SourceCodeChange;
+import main.java.dto.Commit;
 
-public class main_commit_allign {
+public class GitLogReadAndWriteSample {
 
 	public static void main(String[] args) throws IOException {
 		
@@ -51,7 +52,7 @@ public class main_commit_allign {
 					isFileStart = true;
 					tmpStr += "";
 				} else if(isFileStart) {
-					tmp.fileList.add(txt.trim());
+					tmp.getFileList().add(txt.trim());
 				}else {
 					if(!isTxtStart) {
 						tmpStr += "     ";
@@ -81,36 +82,6 @@ public class main_commit_allign {
 		}
 		bw.close();
 		
-	}
-	
-	static class Commit {
-		
-		public Commit() {};
-		public Commit(String hash, ArrayList list) {
-			this.hash = hash;
-			this.fileList = list;
-		}
-		String hash;
-		String txt;
-		List<String> fileList;
-		public String getHash() {
-			return hash;
-		}
-		public String getTxt() {
-			return txt;
-		}
-		public List<String> getFileList() {
-			return fileList;
-		}
-		public void setHash(String hash) {
-			this.hash = hash;
-		}
-		public void setTxt(String txt) {
-			this.txt = txt;
-		}
-		public void setFileList(List<String> fileList) {
-			this.fileList = fileList;
-		}
 	}
 
 	
