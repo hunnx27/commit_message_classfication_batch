@@ -137,9 +137,9 @@ public class Autolabel_Elasticsearch {
 		/**
 		 * 정리된 파일 오토 레이블링(Create CSV)
 		 */
-		String[] bugFix_keys = {"fix","test","issu","use","fail","bug_fix","report","set","error","npe"};
-		String[] featAdd_keys = {"test","remov","use","fix","refactor","method","chang","add","improv","new"};
-		String[] perfImpr_keys = {"support","add","implement","new","allow","use","method","test","set","chang"};
+		String[] bugFix_keys = {"fix","test","issu","use","fail","bug_fix","report","error","npe"};
+		String[] perfImpr_keys = {"test","remov","use","refactor","method","chang","add","improv","expand"};
+		String[] featAdd_keys = {"support","add","implement","allow","use","method","test","set","chang","feat","new"};
 	
 		BufferedWriter bw = new BufferedWriter(new FileWriter(DIR + "githistory_converted3.out"));
 		boolean isFirst = true;
@@ -156,7 +156,12 @@ public class Autolabel_Elasticsearch {
 			int perfImpr = Arrays.stream(perfImpr_keys).anyMatch(commitMessage::contains)?1:0;
 			int tot = bugFix + featAdd + perfImpr;
 			if(tot == 0) perfImpr = 1;
-			String line = String.format("%s||||%s||||%s||||%s||||%s", commit.getTxt(), Arrays.toString(commit.getCharr()), bugFix, featAdd, perfImpr);
+			if(commitMessage.indexOf("fix")!=-1 ) {
+				bugFix=1;featAdd=0;perfImpr=0;
+			}else if(commitMessage.indexOf("add")!=-1) {
+				bugFix=0;featAdd=0;perfImpr=1;
+			}
+			String line = String.format("%s||||%s||||%s||||%s||||%s", commitMessage, Arrays.toString(commit.getCharr()), bugFix, featAdd, perfImpr);
 			bw.write(line);
 			bw.flush();
 		}
