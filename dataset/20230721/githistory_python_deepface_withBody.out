@@ -1,0 +1,1332 @@
+####START####5c7e2f3
+upd readme
+
+####END####
+README.md
+
+####START####c504458
+upd readme
+
+####END####
+README.md
+
+####START####850b1c5
+upd readme: added related works section
+
+####END####
+README.md
+
+####START####493f23c
+update windows magnet link
+
+####END####
+README.md
+
+####START####9ad9728
+fix
+
+####END####
+mainscripts/ExportDFM.py
+
+####START####336e0ca
+fix
+
+####END####
+models/ModelBase.py
+
+####START####8b71b83
+fix
+
+####END####
+mainscripts/Merger.py
+
+####START####0748b8d
+AMP: removed eyes mouth prio option(default enabled), removed masked training option(default enabled).
+
+####END####
+models/Model_AMP/Model.py
+
+####START####959a353
+AMP: default morph factor is now 0.5. Preview shows with 1.0
+
+####END####
+models/Model_AMP/Model.py
+
+####START####da8f33e
+removing fp16 for amp
+
+####END####
+models/Model_AMP/Model.py
+
+####START####c9e0ba1
+removing fp16 for sae
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####7b8991a
+fix help
+
+####END####
+models/Model_AMP/Model.py
+models/Model_SAEHD/Model.py
+
+####START####f044c99
+remove ConvolutionAwareInitializer from layers, because lr-dropout does the same thing.
+
+####END####
+core/leras/layers/Conv2D.py
+core/leras/layers/Conv2DTranspose.py
+core/leras/layers/DepthwiseConv2D.py
+
+####START####2edac3d
+fix for clipgrad
+
+####END####
+core/leras/optimizers/AdaBelief.py
+core/leras/optimizers/RMSprop.py
+
+####START####35877db
+AMP, SAEHD: added option use_fp16: Increases training/inference speed, reduces model size. Model may crash. Enable it after 1-5k iters.
+AMP: removed lr_dropout, now it is enabled by default;
+
+####END####
+core/leras/archis/DeepFakeArchi.py
+core/leras/models/PatchDiscriminator.py
+models/Model_AMP/Model.py
+models/Model_SAEHD/Model.py
+
+####START####ee1bc83
+AMP, SAEHD: reverted GAN to december version.
+
+####END####
+core/leras/models/PatchDiscriminator.py
+models/Model_AMP/Model.py
+models/Model_SAEHD/Model.py
+
+####START####b4b72d0
+upd torrent link
+
+####END####
+README.md
+
+####START####9e0bd34
+update torrent link
+
+####END####
+README.md
+
+####START####446b959
+fix
+
+####END####
+models/Model_AMP/Model.py
+
+####START####0444a9a
+default morph factor is now 0.1
+
+####END####
+models/Model_AMP/Model.py
+
+####START####075422e
+amp: fixes, removed pretrain option
+
+####END####
+models/Model_AMP/Model.py
+
+####START####63c794b
+rename dump_dflive to export_dfm
+
+####END####
+main.py
+mainscripts/ExportDFM.py
+models/Model_AMP/Model.py
+models/Model_SAEHD/Model.py
+
+####START####9d6b6fe
+_
+
+####END####
+models/Model_AMP/Model.py
+
+####START####c43b3b1
+_
+
+####END####
+mainscripts/FacesetResizer.py
+
+####START####90a74ef
+fix
+
+####END####
+models/Model_AMP/Model.py
+
+####START####714234b
+missing file
+
+####END####
+mainscripts/DumpDFLive.py
+
+####START####3c6bbe2
+AMP: added Inter dimensions param. The model is not changed. Should be equal or more than AutoEncoder dimensions. More dims are better, but require more VRAM. You can fine-tune model size to fit your GPU.
+
+####END####
+models/Model_AMP/Model.py
+
+####START####5783191
+AMP: code refactoring, fix preview history
+added dumpdflive command
+
+####END####
+main.py
+mainscripts/Trainer.py
+models/ModelBase.py
+models/Model_AMP/Model.py
+models/Model_Quick96/Model.py
+models/Model_SAEHD/Model.py
+models/Model_XSeg/Model.py
+
+####START####9092e73
+update QQ group
+
+####END####
+README.md
+
+####START####427e51b
+update QQ chinesse group
+
+####END####
+README.md
+
+####START####62f1d57
+AMP: fix a merge bug where morph_factor was always = 1.0
+
+####END####
+models/Model_AMP/Model.py
+
+####START####62c6fff
+fix
+
+####END####
+core/leras/layers/Conv2D.py
+
+####START####9f0b4bf
+readme: added tiktok channel
+
+####END####
+README.md
+
+####START####6e0c822
+readme: added tiktok channel
+
+####END####
+README.md
+
+####START####5dc027a
+_
+
+####END####
+core/leras/layers/Conv2D.py
+
+####START####24ba84d
+MergeMasked: added full mask type as white square
+
+####END####
+merger/MergeMasked.py
+merger/MergerConfig.py
+
+####START####2a95699
+upd windows magnet link
+
+####END####
+README.md
+
+####START####8ea7820
+fix
+
+####END####
+samplelib/SampleLoader.py
+
+####START####a6438ca
+upd magnet link
+
+####END####
+README.md
+
+####START####5fac5ee
+AMP model: added ‘morph_factor’ option. [0.1 .. 0.5]
+The smaller the value, the more src-like facial expressions will appear.
+The larger the value, the less space there is to train a large dst faceset in the neural network.
+Typical fine value is 0.33
+
+AMP model: added ‘pretrain’ mode as in SAEHD
+Windows build: Default pretrain dataset is updated with applied Generic XSeg mask
+
+####END####
+models/Model_AMP/Model.py
+
+####START####34b6286
+fix help msg
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####1981ed0
+_
+
+####END####
+mainscripts/Trainer.py
+
+####START####315f241
+upd magnet link
+
+####END####
+README.md
+
+####START####e52b53f
+AMP fix
+
+####END####
+core/leras/ops/__init__.py
+models/Model_AMP/Model.py
+
+####START####11a7993
+fix
+
+####END####
+models/Model_AMP/Model.py
+
+####START####6f86c68
+add AMP model
+
+####END####
+models/Model_AMP/Model.py
+models/Model_AMP/__init__.py
+
+####START####e6e2ee7
+pixel_norm op
+
+####END####
+core/leras/ops/__init__.py
+
+####START####757283d
+Trainer now saves every 25 min instead of 15
+
+####END####
+mainscripts/Trainer.py
+
+####START####7667509
+Faceset packer now asks whether to delete the original files
+
+####END####
+samplelib/PackedFaceset.py
+
+####START####41b5175
+XSegEditor , delete button now moves the face to _trash directory and it has been moved to the right border of the window
+
+####END####
+XSegEditor/QStringDB.py
+XSegEditor/XSegEditor.py
+
+####START####deedd3d
+upd windows magnet link
+
+####END####
+README.md
+
+####START####66bb72f
+XSeg model has been changed to work better with large amount of various faces, thus you should retrain existing xseg model.
+
+Windows build: Added Generic XSeg model pretrained on various faces. It is most suitable for src faceset because it contains clean faces, but also can be applied on dst footage without complex face obstructions.
+
+####END####
+core/leras/models/XSeg.py
+
+####START####65a703c
+SampleGeneratorFaceXSeg: additional sample augmentation for better generalization
+
+####END####
+samplelib/SampleGeneratorFaceXSeg.py
+
+####START####8b90ca0
+XSegUtil apply xseg now checks model face type
+
+####END####
+mainscripts/XSegUtil.py
+
+####START####b15cdd9
+fix FacesetResizer
+
+####END####
+mainscripts/FacesetResizer.py
+
+####START####aa26089
+FacesetResizer now supports changing face type
+
+####END####
+mainscripts/FacesetResizer.py
+
+####START####d204e04
+revert
+
+####END####
+samplelib/SampleGeneratorFaceXSeg.py
+
+####START####6f5bcca
+XSegEditor: added delete button
+
+####END####
+XSegEditor/QIconDB.py
+XSegEditor/QStringDB.py
+XSegEditor/XSegEditor.py
+
+####START####081d8fa
+XSeg sample generator: additional sample augmentation for training
+
+####END####
+core/imagelib/__init__.py
+core/imagelib/filters.py
+samplelib/SampleGeneratorFaceXSeg.py
+
+####START####87030bd
+revert for more tests
+
+####END####
+samplelib/SampleGeneratorFaceXSeg.py
+
+####START####e53d1b1
+XSeg trainer: added random relighting sample augmentation to improve generalization
+
+####END####
+core/imagelib/__init__.py
+core/imagelib/filters.py
+samplelib/SampleGeneratorFaceXSeg.py
+
+####START####23130cd
+fix for colab
+
+####END####
+core/leras/device.py
+
+####START####78f12de
+upd windows magnet link
+
+####END####
+README.md
+
+####START####26b4b6a
+upd readme
+
+####END####
+README.md
+
+####START####fdb143f
+added AMD/Intel cards support via DirectX12 ( DirectML backend )
+
+####END####
+core/leras/device.py
+core/leras/nn.py
+facelib/FaceEnhancer.py
+facelib/XSegNet.py
+models/Model_Quick96/Model.py
+models/Model_SAEHD/Model.py
+models/Model_XSeg/Model.py
+
+####START####fc4a49c
+improved xseg sample generator : added random sharpen
+
+####END####
+samplelib/SampleGeneratorFaceXSeg.py
+
+####START####dcf146c
+imagelib : apply_random_sharpen
+
+####END####
+core/imagelib/__init__.py
+core/imagelib/filters.py
+
+####START####7a08c0c
+Extractor: extract from dflimg is now the same as from any image
+
+####END####
+mainscripts/Extractor.py
+
+####START####93fe480
+revert
+
+####END####
+models/Model_XSeg/Model.py
+
+####START####af0b390
+XSeg trainer: additional dssim loss.
+
+####END####
+models/Model_XSeg/Model.py
+
+####START####65432d0
+imagelib: random crop func (unused)
+
+####END####
+core/imagelib/__init__.py
+core/imagelib/common.py
+
+####START####bee8628
+xseg sample generator: additional sample augmentation
+
+####END####
+samplelib/SampleGeneratorFaceXSeg.py
+
+####START####d676a36
+XSeg training generator: added additional sample augmentations
+
+####END####
+samplelib/SampleGeneratorFaceXSeg.py
+
+####START####457a39c
+mathlib update
+
+####END####
+core/mathlib/__init__.py
+
+####START####243f73f
+core.imagelib: update
+
+####END####
+core/imagelib/__init__.py
+core/imagelib/filters.py
+core/imagelib/sd/__init__.py
+core/imagelib/sd/draw.py
+core/imagelib/warp.py
+
+####START####d63294a
+fix 'raw-rgb' merge
+
+####END####
+merger/MergeMasked.py
+
+####START####30ef9c0
+removing alipay donation
+
+####END####
+README.md
+
+####START####1652bff
+change in xseg apply and fetch
+
+####END####
+mainscripts/XSegUtil.py
+
+####START####b7245d8
+missing file
+
+####END####
+mainscripts/FacesetResizer.py
+
+####START####0ad9421
+upd windows magnet link
+
+####END####
+README.md
+
+####START####8d46cd9
+upd pretrain option help
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####f387179
+Added faceset resize tool via
+
+4.2) data_src util faceset resize.bat
+5.2) data_dst util faceset resize.bat
+
+Resize faceset to match model resolution to reduce CPU load during training.
+
+Don’t forget to keep original faceset.
+
+####END####
+core/imagelib/SegIEPolys.py
+main.py
+
+####START####e47b602
+SAEHD: random flip replaced with random SRC flip(default False) and random DST flip(default True)
+
+####END####
+models/ModelBase.py
+models/Model_SAEHD/Model.py
+
+####START####b333fce
+dump_ckpt
+
+####END####
+main.py
+mainscripts/Trainer.py
+models/Model_SAEHD/Model.py
+
+####START####3d0e18b
+readme: added 1facerussia tiktok channel
+
+####END####
+README.md
+
+####START####4818183
+readme: added deeptomcruise channel
+
+####END####
+README.md
+
+####START####a089c1f
+upd meme
+
+####END####
+README.md
+
+####START####1aef229
+upd meme
+
+####END####
+README.md
+
+####START####31a8d05
+fix merger glitches in linux
+
+####END####
+merger/MergeMasked.py
+
+####START####61d345a
+readme: added Jarkan yt channel
+
+####END####
+README.md
+
+####START####3a207e0
+readme: added corridor crew
+
+####END####
+README.md
+
+####START####13055db
+upd
+
+####END####
+README.md
+
+####START####78fc843
+upd communcation groups
+
+####END####
+README.md
+
+####START####eb71b9f
+upd
+
+####END####
+README.md
+
+####START####21a24ff
+upd links
+
+####END####
+README.md
+
+####START####28d7f22
+added new yt channel
+
+####END####
+README.md
+
+####START####0b8d1b2
+added Trump speech as example of deepfake
+
+####END####
+README.md
+
+####START####68e55ba
+added Trump speech as example of deepfake
+
+####END####
+README.md
+
+####START####1bd59a6
+upd discord server link
+
+####END####
+README.md
+
+####START####1fbfe6e
+added discord channel
+
+####END####
+README.md
+
+####START####653475f
+readme: changed reddit community to r/DeepFakesSFW
+
+####END####
+README.md
+
+####START####a50041e
+upd readme
+
+####END####
+README.md
+
+####START####81b67bc
+upd readme
+
+####END####
+README.md
+
+####START####ec5ae22
+upd windows magnet link
+
+####END####
+README.md
+
+####START####11add4c
+update GAN model
+
+####END####
+core/leras/models/PatchDiscriminator.py
+models/Model_SAEHD/Model.py
+
+####START####54fc316
+new gan
+
+####END####
+core/leras/models/PatchDiscriminator.py
+models/Model_SAEHD/Model.py
+
+####START####140f16f
+Merge branch 'master' into new_gan
+
+####END####
+####START####4f2efd7
+fix support for v1/v2
+
+####END####
+core/leras/nn.py
+
+####START####8ff34be
+leras.nn : support for tf ver 1
+
+####END####
+core/leras/nn.py
+
+####START####ad5733c
+upd PatchDiscriminator
+
+####END####
+core/leras/models/PatchDiscriminator.py
+models/Model_SAEHD/Model.py
+
+####START####ae9e16b
+SAEHD: new GAN
+
+####END####
+core/leras/models/PatchDiscriminator.py
+models/Model_SAEHD/Model.py
+
+####START####241d1a9
+leras ops: pixelnorm, total_variation_mse
+
+####END####
+core/leras/ops/__init__.py
+
+####START####299d91c
+remove unused
+
+####END####
+core/leras/nn.py
+
+####START####cc950f1
+set CUDA_​CACHE_​MAXSIZE to 2gb before first cuda load
+
+####END####
+core/leras/device.py
+
+####START####637c2b2
+upd political_speech2.jpg
+
+####END####
+README.md
+
+####START####fba48fb
+upd windows magnet link
+
+####END####
+README.md
+
+####START####fc7ed4d
+readme: upd faces
+
+####END####
+README.md
+
+####START####b7bed0e
+optimize MPSharedList.py
+
+####END####
+core/mplib/MPSharedList.py
+
+####START####1bd7c42
+readme: update channels
+
+####END####
+README.md
+
+####START####977d8a2
+The load time of training data has been reduced significantly.
+
+####END####
+core/mplib/MPSharedList.py
+
+####START####554217d
+added "Windows 10 users IMPORTANT notice" on training start
+
+####END####
+mainscripts/Trainer.py
+
+####START####35cb35e
+upd windows magnet link
+
+####END####
+README.md
+
+####START####db83a21
+Eyes priority is replaced with Eyes and mouth priority,
+Helps to fix eye problems during training like "alien eyes" and wrong eyes direction.
+Also makes the detail of the teeth higher.
+
+New default values with new model:
+Archi : ‘liae-ud’
+AdaBelief : enabled
+
+####END####
+facelib/LandmarksProcessor.py
+models/Model_SAEHD/Model.py
+samplelib/SampleProcessor.py
+
+####START####dd037d2
+SAEHD: lr_dropout now can be used with AdaBelief
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####a06d95e
+upd readme, removing r/giffakes
+
+####END####
+README.md
+
+####START####20d3270
+update windows magnet link
+
+####END####
+README.md
+
+####START####40d1889
+SAEHD: change help
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####b21bce4
+Sorter: added sort by motion blur
+
+####END####
+main.py
+mainscripts/Sorter.py
+
+####START####27f41b3
+upd magnet link
+
+####END####
+README.md
+
+####START####aa79a7d
+update windows magnet link
+
+####END####
+README.md
+
+####START####da058cf
+remove lrcos from adabelief
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####26ed582
+fix xseg
+
+####END####
+models/Model_XSeg/Model.py
+
+####START####bcfefb4
+upd windows build magnet link
+
+####END####
+README.md
+
+####START####1ee7798
+.
+
+####END####
+models/Model_XSeg/Model.py
+
+####START####704b5dc
+SAEHD: added new option Use AdaBelief optimizer?
+  Experimental AdaBelief optimizer. It requires more VRAM, but the accuracy of the model is higher, and lr_dropout is not needed.
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####e7d36b4
+leras: added AdaBelief optimizer
+
+####END####
+core/leras/layers/Saveable.py
+core/leras/optimizers/AdaBelief.py
+core/leras/optimizers/RMSprop.py
+core/leras/optimizers/__init__.py
+
+####START####254a7cf
+fix xseg training
+
+####END####
+facelib/XSegNet.py
+models/Model_XSeg/Model.py
+
+####START####35945b2
+fix dimensions error
+
+####END####
+core/leras/archis/DeepFakeArchi.py
+models/Model_SAEHD/Model.py
+
+####START####764f306
+update magnet link
+
+####END####
+README.md
+
+####START####b9c9e7c
+fix depth_to_space for tf2.4.0. Removing compute_output_shape in leras, because it uses CPU device, which does not support all ops.
+
+####END####
+core/leras/archis/DeepFakeArchi.py
+core/leras/models/ModelBase.py
+core/leras/ops/__init__.py
+models/Model_Quick96/Model.py
+models/Model_SAEHD/Model.py
+
+####START####bbf3a71
+.
+
+####END####
+samplelib/SampleGeneratorFaceXSeg.py
+
+####START####a03493c
+.
+
+####END####
+samplelib/SampleGeneratorFaceXSeg.py
+
+####START####a35076a
+added new chinesse site
+
+####END####
+README.md
+
+####START####573ab6c
+.
+
+####END####
+mainscripts/dev_misc.py
+
+####START####bb432b2
+.
+
+####END####
+core/imagelib/warp.py
+
+####START####e9e7344
+upd
+
+####END####
+DFLIMG/DFLJPG.py
+samplelib/Sample.py
+samplelib/SampleGeneratorFaceXSeg.py
+samplelib/SampleLoader.py
+
+####START####c516454
+fix rmsprop
+
+####END####
+core/leras/optimizers/RMSprop.py
+
+####START####874a7eb
+1
+
+####END####
+core/leras/optimizers/RMSprop.py
+
+####START####1adad3e
+fix RMSprop.py
+
+####END####
+core/leras/optimizers/RMSprop.py
+
+####START####9ed662c
+DFLJPG, upd max save len
+
+####END####
+DFLIMG/DFLJPG.py
+
+####START####0eb7e06
+upgrade to tf 2.4.0rc1
+
+####END####
+core/leras/nn.py
+core/leras/ops/__init__.py
+core/mplib/MPSharedList.py
+
+####START####8b9b907
+upd readme
+
+####END####
+README.md
+
+####START####33f7ca5
+upd readme
+
+####END####
+README.md
+
+####START####676310e
+upd
+
+####END####
+README.md
+
+####START####b53a8e4
+upd readme
+
+####END####
+README.md
+
+####START####732c1e4
+readme.md: add Sassy Justice channel
+
+####END####
+README.md
+
+####START####b2f9ea8
+fix integer dimensions in model initialization
+
+####END####
+facelib/FANExtractor.py
+
+####START####ce3f067
+readme: added RepresenUS youtube channel
+
+####END####
+README.md
+
+####START####d91e79f
+README: added two new politician manipulation videos
+
+####END####
+README.md
+
+####START####4c47f09
+fix magnet link
+
+####END####
+README.md
+
+####START####06e120a
+upd magnet link
+
+####END####
+README.md
+
+####START####00b4f90
+Fix mixed up links (#885)
+
+
+####END####
+README.md
+
+####START####768e56d
+fix readme
+
+####END####
+README.md
+
+####START####f4a661b
+fix readme
+
+####END####
+README.md
+
+####START####a61b7ee
+fix README.md
+
+####END####
+README.md
+
+####START####b5bfec8
+fix README.md
+
+####END####
+README.md
+
+####START####48168eb
+upd linux repo
+
+####END####
+README.md
+
+####START####3e7ee22
+Merger: fix load time of xseg if it has no model files
+
+####END####
+facelib/XSegNet.py
+
+####START####6134e57
+options_show_override{} for model summary in pretrain mode
+
+####END####
+models/ModelBase.py
+models/Model_SAEHD/Model.py
+
+####START####1435dd3
+SAEHD: now random_warp is disabled for pretraining mode by default
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####ce95af9
+SAEHD: write_preview_history now works faster
+The frequency at which the preview is saved now depends on the resolution.
+For example 64x64 – every 10 iters. 448x448 – every 70 iters.
+
+####END####
+models/ModelBase.py
+models/Model_SAEHD/Model.py
+
+####START####5867072
+fix
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####b9b9786
+fix mask for style losses
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####3930073
+Merger: added option “Number of workers?”
+
+Specify the number of threads to process.
+A low value may affect performance.
+A high value may result in memory error.
+The value may not be greater than CPU cores.
+
+####END####
+mainscripts/Merger.py
+merger/InteractiveMergerSubprocessor.py
+
+####START####dd21880
+fix
+
+####END####
+core/leras/layers/Conv2D.py
+
+####START####e8b0405
+SAEHD:
+
+Changed help for “Learning rate dropout” option:
+
+When the face is trained enough, you can enable this option to get extra sharpness and reduce subpixel shake for less amount of iterations.
+
+Enabled it before “disable random warp” and before GAN. n disabled. y enabled
+
+cpu enabled on CPU. This allows not to use extra VRAM, sacrificing 20% time of iteration.
+
+ Changed help for GAN option:
+
+Train the network in Generative Adversarial manner.
+
+Forces the neural network to learn small details of the face.
+
+Enable it only when the face is trained enough and don't disable.
+
+Typical value is 0.1
+
+improved GAN. Now it produces better skin detail, less patterned aggressive artifacts, works faster.
+https://i.imgur.com/Nbh3mw1.png
+
+####END####
+core/leras/models/PatchDiscriminator.py
+models/Model_SAEHD/Model.py
+
+####START####aacd292
+fix
+
+####END####
+core/leras/layers/Conv2D.py
+
+####START####c963703
+fix
+
+####END####
+merger/MergeMasked.py
+
+####START####5a40f53
+.
+
+####END####
+core/imagelib/warp.py
+core/leras/ops/__init__.py
+
+####START####9a540e6
+upd leras ops
+
+####END####
+core/leras/ops/__init__.py
+
+####START####11dc7d4
+upd SampleProcessor
+
+####END####
+samplelib/SampleProcessor.py
+
+####START####b0ad36d
+upd cv2ex
+
+####END####
+core/cv2ex.py
+
+####START####3283dce
+interact: change to waitKeyEx
+
+####END####
+core/interact/interact.py
+
+####START####c58d2e8
+fix cv2.resize interpolation
+
+####END####
+mainscripts/Util.py
+
+####START####770da74
+fix cv2.resize interpolation
+
+####END####
+core/imagelib/filters.py
+core/imagelib/warp.py
+facelib/FaceEnhancer.py
+merger/MergeMasked.py
+samplelib/SampleGeneratorFaceXSeg.py
+samplelib/SampleProcessor.py
+
+####START####55c5157
+fix bicubic interpolation in xsegeditor
+
+####END####
+XSegEditor/XSegEditor.py
+
+####START####57ea3e6
+fix extractor
+
+####END####
+mainscripts/Extractor.py
+
+####START####4ce4997
+fix
+
+####END####
+core/imagelib/warp.py
+
+####START####81ed7c0
+fix
+
+####END####
+samplelib/SampleProcessor.py
+
+####START####f56df85
+fix manual extractor
+
+####END####
+mainscripts/Extractor.py
+
+####START####e5ed29b
+fix continue extraction
+
+####END####
+mainscripts/Extractor.py
+
+####START####e5e9f16
+readme: change second headswap example
+
+####END####
+README.md
+
+####START####e6aa996
+leras: add ability to save sub layers in a dict
+
+####END####
+core/leras/models/ModelBase.py
+
+####START####e0a1d52
+upd readme
+
+####END####
+README.md
+
+####START####bef8403
+added r/RUdeepfakes to readme
+
+####END####
+README.md
+
+####START####44e6970
+changed help for gan_power
+
+####END####
+models/Model_SAEHD/Model.py
+
+####START####3b71eca
+upd DFLJPG.py
+
+####END####
+DFLIMG/DFLJPG.py
+
+####START####b6dd482
+.
+
+####END####
+core/leras/layers/__init__.py
+mainscripts/Sorter.py
+
+####START####bb8d2b5
+max faces from image
+
+####END####
+main.py
+mainscripts/Extractor.py
+
+####START####7da28b2
+Extractor:
+added ‘Image size’ option.
+The higher image size, the worse face-enhancer works. Use higher than 512 value only if the source image is sharp enough and the face does not need to be enhanced.
+
+added ‘Jpeg quality’ option in range 1-100. The higher jpeg quality the larger the output file size
+
+####END####
+main.py
+mainscripts/Extractor.py

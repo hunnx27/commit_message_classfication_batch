@@ -1,0 +1,3369 @@
+####START####eb3d685836
+Correct the :mod: documentation for s3_to_redshift_operator (#17115)
+
+
+####END####
+airflow/operators/s3_to_redshift_operator.py
+
+####START####960da8a907
+Switch test_backfill_job.py from unittest to pytest style (#17112)
+
+Prep work to use pytest fixtures in these tests
+
+####END####
+tests/jobs/test_backfill_job.py
+
+####START####3a7c7648c6
+Fixing typo for render_template_as_native_obj (#17114)
+
+
+####END####
+airflow/models/dag.py
+
+####START####7c0d8a2f83
+Add Pytest fixture to create dag and dagrun and use it on local task job tests (#16889)
+
+This change adds pytest fixture to create dag and dagrun then use it on local task job tests
+
+Co-authored-by: Tzu-ping Chung <uranusjr@gmail.com>
+####END####
+tests/conftest.py
+tests/jobs/test_local_task_job.py
+
+####START####9b3bfe6701
+Ensure a DAG is acyclic when running DAG.cli() (#17105)
+
+Also contains minor fixes to dag_cycle_tester to correct type
+information and docstring description to match reality.
+####END####
+airflow/models/dag.py
+airflow/utils/dag_cycle_tester.py
+
+####START####3939e84161
+Enable using custom pod launcher in Kubernetes Pod Operator (#16945)
+
+* :tada: Initial commit.
+
+* :recycle: Refactoring code.
+
+* :bulb: Documenting source code.
+
+* :bulb: Documenting source code.
+
+* :recycle: Refactoring code.
+
+* :bug: Fixing a bug.
+####END####
+airflow/providers/cncf/kubernetes/operators/kubernetes_pod.py
+
+####START####3a2e162387
+Adds more explanatory message when SecretsMasker is not configured (#17101)
+
+The secrets masker added in 2.1.0 introduced requirement that
+at least one SecretsMasker needs to be configured per task.
+
+However this introduced problems for several users who migrated
+from Airflow 1.10 and had their custom logging configuration
+done without first copying the base airflow configuration.
+
+The message about missing SecretsMasker was pretty cryptic for the
+users. This PR changes the message to be much more descriptive
+and pointing the user to the right place in documentation
+explaining how advanced logging configuration should be done.
+####END####
+airflow/utils/log/secrets_masker.py
+
+####START####acb7a9020b
+Fix error in Druid connection attribute retrieval (#17095)
+
+
+####END####
+airflow/providers/apache/druid/hooks/druid.py
+
+####START####896f35107d
+Add more typing to airflow.utils.helpers (#15582)
+
+* Add more typing to airflow.utils.helpers
+
+* Apply suggestions from code review
+
+Co-authored-by: Tzu-ping Chung <uranusjr@gmail.com>
+
+* Update airflow/utils/helpers.py
+
+* Update airflow/utils/helpers.py
+
+Co-authored-by: Xiaodong DENG <xd.deng.r@gmail.com>
+
+Co-authored-by: Tzu-ping Chung <uranusjr@gmail.com>
+Co-authored-by: Xiaodong DENG <xd.deng.r@gmail.com>
+####END####
+airflow/utils/helpers.py
+
+####START####d268016a7a
+Chore: Some code cleanup in `airflow/utils/db.py` (#17090)
+
+As part of https://github.com/apache/airflow/pull/17078, a separate `filldb` function was created which isn't needed as it isn't used anywhere outof `initdb`
+####END####
+airflow/utils/db.py
+
+####START####a1d3b271ed
+Parse template parameters field for MySQL operator (#17080)
+
+
+####END####
+airflow/providers/mysql/operators/mysql.py
+tests/providers/mysql/operators/test_mysql.py
+
+####START####a4af964c1a
+Translate non-ascii characters (#17057)
+
+
+####END####
+airflow/kubernetes/kubernetes_helper_functions.py
+tests/executors/test_kubernetes_executor.py
+
+####START####1a0730a08f
+#16976 Add json.dumps() for templated fields objects: 'dict' and 'list' (#17082)
+
+
+####END####
+airflow/www/views.py
+
+####START####636625fdb9
+Add insert_args for support transfer replace (#15825)
+
+
+####END####
+airflow/operators/generic_transfer.py
+tests/operators/test_generic_transfer.py
+
+####START####fea29112be
+AirbyteHook - Consider incomplete status (#16965)
+
+
+####END####
+airflow/providers/airbyte/hooks/airbyte.py
+tests/providers/airbyte/hooks/test_airbyte.py
+
+####START####bb1d79cb81
+Fixed template_fields_renderers for Amazon provider (#17087)
+
+
+####END####
+airflow/providers/amazon/aws/operators/batch.py
+airflow/providers/amazon/aws/operators/datasync.py
+airflow/providers/amazon/aws/operators/ecs.py
+airflow/providers/amazon/aws/operators/emr_add_steps.py
+airflow/providers/amazon/aws/operators/glue.py
+airflow/providers/amazon/aws/operators/s3_bucket_tagging.py
+airflow/providers/amazon/aws/operators/sns.py
+airflow/providers/amazon/aws/operators/sqs.py
+airflow/providers/amazon/aws/transfers/mongo_to_s3.py
+airflow/providers/amazon/aws/transfers/mysql_to_s3.py
+airflow/providers/amazon/aws/transfers/redshift_to_s3.py
+
+####START####8f77a54b53
+removing try-catch block (#17081)
+
+
+####END####
+airflow/providers/amazon/aws/operators/batch.py
+
+####START####1e2837ac54
+Improve executor validation in CLI (#17071)
+
+* Improve executor validation in CLI
+
+* fixup! Improve executor validation in CLI
+
+* fixup! fixup! Improve executor validation in CLI
+####END####
+airflow/cli/cli_parser.py
+tests/cli/test_cli_parser.py
+
+####START####fbc945d2a2
+Prevent running `airflow db init\upgrade` migrations and setup in parallel. (#17078)
+
+
+####END####
+airflow/utils/db.py
+airflow/utils/session.py
+
+####START####026ffe65d4
+fix: dataprocpysparkjob project_id as self.project_id (#17075)
+
+set project_id as self.project_id from self.hook.project_id
+####END####
+airflow/providers/google/cloud/operators/dataproc.py
+
+####START####126788a25a
+Switch test_scheduler_job.py from unittest to pytest style (#17053)
+
+This is prep work to let us use pytest fixtures more extensively in
+these tests.
+####END####
+tests/jobs/test_scheduler_job.py
+
+####START####cda78333b4
+Added docs & doc ref's for AWS transfer operators between SFTP & S3 (#16964)
+
+
+####END####
+airflow/providers/amazon/aws/example_dags/example_s3_to_sftp.py
+airflow/providers/amazon/aws/example_dags/example_sftp_to_s3.py
+airflow/providers/amazon/aws/transfers/s3_to_sftp.py
+airflow/providers/amazon/aws/transfers/sftp_to_s3.py
+
+####START####d1e9d8c884
+Update INTHEWILD.md (Adding Skai.io) (#17067)
+
+* Update INTHEWILD.md
+
+* Update INTHEWILD.md
+####END####
+INTHEWILD.md
+
+####START####938510f2ca
+Update INTHEWILD.md (#17058)
+
+
+####END####
+INTHEWILD.md
+
+####START####b076ac5925
+[FIX] Docker provider - retry docker in docker (#17061)
+
+
+####END####
+airflow/providers/docker/operators/docker.py
+tests/providers/docker/operators/test_docker.py
+
+####START####2ce6e8de53
+Fix minor issues in `UPDATING.md` (#17026)
+
+- Duplicate line `#### `airflow.providers.http.operators.http.SimpleHttpOperator``
+
+- Fix install command
+####END####
+UPDATING.md
+
+####START####07e0a67bf6
+Fixes "development" and "rc" cross dependencies between providers (#17023)
+
+In case we have additional dependencies between providers released
+at the same time (for example we need to release sftp and ssh
+packages now where sftp package depends on release of ssh
+at the same time) we have to add suffix to the version of the
+additional_dependency.
+
+PIP does not take into account unfortunately that development
+dependencies should likely be considered as fulfilling the
+requirement of >=. For example if you have:
+
+sftp depends on ssh>=2.1.0 and you release ssh 2.1.0.dev0 at
+the same time the ssh>=2.1.0 condition is not fulfilled.
+
+Same case will be with rc1. Therefore we need to add the suffix in such
+cross-provider dependencies to be able to install them in CI
+and in rc candidates.
+
+In the future we might ask PIP to change behaviour in such case.
+####END####
+dev/provider_packages/prepare_provider_packages.py
+
+####START####3645184327
+Fix bug and small improvements in scripts/tools/list-integrations.py (#17004)
+
+
+####END####
+scripts/tools/list-integrations.py
+
+####START####53246ebef7
+Deprecate Tableau personal token authentication (#16916)
+
+* Deprecate Tableau personal token authentication
+
+* Fix spelling in documentation
+
+* Fix styling issue in TableauHook
+####END####
+airflow/providers/tableau/hooks/tableau.py
+airflow/providers/tableau/operators/tableau_refresh_workbook.py
+airflow/providers/tableau/sensors/tableau_job_status.py
+tests/providers/tableau/operators/test_tableau_refresh_workbook.py
+
+####START####469d1cfcdc
+Update Airflow version in ``README.md`` (#17009)
+
+This commit/PR also updates the release date in CHANGELOG.txt
+####END####
+README.md
+
+####START####c164c5cfaa
+Chart: Update the default Airflow version to ``2.1.2`` (#17013)
+
+Updates default Airflow version to 2.1.2 as it has been released.
+####END####
+chart/UPDATING.md
+
+####START####bc004151ed
+Adds option to disable mounting temporary folder in DockerOperator (#16932)
+
+* Adds option to disable mounting temporary folder in DockerOperator
+
+The DockerOperator by default mounts temporary folder to inside
+the container in order to allow to store files bigger than
+default size of disk for the container, however this did not work
+when remote Docker engine or Docker-In-Docker solution was used.
+
+This worked before the #15843 change, because the /tmp has
+been ignored, however when we change to "Mounts", the "/tmp"
+mount fails when using remote docker engine.
+
+This PR adds parameter that allows to disable this temporary
+directory mounting (and adds a note that it can be replaced
+with mounting existing volumes). Also it prints a warning
+if the directory cannot be mounted and attempts to re-run
+such failed attempt without mounting the temporary
+directory which brings back backwards-compatible behaviour
+for remote engines and docker-in-docker.
+
+Fixes: #16803
+Fixes: #16806
+
+####END####
+airflow/providers/docker/operators/docker.py
+tests/providers/docker/operators/test_docker.py
+
+####START####fc0250f1d5
+Allow attaching to previously launched task in ECSOperator (#16685)
+
+This PR adds a parameter reattach_prev_task to ECSOperator.
+
+**Before:**
+Until now we could use 'reattach' which was reattaching a running ECS Task (if there was one running) of the same 'family' instead of creating a new one. The problem was that if we had workflows using the same ECS Task Definition in several tasks, it didn't know which one to reattach and we could only use `concurrency=1` in some pipelines for example (when we launch the same ECS task in parallel from Airflow with different configurations).
+
+**Now:**
+Now with reattach_prev_task instead, when we launch a new ECS task, it will store temporarily the ECS Task ARN in XCOM. If there is an issue during the run (typically connection problem between Airflow and ECS for long-running tasks or Airflow worker restarting which was then still running those tasks in the background without Airflow being aware of it):
+- self._start_task will store the ECS task ARN in XCOM (in a 'fake' task_id equal to f"{self.task_id}_task_arn"
+- in the next execution, it will check if this task ARN is still running and if so it will reattach it to the operator, otherwise it will create a new one
+- when the operator runs succesfully it will delete the XCOM value
+
+
+I didn't change the logic of 'reattach' to do that directly because I didn't know if it had been designed for other use cases
+
+**Update 2021-07-01:**
+After discussing with @darwinyip  I made the change to 'reattach' directly instead of creating a new flag
+####END####
+airflow/providers/amazon/aws/hooks/base_aws.py
+airflow/providers/amazon/aws/operators/ecs.py
+tests/providers/amazon/aws/operators/test_ecs.py
+
+####START####a5d7f9b322
+Fix static checks after pre-commit upgrades (#17006)
+
+Fixes changes after: https://github.com/apache/airflow/pull/17000
+####END####
+airflow/sensors/base.py
+tests/providers/google/cloud/hooks/test_pubsub.py
+tests/providers/google/cloud/operators/test_pubsub.py
+tests/providers/google/cloud/sensors/test_pubsub.py
+
+####START####ded4beb249
+Fix release guide when copying artifacts (#17001)
+
+When copying artifacts from dev svn repo to release repo:
+
+Before:
+
+```
+❯ for f in ${AIRFLOW_DEV_SVN}/$RC/*; do
+echo "${$(basename $f)/rc?/}"
+done
+apache-airflow-2.1.2-sou.tar.gz
+apache-airflow-2.1.2-sou.tar.gz.asc
+apache-airflow-2.1.2-sou.tar.gz.sha512
+apache-airflow-2.1.2.tar.gz
+apache-airflow-2.1.2.tar.gz.asc
+apache-airflow-2.1.2.tar.gz.sha512
+apache_airflow-2.1.2-py3-none-any.whl
+apache_airflow-2.1.2-py3-none-any.whl.asc
+apache_airflow-2.1.2-py3-none-any.whl.sha512
+```
+
+After:
+
+```
+❯ for f in ${AIRFLOW_DEV_SVN}/$RC/*; do
+echo "${$(basename $f)/}"
+done
+apache-airflow-2.1.2-source.tar.gz
+apache-airflow-2.1.2-source.tar.gz.asc
+apache-airflow-2.1.2-source.tar.gz.sha512
+apache-airflow-2.1.2.tar.gz
+apache-airflow-2.1.2.tar.gz.asc
+apache-airflow-2.1.2.tar.gz.sha512
+apache_airflow-2.1.2-py3-none-any.whl
+apache_airflow-2.1.2-py3-none-any.whl.asc
+apache_airflow-2.1.2-py3-none-any.whl.sha512
+```
+####END####
+dev/README_RELEASE_AIRFLOW.md
+
+####START####177dfbd12a
+Fix extras name in ``UPDATING.md`` (#16998)
+
+The description didn't match the command. Atlas instead of Azure
+####END####
+UPDATING.md
+
+####START####6ab00bfcfd
+Extended template_fields_renderers for MySQL provider (#16987)
+
+
+####END####
+airflow/providers/mysql/transfers/presto_to_mysql.py
+airflow/providers/mysql/transfers/trino_to_mysql.py
+airflow/providers/mysql/transfers/vertica_to_mysql.py
+
+####START####7529546939
+Update chain() and cross_downstream() to support XComArgs (#16732)
+
+Co-authored-by: Ash Berlin-Taylor <ash_github@firemirror.com>
+####END####
+airflow/models/baseoperator.py
+tests/models/test_baseoperator.py
+
+####START####3143f1af44
+Move CI-integration images to ghcr.io (#16797)
+
+This is the final step of moving the images used for CI integration
+to `ghcr.io` from DockerHub. With Publicly available images
+with self-management provided by GitHub, we can finally move to
+keep the images "properly" - i.e. each image is separate and
+tag is only image version.
+
+Part of #16555
+####END####
+kubernetes_tests/test_kubernetes_pod_operator.py
+tests/kubernetes/test_pod_generator.py
+
+####START####fbfb08a15b
+Prevent running `airflow db init\upgrade` migrations and setup in parallel. (#16311)
+
+
+####END####
+airflow/migrations/env.py
+airflow/utils/db.py
+airflow/utils/session.py
+
+####START####c46e841519
+Switch back http provider after requests removes LGPL dependency (#16974)
+
+Following merging the https://github.com/psf/requests/pull/5797
+and requests 2.26.0 release without LGPL chardet dependency,
+we can now bring back http as pre-installed provider as it does
+not bring chardet automatically any more.
+####END####
+setup.py
+
+####START####a3f5c93806
+Update alias for field_mask in Google Memmcache (#16975)
+
+The July 12 2021 release of google-memcache library removed
+field_mask alias from the library which broke our typechecking
+and made google provider unimportable. This PR fixes the import
+to use the actual import.
+####END####
+airflow/providers/google/cloud/hooks/cloud_memorystore.py
+setup.py
+
+####START####9ff781ad8f
+Fixed to check number key from jenkins response (#16963)
+
+Co-authored-by: 남상준/데이터솔루션팀 <sangjun.nam@musinsa.com>
+####END####
+airflow/providers/jenkins/operators/jenkins_job_trigger.py
+
+####START####2cba553002
+Add CRST - The Transportation Solution, Inc to INTHEWILD.md (#16946)
+
+
+####END####
+INTHEWILD.md
+
+####START####0dd70de949
+Remove duplicate line in ``UPDATING.md`` (#16955)
+
+This line is duplicated, the other contains title and description too.
+####END####
+UPDATING.md
+
+####START####f2bd15da53
+Add Talkdesk as a user of airflow 😁 (#16947)
+
+
+####END####
+INTHEWILD.md
+
+####START####789e0eaee8
+Add recursive flag to glob in filesystem sensor (#16894)
+
+This PR aims to fix #16725 by adding the `recursive` flag to `glob` in the filesystem sensor.
+
+closes: #16725 
+####END####
+airflow/sensors/filesystem.py
+tests/sensors/test_filesystem.py
+
+####START####8808b64194
+AIRFLOW-5529 Add Apache Drill provider. (#16884)
+
+
+####END####
+airflow/providers/apache/drill/__init__.py
+airflow/providers/apache/drill/example_dags/example_drill_dag.py
+airflow/providers/apache/drill/hooks/__init__.py
+airflow/providers/apache/drill/hooks/drill.py
+airflow/providers/apache/drill/operators/__init__.py
+airflow/providers/apache/drill/operators/drill.py
+airflow/utils/db.py
+docs/conf.py
+setup.py
+tests/providers/apache/drill/__init__.py
+tests/providers/apache/drill/hooks/__init__.py
+tests/providers/apache/drill/hooks/test_drill.py
+tests/providers/apache/drill/operators/__init__.py
+tests/providers/apache/drill/operators/test_drill.py
+
+####START####af0598f5b8
+Switch Breeze/CI to ghcr.io excusively (#16780)
+
+Breeze used traditionally DockerHub to pull images, because
+they were public and GitHub Packages were not. With GitHub Container
+Regisry however, we can switch fully to using GitHub Container
+Registry also for Breeze.
+
+Thanks to moving to Github Container Registry we can remove
+a lot of code responsible for maintaining different naming
+and different versions of the images in DockerHub and
+GitHub Container Registry. Also it streamlines and simplifies
+the process of refreshing the images when new python versions
+are released - the CI push builds will check if the new Python
+image is released in DockerHub and it will rebuild the base
+image automatically if needed (and push it as cache)
+
+The CI documentation (including sequence diagrams) has been
+refreshed to reflect those changes (and other changes done in
+the meantime). The flows are now simplified as DockerHub is
+largely moved out of the picture.
+
+The only remaining DockerHub Images now are:
+
+* images used during CI for integrations (airflow-ci)
+* officially released Production Airflow images (airflow)
+
+The integration images will be moved to GitHub Container Registry
+in a subsequent PR and the only images remaining in DockerHub
+will be the officially released Production Airflow images.
+
+Part of #16555
+####END####
+README.md
+dev/README_RELEASE_AIRFLOW.md
+dev/README_RELEASE_AIRFLOW_UPGRADE_CHECK.md
+dev/retag_docker_images.py
+
+####START####2fea4cdcea
+Refactor: Remove processor_factory from DAG processing (#16659)
+
+This change removes processor_factory that was passed around a lot
+between different classes and creates the processor at the point of need
+
+Co-authored-by: Jed Cunningham <66968678+jedcunningham@users.noreply.github.com>
+####END####
+airflow/dag_processing/manager.py
+airflow/jobs/scheduler_job.py
+tests/dag_processing/test_manager.py
+
+####START####543c31f760
+Fix UPDATING.md (#16933)
+
+
+####END####
+UPDATING.md
+
+####START####b2c66e45b7
+BugFix: Using `json` string in template_field causes issue with K8s Operators (#16930)
+
+closes https://github.com/apache/airflow/issues/16922
+
+Because we simply check if fields in template_field ends with `template_ext`,
+this was causing issues if the str ends with json, in which case Airflow would
+try to search for file instead of using the string
+####END####
+airflow/providers/cncf/kubernetes/operators/kubernetes_pod.py
+airflow/providers/cncf/kubernetes/operators/spark_kubernetes.py
+
+####START####d3f300fba8
+Fix wrong template_fields_renderers for AWS operators (#16820)
+
+
+####END####
+airflow/providers/amazon/aws/operators/ecs.py
+airflow/providers/amazon/aws/operators/sagemaker_base.py
+
+####START####9a1fc19a62
+Fixed task instance retrieval in XCom view (#16923)
+
+The SQL logical "and" was not implemented correctly and hence the filter was returning wrong results
+####END####
+airflow/www/views.py
+
+####START####d9f39bbc4d
+Fix Airflow releasing guide (#16924)
+
+Fix Airflow releasing guide with some minor issues
+####END####
+dev/README_RELEASE_AIRFLOW.md
+
+####START####90c7c74027
+Remove not needed log line (#16925)
+
+This got added by mistake in https://github.com/apache/airflow/pull/16289/files#diff-62f7d8a52fefdb8e05d4f040c6d3459b4a56fe46976c24f68843dbaeb5a98487R1354
+####END####
+airflow/models/taskinstance.py
+
+####START####df0746e133
+Allow disable SSL for TableauHook (#16365)
+
+* Fixed Tableau connection with ssl mode.
+
+* Restored site_id field in tableau hook.
+
+* Updated test for provider Tableau Hook to adapt them to the new changes.
+
+* Added the name of the parameter in function call for better code readability.
+
+* Implemented the possibility to add verify and cert parameters in extra option in Tableau Hook.
+
+* Covered connection test with SSL parameter.
+
+* Updated documentation for Tableau connection.
+
+* Added conversion from string to bool for verify parameter.
+
+* Updated Tableau hook test.
+
+* Precommit modifications.
+
+* Fixed bug in test.
+
+* Fixed Tableau docs.
+
+Co-authored-by: Michele <mzanchi@tenaris.com>
+####END####
+airflow/providers/tableau/hooks/tableau.py
+tests/providers/tableau/hooks/test_tableau.py
+
+####START####fc917af8b4
+Fix Minor Bugs in Apache Sqoop Hook and Operator (#16350)
+
+
+####END####
+airflow/providers/apache/sqoop/hooks/sqoop.py
+airflow/providers/apache/sqoop/operators/sqoop.py
+tests/providers/apache/sqoop/hooks/test_sqoop.py
+tests/providers/apache/sqoop/operators/test_sqoop.py
+
+####START####c3b8212b6e
+Added template_fields_renderers for MySQL Operator (#16914)
+
+
+####END####
+airflow/providers/mysql/operators/mysql.py
+
+####START####db6acd9e8a
+Add a calendar field to choose the execution date of the DAG when triggering it (#16141)
+
+* Enable choosing the execution date on the Trigger Dag UI
+
+* Fix issue with invalid conf
+
+* Remove redundant check for the default exec date
+
+* Handle condition where execution date is invalid
+
+* Add error message for failed to parse execution_date
+
+* Switch to exception log level
+
+Co-authored-by: Joao Ponte <jpe@plista.com>
+####END####
+airflow/www/decorators.py
+airflow/www/views.py
+tests/www/views/test_views_trigger_dag.py
+
+####START####2b10680a2f
+Fix minor typo in configuration.py (#16832)
+
+
+####END####
+airflow/configuration.py
+
+####START####1e1b212417
+Updating Airbyte example DAG to use XComArgs (#16867)
+
+
+####END####
+airflow/providers/airbyte/example_dags/example_airbyte_trigger_job.py
+
+####START####5999cb9a66
+Adding: Snowflake Role in snowflake provider hook (#16735)
+
+* Adding:
+1. 'extra__snowflake__role' to get_connection_form_widgets() to enable snowflake role capture.
+2. 'extra__snowflake__role' to get_ui_field_behaviour() to placeholders to return snowflake role to the UI.
+3. Updated _get_conn_params() to capture snowflake role from 'extra__snowflake__role'.
+
+
+Co-authored-by: saurasingh <saurabhsingh@dal.ca>
+####END####
+airflow/providers/snowflake/hooks/snowflake.py
+tests/providers/snowflake/hooks/test_snowflake.py
+
+####START####b0f7f91fe2
+Standardise dataproc location param to region (#16034)
+
+* Standardise dataproc location param to region
+
+Standardises DataProc hook & operators `location` parameter to `region` in line
+with underlying google DataProc Python client library.
+
+* Adding back `location` parameter for backward compability
+
+* Fix test
+
+* Update airflow/providers/google/CHANGELOG.rst
+
+Co-authored-by: Jarek Potiuk <jarek@potiuk.com>
+####END####
+airflow/providers/google/cloud/example_dags/example_dataproc.py
+airflow/providers/google/cloud/hooks/dataproc.py
+airflow/providers/google/cloud/operators/dataproc.py
+airflow/providers/google/cloud/sensors/dataproc.py
+tests/providers/google/cloud/hooks/test_dataproc.py
+tests/providers/google/cloud/operators/test_dataproc.py
+tests/providers/google/cloud/sensors/test_dataproc.py
+
+####START####5a5f30f913
+Add 'queued' to DagRunState (#16854)
+
+This change adds 'queued' to DagRunState and improved typing for DagRun state
+
+Co-authored-by: Kaxil Naik <kaxilnaik@gmail.com>
+####END####
+airflow/jobs/scheduler_job.py
+airflow/models/dag.py
+airflow/models/dagrun.py
+airflow/models/taskinstance.py
+airflow/utils/state.py
+
+####START####feea38057a
+Fix impersonation issue with LocalTaskJob (#16852)
+
+Running a task with run_as_user fails because PIDs are not matched
+correctly.
+
+This change fixes it by matching the parent process ID (the `sudo`
+process) of the task instance to the current process ID of the task_runner
+process when we use impersonation
+
+Co-authored-by: Ash Berlin-Taylor <ash_github@firemirror.com>
+####END####
+airflow/jobs/local_task_job.py
+tests/jobs/test_local_task_job.py
+
+####START####faffaec733
+Don't check execution_date in refresh_from_db (#16809)
+
+The native sqlalchemy DateTime type does not compare well when timezones
+don't match. This can happen if the current execution_date on a DagRun
+instance is not in UTC (the db entry is always in UTC).
+
+Since DagRun has a unique constraint on (dag_id, run_id), these two
+should be able to return one unique result, and the executrion_date
+column should not be needed anyway. Let's just remove that filter to
+prevent all the datetime comparison trouble.
+####END####
+airflow/models/dagrun.py
+
+####START####2b7c59619b
+Add State types for tasks and DAGs (#15285)
+
+This adds TaskState and DagState enum types that contain all possible states, makes all other core state constants derive their values from them, and adds a couple of initial type hints that use the new enums (with the plan being that we can add signficantly more later).
+
+closes: #9387
+
+####END####
+airflow/models/dagrun.py
+airflow/typing_compat.py
+airflow/utils/state.py
+
+####START####f0df184e4d
+Update AWS Base hook to use refreshable credentials (#16770) (#16771)
+
+
+####END####
+airflow/providers/amazon/aws/hooks/base_aws.py
+tests/providers/amazon/aws/hooks/test_base_aws.py
+
+####START####f40ade4643
+When a task instance fails with exception, log it (#16805)
+
+The previous .exception() call looks at sys.exc_info() for the active
+exception, but since the failure handler is not in a Python exception
+handling context, it fails to actually log the exception. This is
+amended by passing in the exception instance explicitly, which is a
+valid argument type according to logging's documentation.
+####END####
+airflow/models/taskinstance.py
+
+####START####6611ffd399
+Add 'queued' state to DagRun (#16401)
+
+This change adds queued state to DagRun. Newly created DagRuns
+start in the queued state, are then moved to the running state after
+satisfying the DAG's max_active_runs. If the Dag doesn't have
+max_active_runs, the DagRuns are moved to running state immediately
+
+Clearing a DagRun sets the state to queued state
+
+Closes: #9975, #16366
+####END####
+airflow/jobs/scheduler_job.py
+airflow/migrations/versions/97cdd93827b8_add_queued_at_column_to_dagrun_table.py
+airflow/models/dag.py
+airflow/models/dagrun.py
+airflow/models/taskinstance.py
+airflow/www/views.py
+tests/api/common/experimental/test_mark_tasks.py
+tests/api_connexion/endpoints/test_dag_run_endpoint.py
+tests/api_connexion/schemas/test_dag_run_schema.py
+tests/dag_processing/test_manager.py
+tests/dag_processing/test_processor.py
+tests/jobs/test_scheduler_job.py
+tests/models/test_cleartasks.py
+tests/models/test_dag.py
+tests/models/test_dagrun.py
+tests/sensors/test_external_task_sensor.py
+tests/www/views/test_views.py
+
+####START####ad185db8ca
+Chart: Allow using krb5.conf with ``CeleryExecutor`` (#16822)
+
+
+####END####
+chart/tests/test_configmap.py
+
+####START####0632ecf6f5
+BugFix: Correctly handle custom `deps` and `task_group` during DAG Serialization (#16734)
+
+We check if the dag changed or not via dag_hash, so we need to correctly handle deps and task_group during DAG serialization to ensure that the generation of dag_hash is stable.
+
+closes https://github.com/apache/airflow/issues/16690
+####END####
+airflow/serialization/serialized_objects.py
+tests/serialization/test_dag_serialization.py
+
+####START####81fde5844d
+Remove AbstractDagFileProcessorProcess from dag processing (#16816)
+
+This change removes AbstractDagFileProcessorProcess from dag processing
+####END####
+airflow/dag_processing/manager.py
+airflow/dag_processing/processor.py
+
+####START####33af2b19a2
+Update TaskGroup typing (#16811)
+
+* Update TaskGroup typing
+
+* Update task_group.py
+####END####
+airflow/utils/task_group.py
+
+####START####a2dc01b345
+SSHHook: Using correct hostname for host_key when using non-default ssh port (#15964)
+
+
+####END####
+airflow/providers/ssh/hooks/ssh.py
+
+####START####ffe8fab653
+Added select_query to the templated fields in RedshiftToS3Operator (#16767)
+
+Co-authored-by: Weiping He <weiping.he@cirium.com>
+####END####
+airflow/providers/amazon/aws/transfers/redshift_to_s3.py
+tests/providers/amazon/aws/transfers/test_redshift_to_s3.py
+
+####START####371ea19f82
+Update ``click`` to 8.x (#16779)
+
+
+
+Don't see any breaking changes here: https://click.palletsprojects.com/en/8.0.x/upgrading/
+
+
+####END####
+setup.py
+
+####START####f063a8f549
+Update default image as ``2.1.1`` for Helm Chart (#16785)
+
+Change Helm chart default version to `2.1.1`
+####END####
+README.md
+chart/UPDATING.md
+
+####START####554a23928e
+Fix slow (cleared) tasks being be adopted by Celery worker. (#16718)
+
+Celery executor is currently adopting anything that has ever run before and has been cleared since then.
+
+**Example of the issue:**
+We have a DAG that runs over 150 sensor tasks and 50 ETL tasks while having a concurrency of 3 and max_active_runs of 16. This setup is required because we want to divide the resources and we don't want this DAG to take up all the resources. What will happen is that many tasks will be in scheduled for a bit as it can't queue them due to the concurrency of 3. However, because of the current implementations, if these tasks ever run before, they would get adopted by the schedulers executor instance and become stuck forever [without this PR](https://github.com/apache/airflow/pull/16550). However, they should have never been adopted in the first place.
+
+**Contents of the PR**:
+1. Tasks that are in scheduled should never have arrived at an executor. Hence, we remove the task state scheduled from the option to be adopted.
+2. Given this task instance `external_executor_id`  is quite important in deciding whether it is adopted, we will also reset this when we reset the state of the TaskInstance.
+####END####
+airflow/jobs/scheduler_job.py
+airflow/models/taskinstance.py
+tests/executors/test_celery_executor.py
+tests/jobs/test_scheduler_job.py
+tests/models/test_cleartasks.py
+
+####START####d1d04fee8d
+Mask value if the key is ``token`` (#16474)
+
+Some connections (including the databricks connection) use the key 'token' in the 'extra' field (this has always been the case). Including it here so that these sensitive tokens are also masked by default.
+
+The prior implementation just masked all of the 'extra' json: "XXXXXXXX" if conn.extra_dejson else None https://github.com/apache/airflow/blob/88199eefccb4c805f8d6527bab5bf600b397c35e/airflow/hooks/base.py#L78
+####END####
+airflow/utils/log/secrets_masker.py
+
+####START####81be82bfb7
+Remove redundant logging in SFTP Hook (#16704)
+
+There is no equivalent logging in the store method – and arguably, a user of this hook who
+wants this sort of operation logging would want more information here such as bytes transferred, 
+transfer rate, etc.
+####END####
+airflow/providers/sftp/hooks/sftp.py
+
+####START####0b43b6bcf5
+Have UI and POST /task_instances_state API endpoint have same behaviour (#16539)
+
+Keep the behavior of `post_set_task_instances_state` in the api the same as that of Mark Success/Failed in the UI after #13037.
+Marking Success/Failed in the UI also clears downstream tasks that are in failed/upstream_failed state. This PR makes the corresponding feature in the api `post_set_task_instances_state` do the same. See comments from @ashb [here](https://github.com/apache/airflow/pull/13037#pullrequestreview-673022834).
+####END####
+airflow/api_connexion/endpoints/task_instance_endpoint.py
+airflow/models/dag.py
+airflow/www/views.py
+tests/api_connexion/endpoints/test_task_instance_endpoint.py
+tests/models/test_dag.py
+
+####START####9d170279a6
+Validate type of `priority_weight` during parsing (#16765)
+
+closes https://github.com/apache/airflow/issues/16762
+
+Without this the scheduler crashes as validation does not happen at DAG Parsing time.
+####END####
+airflow/models/baseoperator.py
+tests/models/test_baseoperator.py
+
+####START####cad854288a
+Remove remaining Pylint disables (#16760)
+
+Follow up of https://github.com/apache/airflow/pull/16689 to clean remaining pylint disables
+####END####
+airflow/www/views.py
+tests/providers/amazon/aws/hooks/test_base_aws.py
+
+####START####7777d4f2fd
+Correctly load openssh-gerenated private keys in SSHHook (#16756)
+
+When Paramiko loads an openssh-generated RSA private key it would
+happily "parse" it as valid a DSS key, only to fail at first use.
+
+This commit fixes the problem in two ways:
+
+1. It re-orders the list to move DSA to the last format to be tried
+   (which is now not widely used)
+2. Attempts to "use" the key by signing some data, causing it to be
+   checked early.
+####END####
+airflow/providers/ssh/hooks/ssh.py
+tests/providers/ssh/hooks/test_ssh.py
+
+####START####2285ee9f71
+Only allow webserver to request from the worker log server (#16754)
+
+
+Logs _shouldn't_ contain any sensitive info, but they often do by
+mistake. As an extra level of protection we shouldn't allow anything
+other than the webserver to access the logs.
+
+(We can't change the bind IP form 0.0.0.0 as for it to be useful it
+needs to be accessed from different hosts -- i.e. the webserver will
+almost always be on a different node)
+####END####
+airflow/utils/log/file_task_handler.py
+airflow/utils/serve_logs.py
+tests/utils/test_serve_logs.py
+
+####START####39c8a9cac5
+ensure task is skipped if missing sla (#16719)
+
+* ensure task is skipped if missing sla
+
+This protects against missing SLAs.
+
+For instance, if a task does not have an SLA then it's possible this will result in an error like so:
+
+TypeError: unsupported operand type(s) for +: 'DateTime' and 'NoneType'
+  File "airflow/jobs/scheduler_job.py", line 565, in execute_callbacks
+    self.manage_slas(dagbag.dags.get(request.dag_id))
+  File "airflow/utils/session.py", line 70, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "airflow/jobs/scheduler_job.py", line 433, in manage_slas
+    if following_schedule + task.sla < timezone.utcnow():
+
+Here we simply skip tasks which do not have SLAs and avoid raising the exception in subsequent logic.
+####END####
+airflow/dag_processing/processor.py
+
+####START####8b41c2e0b9
+Logging and returning info about query execution SnowflakeHook (#15736)
+
+
+####END####
+airflow/providers/snowflake/hooks/snowflake.py
+airflow/providers/snowflake/operators/snowflake.py
+tests/providers/snowflake/operators/test_snowflake.py
+
+####START####a2d6aa07c9
+Fix unchecked indexing in _build_metrics (#16744)
+
+I am not sure if this can happend in regular uses, but when running test
+cases `sys.argv` can be that args passed to the pytest. When this is the
+case it is definently possible for argv to only contain a single
+element.
+####END####
+airflow/utils/cli.py
+
+####START####8e2a0bc2e3
+Chart: refactor webserver and flower networkpolicy (#16619)
+
+This adds support for overriding ports on the webserver and flower
+networkpolicies. This allows sidecars with webservers in them to
+function when networkpolicy is enabled.
+
+This also renamed the existing parameter used to define `from`
+ in the networkpolicies ingress.
+####END####
+chart/UPDATING.md
+chart/tests/test_flower.py
+chart/tests/test_webserver.py
+
+####START####e3f5eb9215
+Chart: fix labels on cleanup serviceaccount (#16722)
+
+
+####END####
+chart/tests/test_basic_helm_chart.py
+
+####START####7857a9bde2
+Fix ``CeleryKubernetesExecutor`` (#16700)
+
+closes https://github.com/apache/airflow/issues/16326
+
+Currently when running celery tasks when running with ``CeleryKubernetesExecutor``,
+we see the following error. This error occurs as the ``BaseJob`` (via ``LocalTaskJob``) tries to needlessly
+instantiate a `KubernetesExecutor` which in turn tries to create a multiprocessing process/Manager
+which fails.
+
+```
+[2021-06-29 00:23:45,301: ERROR/ForkPoolWorker-16] Failed to execute task daemonic processes are not allowed to have children.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/executors/celery_executor.py", line 116, in _execute_in_fork
+    args.func(args)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/cli_parser.py", line 48, in command
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/utils/cli.py", line 91, in wrapper
+    return f(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/commands/task_command.py", line 237, in task_run
+    _run_task_by_selected_method(args, dag, ti)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/commands/task_command.py", line 64, in _run_task_by_selected_method
+    _run_task_by_local_task_job(args, ti)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/commands/task_command.py", line 117, in _run_task_by_local_task_job
+    pool=args.pool,
+  File "<string>", line 4, in __init__
+  File "/home/airflow/.local/lib/python3.6/site-packages/sqlalchemy/orm/state.py", line 433, in _initialize_instance
+    manager.dispatch.init_failure(self, args, kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.6/site-packages/sqlalchemy/orm/state.py", line 430, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/jobs/local_task_job.py", line 76, in __init__
+    super().__init__(*args, **kwargs)
+  File "<string>", line 6, in __init__
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/jobs/base_job.py", line 97, in __init__
+    self.executor = executor or ExecutorLoader.get_default_executor()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/executors/executor_loader.py", line 62, in get_default_executor
+    cls._default_executor = cls.load_executor(executor_name)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/executors/executor_loader.py", line 79, in load_executor
+    return cls.__load_celery_kubernetes_executor()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/executors/executor_loader.py", line 116, in __load_celery_kubernetes_executor
+    kubernetes_executor = import_string(cls.executors[KUBERNETES_EXECUTOR])()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/executors/kubernetes_executor.py", line 421, in __init__
+    self._manager = multiprocessing.Manager()
+  File "/usr/local/lib/python3.6/multiprocessing/context.py", line 56, in Manager
+    m.start()
+  File "/usr/local/lib/python3.6/multiprocessing/managers.py", line 513, in start
+    self._process.start()
+  File "/usr/local/lib/python3.6/multiprocessing/process.py", line 103, in start
+    'daemonic processes are not allowed to have children'
+AssertionError: daemonic processes are not allowed to have children
+```
+
+We don't need to instantiate an executor when running ``LocalTaskJob`` as executor isn't used in it.
+####END####
+airflow/jobs/base_job.py
+tests/jobs/test_base_job.py
+
+####START####42b74a7891
+Add ``jedcunningham`` to ``INTHEWILD`` (#16723)
+
+
+####END####
+INTHEWILD.md
+
+####START####4b14d93f25
+Adjust sizes of CI sponsor logos to look more similar (#16707)
+
+They have different aspect ratios and different "percived" sizes, so
+setting height didn't really work -- these manually chosen widths look
+"about equal to me".
+####END####
+README.md
+
+####START####0c95db5135
+Fix direct use of cached_property module. (#16710)
+
+On Python 3.8 and 3.9 we use the built in functools decorator for this.
+####END####
+airflow/timetables/schedules.py
+
+####START####19630005ab
+Remove duplicated try, there is already a try in create_session (#16701)
+
+
+####END####
+airflow/models/dag.py
+
+####START####cbd2b33adc
+Note that AWS and Astronomer.io have provided funding for the CI machines (#16702)
+
+GCP have too, but we aren't currently using it.
+####END####
+README.md
+
+####START####d3ba80a4aa
+Add conn to jinja template context (#16686)
+
+Closes #14597 
+####END####
+airflow/models/taskinstance.py
+tests/models/test_taskinstance.py
+
+####START####5034414208
+AIP-39: Handle DAG scheduling with timetables (#15397)
+
+This creates a new subpackage airflow.timetables, and implements
+timetable constructs that provides DAG scheduling logic. The timetable
+classes are used to refactor schedule inference logic out of the DAG
+class, and existing functions related to scheduling are refactored to
+use timetables (and deprecated).
+
+Usages of the deprecated DAG functions in Airflow's code base are
+modified to either use the timetable, or infer the information by other
+means. For example, usages of previous_schedule() (what was a DAG last
+scheduled to run before this run?) are refactored to query the database
+when the previous scheduled run actually happened, instead of using the
+schedule interval (cron or timedelta) in infer the information. This is
+because an AIP-39 timetable does not necessarily run on a periodic-ish
+schedule, and we cannot reliably infer when the previous run happened.
+####END####
+airflow/api/common/experimental/mark_tasks.py
+airflow/cli/commands/dag_command.py
+airflow/exceptions.py
+airflow/jobs/backfill_job.py
+airflow/models/baseoperator.py
+airflow/models/dag.py
+airflow/models/dagbag.py
+airflow/models/dagrun.py
+airflow/models/taskinstance.py
+airflow/ti_deps/deps/prev_dagrun_dep.py
+airflow/timetables/__init__.py
+airflow/timetables/base.py
+airflow/timetables/interval.py
+airflow/timetables/schedules.py
+airflow/timetables/simple.py
+airflow/utils/dates.py
+airflow/utils/timezone.py
+airflow/www/views.py
+tests/cli/commands/test_dag_command.py
+tests/jobs/test_backfill_job.py
+tests/jobs/test_scheduler_job.py
+tests/models/test_dag.py
+tests/models/test_dagrun.py
+tests/models/test_taskinstance.py
+tests/sensors/test_base.py
+tests/serialization/test_dag_serialization.py
+tests/test_utils/perf/scheduler_dag_execution_timing.py
+tests/test_utils/timetables.py
+tests/ti_deps/deps/test_prev_dagrun_dep.py
+tests/timetables/test_time_table_iter_ranges.py
+
+####START####57dcac2213
+bump dnspython (#16698)
+
+
+####END####
+setup.py
+
+####START####9d6ae609b6
+Updating task dependencies (#16624)
+
+
+####END####
+airflow/providers/cncf/kubernetes/example_dags/example_kubernetes.py
+
+####START####866a601b76
+Removes pylint from our toolchain (#16682)
+
+We've agreed during the voting process that Pylint support
+should be disabled: https://lists.apache.org/thread.html/r9e2cc385db8737ec0874ad09872081bd083593ee29e8303e58d21efb%40%3Cdev.airflow.apache.org%3E
+
+This PR:
+
+* removes all # pylint comments
+* removes pylint pre-commits and related scripts/files
+* removes CI jobs running pylint checks
+* removes documentation about pylint
+* removes unnecessary #noga (adds pre-commit for that)
+* fixes some remaining pydocstyle errors after removing #noqa's
+####END####
+airflow/__init__.py
+airflow/api/auth/backend/basic_auth.py
+airflow/api/auth/backend/default.py
+airflow/api/auth/backend/deny_all.py
+airflow/api/auth/backend/kerberos_auth.py
+airflow/api/client/json_client.py
+airflow/api/common/experimental/delete_dag.py
+airflow/api/common/experimental/mark_tasks.py
+airflow/api/common/experimental/trigger_dag.py
+airflow/api_connexion/endpoints/dag_run_endpoint.py
+airflow/api_connexion/endpoints/health_endpoint.py
+airflow/api_connexion/endpoints/task_instance_endpoint.py
+airflow/api_connexion/parameters.py
+airflow/api_connexion/schemas/common_schema.py
+airflow/api_connexion/schemas/connection_schema.py
+airflow/api_connexion/schemas/error_schema.py
+airflow/api_connexion/security.py
+airflow/cli/cli_parser.py
+airflow/cli/commands/celery_command.py
+airflow/cli/commands/info_command.py
+airflow/cli/commands/kubernetes_command.py
+airflow/cli/commands/plugins_command.py
+airflow/cli/commands/pool_command.py
+airflow/cli/commands/role_command.py
+airflow/cli/commands/standalone_command.py
+airflow/cli/commands/sync_perm_command.py
+airflow/cli/commands/task_command.py
+airflow/cli/commands/user_command.py
+airflow/cli/commands/variable_command.py
+airflow/cli/commands/webserver_command.py
+airflow/cli/simple_table.py
+airflow/compat/functools.py
+airflow/configuration.py
+airflow/contrib/hooks/aws_athena_hook.py
+airflow/contrib/hooks/aws_datasync_hook.py
+airflow/contrib/hooks/aws_dynamodb_hook.py
+airflow/contrib/hooks/aws_firehose_hook.py
+airflow/contrib/hooks/aws_glue_catalog_hook.py
+airflow/contrib/hooks/aws_hook.py
+airflow/contrib/hooks/aws_lambda_hook.py
+airflow/contrib/hooks/aws_logs_hook.py
+airflow/contrib/hooks/aws_sns_hook.py
+airflow/contrib/hooks/aws_sqs_hook.py
+airflow/contrib/hooks/azure_container_instance_hook.py
+airflow/contrib/hooks/azure_container_registry_hook.py
+airflow/contrib/hooks/azure_container_volume_hook.py
+airflow/contrib/hooks/azure_cosmos_hook.py
+airflow/contrib/hooks/azure_data_lake_hook.py
+airflow/contrib/hooks/azure_fileshare_hook.py
+airflow/contrib/hooks/bigquery_hook.py
+airflow/contrib/hooks/cassandra_hook.py
+airflow/contrib/hooks/cloudant_hook.py
+airflow/contrib/hooks/databricks_hook.py
+airflow/contrib/hooks/datadog_hook.py
+airflow/contrib/hooks/datastore_hook.py
+airflow/contrib/hooks/dingding_hook.py
+airflow/contrib/hooks/discord_webhook_hook.py
+airflow/contrib/hooks/emr_hook.py
+airflow/contrib/hooks/fs_hook.py
+airflow/contrib/hooks/ftp_hook.py
+airflow/contrib/hooks/gcp_bigtable_hook.py
+airflow/contrib/hooks/gcp_cloud_build_hook.py
+airflow/contrib/hooks/gcp_dlp_hook.py
+airflow/contrib/hooks/gcp_mlengine_hook.py
+airflow/contrib/hooks/gcp_natural_language_hook.py
+airflow/contrib/hooks/gcp_pubsub_hook.py
+airflow/contrib/hooks/gcp_tasks_hook.py
+airflow/contrib/hooks/gcp_translate_hook.py
+airflow/contrib/hooks/gcp_video_intelligence_hook.py
+airflow/contrib/hooks/gcp_vision_hook.py
+airflow/contrib/hooks/gdrive_hook.py
+airflow/contrib/hooks/grpc_hook.py
+airflow/contrib/hooks/imap_hook.py
+airflow/contrib/hooks/jenkins_hook.py
+airflow/contrib/hooks/jira_hook.py
+airflow/contrib/hooks/mongo_hook.py
+airflow/contrib/hooks/openfaas_hook.py
+airflow/contrib/hooks/opsgenie_alert_hook.py
+airflow/contrib/hooks/pagerduty_hook.py
+airflow/contrib/hooks/pinot_hook.py
+airflow/contrib/hooks/qubole_check_hook.py
+airflow/contrib/hooks/qubole_hook.py
+airflow/contrib/hooks/redis_hook.py
+airflow/contrib/hooks/redshift_hook.py
+airflow/contrib/hooks/sagemaker_hook.py
+airflow/contrib/hooks/salesforce_hook.py
+airflow/contrib/hooks/segment_hook.py
+airflow/contrib/hooks/sftp_hook.py
+airflow/contrib/hooks/slack_webhook_hook.py
+airflow/contrib/hooks/snowflake_hook.py
+airflow/contrib/hooks/spark_jdbc_hook.py
+airflow/contrib/hooks/spark_sql_hook.py
+airflow/contrib/hooks/spark_submit_hook.py
+airflow/contrib/hooks/sqoop_hook.py
+airflow/contrib/hooks/ssh_hook.py
+airflow/contrib/hooks/vertica_hook.py
+airflow/contrib/hooks/wasb_hook.py
+airflow/contrib/hooks/winrm_hook.py
+airflow/contrib/operators/adls_list_operator.py
+airflow/contrib/operators/aws_athena_operator.py
+airflow/contrib/operators/aws_sqs_publish_operator.py
+airflow/contrib/operators/awsbatch_operator.py
+airflow/contrib/operators/azure_container_instances_operator.py
+airflow/contrib/operators/azure_cosmos_operator.py
+airflow/contrib/operators/bigquery_check_operator.py
+airflow/contrib/operators/bigquery_get_data.py
+airflow/contrib/operators/bigquery_operator.py
+airflow/contrib/operators/bigquery_to_bigquery.py
+airflow/contrib/operators/bigquery_to_mysql_operator.py
+airflow/contrib/operators/databricks_operator.py
+airflow/contrib/operators/dingding_operator.py
+airflow/contrib/operators/discord_webhook_operator.py
+airflow/contrib/operators/docker_swarm_operator.py
+airflow/contrib/operators/druid_operator.py
+airflow/contrib/operators/dynamodb_to_s3.py
+airflow/contrib/operators/ecs_operator.py
+airflow/contrib/operators/emr_add_steps_operator.py
+airflow/contrib/operators/emr_create_job_flow_operator.py
+airflow/contrib/operators/emr_terminate_job_flow_operator.py
+airflow/contrib/operators/file_to_wasb.py
+airflow/contrib/operators/gcp_bigtable_operator.py
+airflow/contrib/operators/gcp_cloud_build_operator.py
+airflow/contrib/operators/gcp_dlp_operator.py
+airflow/contrib/operators/gcp_tasks_operator.py
+airflow/contrib/operators/gcp_translate_operator.py
+airflow/contrib/operators/gcp_translate_speech_operator.py
+airflow/contrib/operators/gcp_video_intelligence_operator.py
+airflow/contrib/operators/gcp_vision_operator.py
+airflow/contrib/operators/gcs_to_gcs_transfer_operator.py
+airflow/contrib/operators/gcs_to_gdrive_operator.py
+airflow/contrib/operators/grpc_operator.py
+airflow/contrib/operators/hive_to_dynamodb.py
+airflow/contrib/operators/imap_attachment_to_s3_operator.py
+airflow/contrib/operators/jenkins_job_trigger_operator.py
+airflow/contrib/operators/jira_operator.py
+airflow/contrib/operators/kubernetes_pod_operator.py
+airflow/contrib/operators/mongo_to_s3.py
+airflow/contrib/operators/opsgenie_alert_operator.py
+airflow/contrib/operators/oracle_to_azure_data_lake_transfer.py
+airflow/contrib/operators/oracle_to_oracle_transfer.py
+airflow/contrib/operators/qubole_check_operator.py
+airflow/contrib/operators/qubole_operator.py
+airflow/contrib/operators/redis_publish_operator.py
+airflow/contrib/operators/s3_copy_object_operator.py
+airflow/contrib/operators/s3_delete_objects_operator.py
+airflow/contrib/operators/s3_list_operator.py
+airflow/contrib/operators/s3_to_gcs_operator.py
+airflow/contrib/operators/s3_to_gcs_transfer_operator.py
+airflow/contrib/operators/s3_to_sftp_operator.py
+airflow/contrib/operators/sagemaker_base_operator.py
+airflow/contrib/operators/sagemaker_endpoint_config_operator.py
+airflow/contrib/operators/sagemaker_endpoint_operator.py
+airflow/contrib/operators/sagemaker_model_operator.py
+airflow/contrib/operators/sagemaker_training_operator.py
+airflow/contrib/operators/sagemaker_transform_operator.py
+airflow/contrib/operators/sagemaker_tuning_operator.py
+airflow/contrib/operators/segment_track_event_operator.py
+airflow/contrib/operators/sftp_operator.py
+airflow/contrib/operators/sftp_to_s3_operator.py
+airflow/contrib/operators/slack_webhook_operator.py
+airflow/contrib/operators/snowflake_operator.py
+airflow/contrib/operators/sns_publish_operator.py
+airflow/contrib/operators/spark_jdbc_operator.py
+airflow/contrib/operators/spark_sql_operator.py
+airflow/contrib/operators/spark_submit_operator.py
+airflow/contrib/operators/sqoop_operator.py
+airflow/contrib/operators/ssh_operator.py
+airflow/contrib/operators/vertica_operator.py
+airflow/contrib/operators/vertica_to_mysql.py
+airflow/contrib/operators/wasb_delete_blob_operator.py
+airflow/contrib/operators/winrm_operator.py
+airflow/contrib/secrets/aws_secrets_manager.py
+airflow/contrib/secrets/aws_systems_manager.py
+airflow/contrib/secrets/azure_key_vault.py
+airflow/contrib/secrets/gcp_secrets_manager.py
+airflow/contrib/secrets/hashicorp_vault.py
+airflow/contrib/sensors/aws_athena_sensor.py
+airflow/contrib/sensors/aws_glue_catalog_partition_sensor.py
+airflow/contrib/sensors/aws_redshift_cluster_sensor.py
+airflow/contrib/sensors/aws_sqs_sensor.py
+airflow/contrib/sensors/azure_cosmos_sensor.py
+airflow/contrib/sensors/bash_sensor.py
+airflow/contrib/sensors/cassandra_record_sensor.py
+airflow/contrib/sensors/cassandra_table_sensor.py
+airflow/contrib/sensors/celery_queue_sensor.py
+airflow/contrib/sensors/datadog_sensor.py
+airflow/contrib/sensors/emr_base_sensor.py
+airflow/contrib/sensors/emr_job_flow_sensor.py
+airflow/contrib/sensors/emr_step_sensor.py
+airflow/contrib/sensors/file_sensor.py
+airflow/contrib/sensors/ftp_sensor.py
+airflow/contrib/sensors/hdfs_sensor.py
+airflow/contrib/sensors/imap_attachment_sensor.py
+airflow/contrib/sensors/jira_sensor.py
+airflow/contrib/sensors/mongo_sensor.py
+airflow/contrib/sensors/pubsub_sensor.py
+airflow/contrib/sensors/python_sensor.py
+airflow/contrib/sensors/qubole_sensor.py
+airflow/contrib/sensors/redis_key_sensor.py
+airflow/contrib/sensors/redis_pub_sub_sensor.py
+airflow/contrib/sensors/sagemaker_base_sensor.py
+airflow/contrib/sensors/sagemaker_endpoint_sensor.py
+airflow/contrib/sensors/sagemaker_training_sensor.py
+airflow/contrib/sensors/sagemaker_transform_sensor.py
+airflow/contrib/sensors/sagemaker_tuning_sensor.py
+airflow/contrib/sensors/sftp_sensor.py
+airflow/contrib/sensors/wasb_sensor.py
+airflow/contrib/sensors/weekday_sensor.py
+airflow/contrib/task_runner/cgroup_task_runner.py
+airflow/contrib/utils/gcp_field_sanitizer.py
+airflow/contrib/utils/gcp_field_validator.py
+airflow/contrib/utils/log/task_handler_with_custom_formatter.py
+airflow/contrib/utils/mlengine_operator_utils.py
+airflow/contrib/utils/mlengine_prediction_summary.py
+airflow/contrib/utils/weekday.py
+airflow/dag_processing/manager.py
+airflow/dag_processing/processor.py
+airflow/decorators/__init__.py
+airflow/decorators/base.py
+airflow/decorators/python.py
+airflow/decorators/python_virtualenv.py
+airflow/decorators/task_group.py
+airflow/example_dags/example_branch_labels.py
+airflow/example_dags/example_branch_operator.py
+airflow/example_dags/libs/helper.py
+airflow/example_dags/tutorial_etl_dag.py
+airflow/example_dags/tutorial_taskflow_api_etl.py
+airflow/example_dags/tutorial_taskflow_api_etl_virtualenv.py
+airflow/executors/celery_executor.py
+airflow/executors/debug_executor.py
+airflow/executors/kubernetes_executor.py
+airflow/executors/local_executor.py
+airflow/hooks/S3_hook.py
+airflow/hooks/base_hook.py
+airflow/hooks/dbapi.py
+airflow/hooks/dbapi_hook.py
+airflow/hooks/docker_hook.py
+airflow/hooks/druid_hook.py
+airflow/hooks/hdfs_hook.py
+airflow/hooks/hive_hooks.py
+airflow/hooks/http_hook.py
+airflow/hooks/jdbc_hook.py
+airflow/hooks/mssql_hook.py
+airflow/hooks/mysql_hook.py
+airflow/hooks/oracle_hook.py
+airflow/hooks/pig_hook.py
+airflow/hooks/postgres_hook.py
+airflow/hooks/presto_hook.py
+airflow/hooks/samba_hook.py
+airflow/hooks/slack_hook.py
+airflow/hooks/sqlite_hook.py
+airflow/hooks/subprocess.py
+airflow/hooks/webhdfs_hook.py
+airflow/hooks/zendesk_hook.py
+airflow/jobs/__init__.py
+airflow/jobs/backfill_job.py
+airflow/jobs/base_job.py
+airflow/jobs/local_task_job.py
+airflow/jobs/scheduler_job.py
+airflow/kubernetes/kube_client.py
+airflow/kubernetes/kube_config.py
+airflow/kubernetes/pod.py
+airflow/kubernetes/pod_generator.py
+airflow/kubernetes/pod_generator_deprecated.py
+airflow/kubernetes/pod_launcher.py
+airflow/kubernetes/pod_runtime_info_env.py
+airflow/kubernetes/refresh_config.py
+airflow/kubernetes/volume.py
+airflow/kubernetes/volume_mount.py
+airflow/lineage/__init__.py
+airflow/lineage/backend.py
+airflow/lineage/entities.py
+airflow/logging_config.py
+airflow/migrations/env.py
+airflow/migrations/versions/03bc53e68815_add_sm_dag_index.py
+airflow/migrations/versions/05f30312d566_merge_heads.py
+airflow/migrations/versions/0a2a5b66e19d_add_task_reschedule_table.py
+airflow/migrations/versions/0e2a74e0fc9f_add_time_zone_awareness.py
+airflow/migrations/versions/127d2bf2dfa7_add_dag_id_state_index_on_dag_run_table.py
+airflow/migrations/versions/13eb55f81627_for_compatibility.py
+airflow/migrations/versions/1507a7289a2f_create_is_encrypted.py
+airflow/migrations/versions/1968acfc09e3_add_is_encrypted_column_to_variable_.py
+airflow/migrations/versions/1b38cef5b76e_add_dagrun.py
+airflow/migrations/versions/211e584da130_add_ti_state_index.py
+airflow/migrations/versions/27c6a30d7c24_add_executor_config_to_task_instance.py
+airflow/migrations/versions/2e541a1dcfed_task_duration.py
+airflow/migrations/versions/2e82aab8ef20_rename_user_table.py
+airflow/migrations/versions/338e90f54d61_more_logging_into_task_isntance.py
+airflow/migrations/versions/33ae817a1ff4_add_kubernetes_resource_checkpointing.py
+airflow/migrations/versions/40e67319e3a9_dagrun_config.py
+airflow/migrations/versions/41f5f12752f8_add_superuser_field.py
+airflow/migrations/versions/4446e08588_dagrun_start_end.py
+airflow/migrations/versions/4addfa1236f1_add_fractional_seconds_to_mysql_tables.py
+airflow/migrations/versions/502898887f84_adding_extra_to_log.py
+airflow/migrations/versions/52d53670a240_fix_mssql_exec_date_rendered_task_instance.py
+airflow/migrations/versions/52d714495f0_job_id_indices.py
+airflow/migrations/versions/561833c1c74b_add_password_column_to_user.py
+airflow/migrations/versions/61ec73d9401f_add_description_field_to_connection.py
+airflow/migrations/versions/64a7d6477aae_fix_description_field_in_connection_to_.py
+airflow/migrations/versions/64de9cddf6c9_add_task_fails_journal_table.py
+airflow/migrations/versions/849da589634d_prefix_dag_permissions.py
+airflow/migrations/versions/852ae6c715af_add_rendered_task_instance_fields_table.py
+airflow/migrations/versions/856955da8476_fix_sqlite_foreign_key.py
+airflow/migrations/versions/8646922c8a04_change_default_pool_slots_to_1.py
+airflow/migrations/versions/86770d1215c0_add_kubernetes_scheduler_uniqueness.py
+airflow/migrations/versions/939bb1e647c8_task_reschedule_fk_on_cascade_delete.py
+airflow/migrations/versions/947454bf1dff_add_ti_job_id_index.py
+airflow/migrations/versions/952da73b5eff_add_dag_code_table.py
+airflow/migrations/versions/9635ae0956e7_index_faskfail.py
+airflow/migrations/versions/98271e7606e2_add_scheduling_decision_to_dagrun_and_.py
+airflow/migrations/versions/a4c2fd67d16b_add_pool_slots_field_to_task_instance.py
+airflow/migrations/versions/b0125267960b_merge_heads.py
+airflow/migrations/versions/bba5a7cfc896_add_a_column_to_track_the_encryption_.py
+airflow/migrations/versions/bbc73705a13e_add_notification_sent_column_to_sla_miss.py
+airflow/migrations/versions/bdaa763e6c56_make_xcom_value_column_a_large_binary.py
+airflow/migrations/versions/bf00311e1990_add_index_to_taskinstance.py
+airflow/migrations/versions/c8ffec048a3b_add_fields_to_dag.py
+airflow/migrations/versions/cc1e65623dc7_add_max_tries_column_to_task_instance.py
+airflow/migrations/versions/cf5dc11e79ad_drop_user_and_chart.py
+airflow/migrations/versions/d2ae31099d61_increase_text_size_for_mysql.py
+airflow/migrations/versions/d38e04c12aa2_add_serialized_dag_table.py
+airflow/migrations/versions/dd25f486b8ea_add_idx_log_dag.py
+airflow/migrations/versions/dd4ecb8fbee3_add_schedule_interval_to_dag.py
+airflow/migrations/versions/e38be357a868_update_schema_for_smart_sensor.py
+airflow/migrations/versions/e3a246e0dc1_current_schema.py
+airflow/migrations/versions/e959f08ac86c_change_field_in_dagcode_to_mediumtext_.py
+airflow/migrations/versions/f23433877c24_fix_mysql_not_null_constraint.py
+airflow/migrations/versions/f2ca10b85618_add_dag_stats_table.py
+airflow/models/__init__.py
+airflow/models/baseoperator.py
+airflow/models/connection.py
+airflow/models/crypto.py
+airflow/models/dag.py
+airflow/models/dagbag.py
+airflow/models/dagrun.py
+airflow/models/errors.py
+airflow/models/pool.py
+airflow/models/serialized_dag.py
+airflow/models/skipmixin.py
+airflow/models/taskinstance.py
+airflow/models/variable.py
+airflow/models/xcom_arg.py
+airflow/mypy/plugin/decorators.py
+airflow/operators/bash_operator.py
+airflow/operators/branch_operator.py
+airflow/operators/dagrun_operator.py
+airflow/operators/docker_operator.py
+airflow/operators/druid_check_operator.py
+airflow/operators/dummy_operator.py
+airflow/operators/email.py
+airflow/operators/email_operator.py
+airflow/operators/gcs_to_s3.py
+airflow/operators/hive_operator.py
+airflow/operators/hive_stats_operator.py
+airflow/operators/hive_to_druid.py
+airflow/operators/hive_to_mysql.py
+airflow/operators/hive_to_samba_operator.py
+airflow/operators/http_operator.py
+airflow/operators/jdbc_operator.py
+airflow/operators/latest_only_operator.py
+airflow/operators/mssql_operator.py
+airflow/operators/mysql_operator.py
+airflow/operators/oracle_operator.py
+airflow/operators/papermill_operator.py
+airflow/operators/pig_operator.py
+airflow/operators/postgres_operator.py
+airflow/operators/presto_check_operator.py
+airflow/operators/presto_to_mysql.py
+airflow/operators/python.py
+airflow/operators/python_operator.py
+airflow/operators/s3_file_transform_operator.py
+airflow/operators/slack_operator.py
+airflow/operators/sqlite_operator.py
+airflow/operators/subdag_operator.py
+airflow/plugins_manager.py
+airflow/providers/airbyte/hooks/airbyte.py
+airflow/providers/amazon/aws/example_dags/example_google_api_to_s3_transfer_advanced.py
+airflow/providers/amazon/aws/hooks/athena.py
+airflow/providers/amazon/aws/hooks/aws_dynamodb.py
+airflow/providers/amazon/aws/hooks/base_aws.py
+airflow/providers/amazon/aws/hooks/batch_client.py
+airflow/providers/amazon/aws/hooks/glue.py
+airflow/providers/amazon/aws/hooks/glue_crawler.py
+airflow/providers/amazon/aws/hooks/redshift.py
+airflow/providers/amazon/aws/hooks/s3.py
+airflow/providers/amazon/aws/hooks/sagemaker.py
+airflow/providers/amazon/aws/hooks/ses.py
+airflow/providers/amazon/aws/log/cloudwatch_task_handler.py
+airflow/providers/amazon/aws/log/s3_task_handler.py
+airflow/providers/amazon/aws/operators/athena.py
+airflow/providers/amazon/aws/operators/batch.py
+airflow/providers/amazon/aws/operators/datasync.py
+airflow/providers/amazon/aws/operators/ecs.py
+airflow/providers/amazon/aws/operators/glue.py
+airflow/providers/amazon/aws/operators/s3_file_transform.py
+airflow/providers/amazon/aws/operators/sagemaker_base.py
+airflow/providers/amazon/aws/sensors/sagemaker_base.py
+airflow/providers/amazon/aws/transfers/dynamodb_to_s3.py
+airflow/providers/amazon/aws/transfers/exasol_to_s3.py
+airflow/providers/amazon/aws/transfers/gcs_to_s3.py
+airflow/providers/amazon/aws/transfers/hive_to_dynamodb.py
+airflow/providers/amazon/aws/transfers/mongo_to_s3.py
+airflow/providers/amazon/aws/transfers/redshift_to_s3.py
+airflow/providers/apache/beam/hooks/beam.py
+airflow/providers/apache/beam/operators/beam.py
+airflow/providers/apache/cassandra/hooks/cassandra.py
+airflow/providers/apache/druid/transfers/hive_to_druid.py
+airflow/providers/apache/hdfs/hooks/hdfs.py
+airflow/providers/apache/hdfs/hooks/webhdfs.py
+airflow/providers/apache/hdfs/sensors/hdfs.py
+airflow/providers/apache/hive/hooks/hive.py
+airflow/providers/apache/hive/operators/hive.py
+airflow/providers/apache/hive/transfers/mssql_to_hive.py
+airflow/providers/apache/hive/transfers/mysql_to_hive.py
+airflow/providers/apache/hive/transfers/s3_to_hive.py
+airflow/providers/apache/kylin/operators/kylin_cube.py
+airflow/providers/apache/livy/hooks/livy.py
+airflow/providers/apache/livy/operators/livy.py
+airflow/providers/apache/pinot/hooks/pinot.py
+airflow/providers/apache/spark/hooks/spark_jdbc.py
+airflow/providers/apache/spark/hooks/spark_jdbc_script.py
+airflow/providers/apache/spark/hooks/spark_sql.py
+airflow/providers/apache/spark/hooks/spark_submit.py
+airflow/providers/apache/spark/operators/spark_jdbc.py
+airflow/providers/apache/spark/operators/spark_sql.py
+airflow/providers/apache/spark/operators/spark_submit.py
+airflow/providers/apache/sqoop/hooks/sqoop.py
+airflow/providers/apache/sqoop/operators/sqoop.py
+airflow/providers/asana/hooks/asana.py
+airflow/providers/cncf/kubernetes/backcompat/backwards_compat_converters.py
+airflow/providers/cncf/kubernetes/operators/kubernetes_pod.py
+airflow/providers/cncf/kubernetes/utils/pod_launcher.py
+airflow/providers/databricks/hooks/databricks.py
+airflow/providers/databricks/operators/databricks.py
+airflow/providers/datadog/hooks/datadog.py
+airflow/providers/docker/example_dags/example_docker_copy_data.py
+airflow/providers/docker/operators/docker.py
+airflow/providers/elasticsearch/log/es_task_handler.py
+airflow/providers/ftp/hooks/ftp.py
+airflow/providers/google/cloud/example_dags/example_automl_tables.py
+airflow/providers/google/cloud/example_dags/example_bigquery_dts.py
+airflow/providers/google/cloud/example_dags/example_bigtable.py
+airflow/providers/google/cloud/example_dags/example_cloud_build.py
+airflow/providers/google/cloud/example_dags/example_cloud_sql.py
+airflow/providers/google/cloud/example_dags/example_tasks.py
+airflow/providers/google/cloud/example_dags/example_vision.py
+airflow/providers/google/cloud/hooks/automl.py
+airflow/providers/google/cloud/hooks/bigquery.py
+airflow/providers/google/cloud/hooks/bigtable.py
+airflow/providers/google/cloud/hooks/cloud_build.py
+airflow/providers/google/cloud/hooks/cloud_sql.py
+airflow/providers/google/cloud/hooks/cloud_storage_transfer_service.py
+airflow/providers/google/cloud/hooks/compute.py
+airflow/providers/google/cloud/hooks/compute_ssh.py
+airflow/providers/google/cloud/hooks/datacatalog.py
+airflow/providers/google/cloud/hooks/dataflow.py
+airflow/providers/google/cloud/hooks/datafusion.py
+airflow/providers/google/cloud/hooks/dataproc.py
+airflow/providers/google/cloud/hooks/datastore.py
+airflow/providers/google/cloud/hooks/dlp.py
+airflow/providers/google/cloud/hooks/functions.py
+airflow/providers/google/cloud/hooks/gcs.py
+airflow/providers/google/cloud/hooks/gdm.py
+airflow/providers/google/cloud/hooks/kubernetes_engine.py
+airflow/providers/google/cloud/hooks/life_sciences.py
+airflow/providers/google/cloud/hooks/mlengine.py
+airflow/providers/google/cloud/hooks/pubsub.py
+airflow/providers/google/cloud/hooks/secret_manager.py
+airflow/providers/google/cloud/hooks/spanner.py
+airflow/providers/google/cloud/hooks/text_to_speech.py
+airflow/providers/google/cloud/hooks/vision.py
+airflow/providers/google/cloud/hooks/workflows.py
+airflow/providers/google/cloud/log/gcs_task_handler.py
+airflow/providers/google/cloud/log/stackdriver_task_handler.py
+airflow/providers/google/cloud/operators/automl.py
+airflow/providers/google/cloud/operators/bigquery.py
+airflow/providers/google/cloud/operators/bigtable.py
+airflow/providers/google/cloud/operators/cloud_storage_transfer_service.py
+airflow/providers/google/cloud/operators/datacatalog.py
+airflow/providers/google/cloud/operators/dataflow.py
+airflow/providers/google/cloud/operators/datafusion.py
+airflow/providers/google/cloud/operators/dataproc.py
+airflow/providers/google/cloud/operators/datastore.py
+airflow/providers/google/cloud/operators/dlp.py
+airflow/providers/google/cloud/operators/mlengine.py
+airflow/providers/google/cloud/operators/pubsub.py
+airflow/providers/google/cloud/operators/stackdriver.py
+airflow/providers/google/cloud/operators/tasks.py
+airflow/providers/google/cloud/operators/workflows.py
+airflow/providers/google/cloud/secrets/secret_manager.py
+airflow/providers/google/cloud/sensors/dataproc.py
+airflow/providers/google/cloud/sensors/gcs.py
+airflow/providers/google/cloud/sensors/pubsub.py
+airflow/providers/google/cloud/transfers/azure_fileshare_to_gcs.py
+airflow/providers/google/cloud/transfers/bigquery_to_bigquery.py
+airflow/providers/google/cloud/transfers/bigquery_to_gcs.py
+airflow/providers/google/cloud/transfers/bigquery_to_mssql.py
+airflow/providers/google/cloud/transfers/bigquery_to_mysql.py
+airflow/providers/google/cloud/transfers/cassandra_to_gcs.py
+airflow/providers/google/cloud/transfers/gcs_to_bigquery.py
+airflow/providers/google/cloud/transfers/gcs_to_gcs.py
+airflow/providers/google/cloud/transfers/gcs_to_local.py
+airflow/providers/google/cloud/transfers/gcs_to_sftp.py
+airflow/providers/google/cloud/transfers/oracle_to_gcs.py
+airflow/providers/google/cloud/transfers/s3_to_gcs.py
+airflow/providers/google/cloud/transfers/sql_to_gcs.py
+airflow/providers/google/cloud/utils/credentials_provider.py
+airflow/providers/google/cloud/utils/field_sanitizer.py
+airflow/providers/google/cloud/utils/mlengine_operator_utils.py
+airflow/providers/google/cloud/utils/mlengine_prediction_summary.py
+airflow/providers/google/common/auth_backend/google_openid.py
+airflow/providers/google/common/hooks/base_google.py
+airflow/providers/google/firebase/hooks/firestore.py
+airflow/providers/google/marketing_platform/hooks/analytics.py
+airflow/providers/google/marketing_platform/hooks/campaign_manager.py
+airflow/providers/google/marketing_platform/hooks/display_video.py
+airflow/providers/google/marketing_platform/hooks/search_ads.py
+airflow/providers/google/marketing_platform/operators/campaign_manager.py
+airflow/providers/google/suite/hooks/drive.py
+airflow/providers/google/suite/hooks/sheets.py
+airflow/providers/grpc/hooks/grpc.py
+airflow/providers/hashicorp/_internal_client/vault_client.py
+airflow/providers/hashicorp/hooks/vault.py
+airflow/providers/hashicorp/secrets/vault.py
+airflow/providers/http/hooks/http.py
+airflow/providers/jenkins/operators/jenkins_job_trigger.py
+airflow/providers/jira/sensors/jira.py
+airflow/providers/microsoft/azure/hooks/azure_batch.py
+airflow/providers/microsoft/azure/hooks/azure_data_factory.py
+airflow/providers/microsoft/azure/hooks/wasb.py
+airflow/providers/microsoft/azure/log/wasb_task_handler.py
+airflow/providers/microsoft/azure/operators/azure_batch.py
+airflow/providers/microsoft/azure/operators/azure_container_instances.py
+airflow/providers/microsoft/azure/transfers/oracle_to_azure_data_lake.py
+airflow/providers/microsoft/mssql/hooks/mssql.py
+airflow/providers/microsoft/winrm/hooks/winrm.py
+airflow/providers/microsoft/winrm/operators/winrm.py
+airflow/providers/mysql/hooks/mysql.py
+airflow/providers/mysql/transfers/vertica_to_mysql.py
+airflow/providers/odbc/hooks/odbc.py
+airflow/providers/opsgenie/operators/opsgenie_alert.py
+airflow/providers/oracle/hooks/oracle.py
+airflow/providers/oracle/transfers/oracle_to_oracle.py
+airflow/providers/pagerduty/hooks/pagerduty.py
+airflow/providers/postgres/hooks/postgres.py
+airflow/providers/presto/hooks/presto.py
+airflow/providers/qubole/hooks/qubole.py
+airflow/providers/qubole/hooks/qubole_check.py
+airflow/providers/qubole/operators/qubole_check.py
+airflow/providers/qubole/sensors/qubole.py
+airflow/providers/salesforce/hooks/tableau.py
+airflow/providers/salesforce/operators/tableau_refresh_workbook.py
+airflow/providers/salesforce/sensors/tableau_job_status.py
+airflow/providers/segment/operators/segment_track_event.py
+airflow/providers/sendgrid/utils/emailer.py
+airflow/providers/singularity/operators/singularity.py
+airflow/providers/slack/hooks/slack.py
+airflow/providers/slack/hooks/slack_webhook.py
+airflow/providers/slack/operators/slack.py
+airflow/providers/slack/operators/slack_webhook.py
+airflow/providers/snowflake/hooks/snowflake.py
+airflow/providers/snowflake/transfers/snowflake_to_slack.py
+airflow/providers/ssh/hooks/ssh.py
+airflow/providers/trino/hooks/trino.py
+airflow/providers/vertica/hooks/vertica.py
+airflow/providers/yandex/operators/yandexcloud_dataproc.py
+airflow/providers/zendesk/hooks/zendesk.py
+airflow/providers_manager.py
+airflow/secrets/base_secrets.py
+airflow/secrets/environment_variables.py
+airflow/secrets/metastore.py
+airflow/security/kerberos.py
+airflow/security/utils.py
+airflow/sensors/base.py
+airflow/sensors/base_sensor_operator.py
+airflow/sensors/bash.py
+airflow/sensors/date_time_sensor.py
+airflow/sensors/external_task.py
+airflow/sensors/external_task_sensor.py
+airflow/sensors/hdfs_sensor.py
+airflow/sensors/hive_partition_sensor.py
+airflow/sensors/http_sensor.py
+airflow/sensors/metastore_partition_sensor.py
+airflow/sensors/named_hive_partition_sensor.py
+airflow/sensors/s3_key_sensor.py
+airflow/sensors/s3_prefix_sensor.py
+airflow/sensors/smart_sensor.py
+airflow/sensors/sql_sensor.py
+airflow/sensors/time_delta_sensor.py
+airflow/sensors/web_hdfs_sensor.py
+airflow/sentry.py
+airflow/serialization/json_schema.py
+airflow/serialization/serialized_objects.py
+airflow/settings.py
+airflow/stats.py
+airflow/task/task_runner/__init__.py
+airflow/task/task_runner/base_task_runner.py
+airflow/task/task_runner/standard_task_runner.py
+airflow/ti_deps/deps/not_previously_skipped_dep.py
+airflow/ti_deps/deps/task_not_running_dep.py
+airflow/ti_deps/deps/trigger_rule_dep.py
+airflow/typing_compat.py
+airflow/utils/cli.py
+airflow/utils/cli_action_loggers.py
+airflow/utils/dates.py
+airflow/utils/db.py
+airflow/utils/decorators.py
+airflow/utils/edgemodifier.py
+airflow/utils/event_scheduler.py
+airflow/utils/file.py
+airflow/utils/helpers.py
+airflow/utils/json.py
+airflow/utils/log/cloudwatch_task_handler.py
+airflow/utils/log/es_task_handler.py
+airflow/utils/log/file_processor_handler.py
+airflow/utils/log/file_task_handler.py
+airflow/utils/log/gcs_task_handler.py
+airflow/utils/log/json_formatter.py
+airflow/utils/log/logging_mixin.py
+airflow/utils/log/s3_task_handler.py
+airflow/utils/log/secrets_masker.py
+airflow/utils/log/stackdriver_task_handler.py
+airflow/utils/log/task_handler_with_custom_formatter.py
+airflow/utils/log/wasb_task_handler.py
+airflow/utils/orm_event_handlers.py
+airflow/utils/platform.py
+airflow/utils/process_utils.py
+airflow/utils/serve_logs.py
+airflow/utils/session.py
+airflow/utils/sqlalchemy.py
+airflow/utils/task_group.py
+airflow/utils/timeout.py
+airflow/utils/types.py
+airflow/utils/weekday.py
+airflow/www/api/experimental/endpoints.py
+airflow/www/app.py
+airflow/www/auth.py
+airflow/www/decorators.py
+airflow/www/extensions/init_jinja_globals.py
+airflow/www/extensions/init_manifest_files.py
+airflow/www/forms.py
+airflow/www/gunicorn_config.py
+airflow/www/security.py
+airflow/www/utils.py
+airflow/www/views.py
+chart/tests/helm_template_generator.py
+chart/tests/test_basic_helm_chart.py
+dev/import_all_classes.py
+dev/provider_packages/prepare_provider_packages.py
+dev/retag_docker_images.py
+dev/send_email.py
+docs/build_docs.py
+docs/conf.py
+docs/exts/__init__.py
+docs/exts/airflow_intersphinx.py
+docs/exts/docroles.py
+docs/exts/docs_build/__init__.py
+docs/exts/docs_build/dev_index_generator.py
+docs/exts/docs_build/docs_builder.py
+docs/exts/docs_build/errors.py
+docs/exts/docs_build/fetch_inventories.py
+docs/exts/docs_build/lint_checks.py
+docs/exts/docs_build/spelling_checks.py
+docs/exts/exampleinclude.py
+docs/exts/operators_and_hooks_ref.py
+docs/exts/providers_packages_ref.py
+docs/exts/removemarktransform.py
+docs/exts/substitution_extensions.py
+docs/publish_docs.py
+kubernetes_tests/test_kubernetes_pod_operator.py
+kubernetes_tests/test_kubernetes_pod_operator_backcompat.py
+scripts/ci/pre_commit/pre_commit_check_extras_have_providers.py
+scripts/ci/pre_commit/pre_commit_check_setup_extra_packages_ref.py
+scripts/ci/pre_commit/pre_commit_insert_extras.py
+scripts/ci/pre_commit/pre_commit_yaml_to_cfg.py
+scripts/in_container/update_quarantined_test_status.py
+scripts/tools/generate-integrations-json.py
+scripts/tools/list-integrations.py
+setup.py
+tests/api/auth/backend/test_basic_auth.py
+tests/api/common/experimental/test_mark_tasks.py
+tests/api_connexion/endpoints/test_dag_endpoint.py
+tests/api_connexion/endpoints/test_dag_run_endpoint.py
+tests/api_connexion/endpoints/test_extra_link_endpoint.py
+tests/api_connexion/endpoints/test_import_error_endpoint.py
+tests/api_connexion/endpoints/test_log_endpoint.py
+tests/api_connexion/endpoints/test_task_endpoint.py
+tests/api_connexion/endpoints/test_task_instance_endpoint.py
+tests/api_connexion/endpoints/test_xcom_endpoint.py
+tests/api_connexion/schemas/test_error_schema.py
+tests/api_connexion/test_basic_auth.py
+tests/build_provider_packages_dependencies.py
+tests/cli/commands/test_celery_command.py
+tests/cli/commands/test_info_command.py
+tests/cli/commands/test_role_command.py
+tests/cli/commands/test_user_command.py
+tests/cli/commands/test_webserver_command.py
+tests/conftest.py
+tests/core/test_core.py
+tests/core/test_logging_config.py
+tests/core/test_settings.py
+tests/dag_processing/test_manager.py
+tests/dag_processing/test_processor.py
+tests/dags/subdir1/test_ignore_this.py
+tests/dags/test_mark_success.py
+tests/dags/test_on_failure_callback.py
+tests/dags/test_subdag.py
+tests/decorators/test_python.py
+tests/decorators/test_python_virtualenv.py
+tests/executors/test_celery_executor.py
+tests/executors/test_kubernetes_executor.py
+tests/executors/test_local_executor.py
+tests/hooks/test_subprocess.py
+tests/jobs/test_backfill_job.py
+tests/jobs/test_local_task_job.py
+tests/jobs/test_scheduler_job.py
+tests/models/test_baseoperator.py
+tests/models/test_connection.py
+tests/models/test_dag.py
+tests/models/test_dagbag.py
+tests/models/test_dagparam.py
+tests/models/test_pool.py
+tests/models/test_taskinstance.py
+tests/models/test_xcom.py
+tests/operators/test_email.py
+tests/operators/test_python.py
+tests/operators/test_sql.py
+tests/operators/test_weekday.py
+tests/plugins/test_plugins_manager.py
+tests/providers/amazon/aws/hooks/conftest.py
+tests/providers/amazon/aws/hooks/test_base_aws.py
+tests/providers/amazon/aws/hooks/test_batch_client.py
+tests/providers/amazon/aws/hooks/test_batch_waiters.py
+tests/providers/amazon/aws/hooks/test_s3.py
+tests/providers/amazon/aws/log/test_s3_task_handler.py
+tests/providers/amazon/aws/operators/test_athena.py
+tests/providers/amazon/aws/operators/test_batch.py
+tests/providers/amazon/aws/operators/test_ecs.py
+tests/providers/amazon/aws/operators/test_glacier_system.py
+tests/providers/amazon/aws/operators/test_sagemaker_training.py
+tests/providers/amazon/aws/sensors/test_s3_key.py
+tests/providers/amazon/aws/transfers/test_dynamodb_to_s3.py
+tests/providers/apache/beam/hooks/test_beam.py
+tests/providers/apache/cassandra/hooks/test_cassandra.py
+tests/providers/apache/druid/hooks/test_druid.py
+tests/providers/apache/hive/hooks/test_hive.py
+tests/providers/apache/hive/transfers/test_mssql_to_hive.py
+tests/providers/apache/livy/hooks/test_livy.py
+tests/providers/apache/pinot/hooks/test_pinot.py
+tests/providers/asana/hooks/test_asana.py
+tests/providers/cncf/kubernetes/operators/test_kubernetes_pod.py
+tests/providers/docker/hooks/test_docker.py
+tests/providers/docker/operators/test_docker.py
+tests/providers/elasticsearch/hooks/test_elasticsearch.py
+tests/providers/elasticsearch/log/elasticmock/__init__.py
+tests/providers/elasticsearch/log/elasticmock/fake_elasticsearch.py
+tests/providers/elasticsearch/log/test_es_task_handler.py
+tests/providers/google/cloud/_internal_client/test_secret_manager_client.py
+tests/providers/google/cloud/hooks/test_automl.py
+tests/providers/google/cloud/hooks/test_bigquery.py
+tests/providers/google/cloud/hooks/test_cloud_build.py
+tests/providers/google/cloud/hooks/test_cloud_memorystore.py
+tests/providers/google/cloud/hooks/test_cloud_sql.py
+tests/providers/google/cloud/hooks/test_cloud_storage_transfer_service.py
+tests/providers/google/cloud/hooks/test_compute.py
+tests/providers/google/cloud/hooks/test_datacatalog.py
+tests/providers/google/cloud/hooks/test_dataflow.py
+tests/providers/google/cloud/hooks/test_datafusion.py
+tests/providers/google/cloud/hooks/test_dataprep.py
+tests/providers/google/cloud/hooks/test_dataproc.py
+tests/providers/google/cloud/hooks/test_datastore.py
+tests/providers/google/cloud/hooks/test_dlp.py
+tests/providers/google/cloud/hooks/test_functions.py
+tests/providers/google/cloud/hooks/test_gcs.py
+tests/providers/google/cloud/hooks/test_gdm.py
+tests/providers/google/cloud/hooks/test_kms.py
+tests/providers/google/cloud/hooks/test_kubernetes_engine.py
+tests/providers/google/cloud/hooks/test_life_sciences.py
+tests/providers/google/cloud/hooks/test_pubsub.py
+tests/providers/google/cloud/hooks/test_secret_manager.py
+tests/providers/google/cloud/hooks/test_stackdriver.py
+tests/providers/google/cloud/hooks/test_workflows.py
+tests/providers/google/cloud/operators/test_cloud_sql.py
+tests/providers/google/cloud/operators/test_cloud_storage_transfer_service.py
+tests/providers/google/cloud/operators/test_compute.py
+tests/providers/google/cloud/operators/test_dataprep_system.py
+tests/providers/google/cloud/operators/test_dataproc.py
+tests/providers/google/cloud/operators/test_dlp.py
+tests/providers/google/cloud/operators/test_dlp_system.py
+tests/providers/google/cloud/operators/test_functions.py
+tests/providers/google/cloud/operators/test_kubernetes_engine.py
+tests/providers/google/cloud/operators/test_spanner.py
+tests/providers/google/cloud/operators/test_speech_to_text.py
+tests/providers/google/cloud/transfers/test_azure_fileshare_to_gcs_system.py
+tests/providers/google/cloud/transfers/test_gcs_to_sftp.py
+tests/providers/google/cloud/transfers/test_mssql_to_gcs.py
+tests/providers/google/cloud/transfers/test_mysql_to_gcs.py
+tests/providers/google/cloud/transfers/test_oracle_to_gcs.py
+tests/providers/google/cloud/transfers/test_postgres_to_gcs.py
+tests/providers/google/cloud/transfers/test_presto_to_gcs.py
+tests/providers/google/cloud/transfers/test_sftp_to_gcs.py
+tests/providers/google/cloud/transfers/test_trino_to_gcs.py
+tests/providers/google/cloud/utils/gcp_authenticator.py
+tests/providers/google/common/auth_backend/test_google_openid.py
+tests/providers/google/common/hooks/test_base_google.py
+tests/providers/grpc/hooks/test_grpc.py
+tests/providers/hashicorp/_internal_client/test_vault_client.py
+tests/providers/hashicorp/hooks/test_vault.py
+tests/providers/imap/hooks/test_imap.py
+tests/providers/jdbc/hooks/test_jdbc.py
+tests/providers/jira/hooks/test_jira.py
+tests/providers/jira/sensors/test_jira.py
+tests/providers/microsoft/azure/hooks/test_azure_data_factory.py
+tests/providers/microsoft/azure/operators/test_azure_batch.py
+tests/providers/mysql/operators/test_mysql.py
+tests/providers/odbc/hooks/test_odbc.py
+tests/providers/oracle/hooks/test_oracle.py
+tests/providers/postgres/hooks/test_postgres.py
+tests/providers/qubole/hooks/test_qubole.py
+tests/providers/qubole/operators/test_qubole_check.py
+tests/providers/sftp/operators/test_sftp.py
+tests/providers/snowflake/hooks/test_snowflake.py
+tests/providers/sqlite/hooks/test_sqlite.py
+tests/providers/ssh/hooks/test_ssh.py
+tests/providers/ssh/operators/test_ssh.py
+tests/providers/tableau/hooks/test_tableau.py
+tests/security/test_kerberos.py
+tests/sensors/test_base.py
+tests/sensors/test_external_task_sensor.py
+tests/sensors/test_smart_sensor_operator.py
+tests/serialization/test_dag_serialization.py
+tests/task/task_runner/test_standard_task_runner.py
+tests/test_utils/asserts.py
+tests/test_utils/fake_datetime.py
+tests/test_utils/hdfs_utils.py
+tests/test_utils/perf/dags/elastic_dag.py
+tests/test_utils/perf/perf_kit/memory.py
+tests/test_utils/perf/perf_kit/sqlalchemy.py
+tests/test_utils/perf/scheduler_dag_execution_timing.py
+tests/test_utils/remote_user_api_auth_backend.py
+tests/test_utils/reset_warning_registry.py
+tests/ti_deps/deps/fake_models.py
+tests/ti_deps/deps/test_dag_ti_slots_available_dep.py
+tests/ti_deps/deps/test_dag_unpaused_dep.py
+tests/ti_deps/deps/test_dagrun_exists_dep.py
+tests/ti_deps/deps/test_dagrun_id_dep.py
+tests/ti_deps/deps/test_not_in_retry_period_dep.py
+tests/ti_deps/deps/test_pool_slots_available_dep.py
+tests/ti_deps/deps/test_prev_dagrun_dep.py
+tests/ti_deps/deps/test_ready_to_reschedule_dep.py
+tests/ti_deps/deps/test_runnable_exec_date_dep.py
+tests/ti_deps/deps/test_task_concurrency.py
+tests/ti_deps/deps/test_task_not_running_dep.py
+tests/ti_deps/deps/test_trigger_rule_dep.py
+tests/ti_deps/deps/test_valid_state_dep.py
+tests/utils/log/test_log_reader.py
+tests/utils/test_edgemodifier.py
+tests/utils/test_module_loading.py
+tests/utils/test_retries.py
+tests/utils/test_task_group.py
+tests/www/api/experimental/test_endpoints.py
+tests/www/test_security.py
+tests/www/views/conftest.py
+tests/www/views/test_views_acl.py
+tests/www/views/test_views_extra_links.py
+tests/www/views/test_views_log.py
+tests/www/views/test_views_rendered.py
+tests/www/views/test_views_tasks.py
+
+####START####622b4f4162
+Refactor usage of unneeded function call (#16653)
+
+`ts` was created for `timezone.utcnow()` `dag_processor` but looks like it was not used for actual comparison.
+####END####
+airflow/dag_processing/processor.py
+
+####START####7077fb1452
+prefer consistent casing (#16693)
+
+Because SLAs are otherwise capitalized in this docstring, it makes sense to apply that casing consistently.
+####END####
+airflow/models/baseoperator.py
+
+####START####98c12d49f3
+Add preparation of images as part of RC preparation process (#16674)
+
+
+####END####
+dev/README_RELEASE_AIRFLOW.md
+
+####START####0d80383bdd
+AWS Hook - allow IDP HTTP retry (#12639) (#16612)
+
+
+####END####
+airflow/providers/amazon/aws/hooks/base_aws.py
+tests/providers/amazon/aws/hooks/test_base_aws.py
+
+####START####2833c2b2ff
+Add Wise to INTHEWILD.md (#16683)
+
+
+####END####
+INTHEWILD.md
+
+####START####5306dc5557
+Fix TI success confirm page (#16650)
+
+
+####END####
+airflow/www/views.py
+
+####START####9d248630e8
+Refactor: added type annotation (#16668)
+
+
+####END####
+tests/build_provider_packages_dependencies.py
+
+####START####c975d4cb2f
+Fix "Invalid JSON configuration, must be a dict" (#16648)
+
+Wrong variable name used
+####END####
+airflow/www/views.py
+
+####START####2625007c8a
+Rearrange ``README.md`` to make it easy for first-time users (#16679)
+
+For first time users our README.md is a bit on heavier side in terms of details.
+This PR/commits re-arranges the section so that the section first-time users
+or potential users/lurkers would care about are at the top.
+####END####
+README.md
+
+####START####5851c6c115
+Bump Airflow version to 2.1.0 in docs (#16677)
+
+Some of the docs used 2.0.2 instead of latest one
+####END####
+README.md
+
+####START####3a57d9fc60
+Bump ``sphinxcontrib-spelling`` and minor improvements (#16675)
+
+- Bump `sphinxcontrib-spelling` from `5.2.1` to `7.2.1`
+- Excludes `project.rst` and `changelog.rst` from spell-check for `apache-airflow` package so that we don't need to add Committer's Name everytime.
+- Removes committers name and ``'airfl%'`` from `docs/spelling_wordlist.txt` as it isn't needed. It should be a code-block not an actual word.
+####END####
+airflow/providers/amazon/aws/sensors/s3_prefix.py
+docs/conf.py
+setup.py
+
+####START####d17e2bc3db
+Chart: Fix overriding node assigning settings on Worker Deployment (#16670)
+
+`.Values.nodeSelector` should be over-ridable by `.Values.workers.nodeSelector` similar to pod_template_file which I fixed in #16663
+####END####
+chart/tests/test_worker.py
+
+####START####6d3c6f665a
+Chart: Apply worker's node assigning settings to Pod Template File (#16663)
+
+Since we treat Kubernetes Task Pod as worker when using KubernetesExecutor or CeleryKubernetesExecutor, we should allow overriding `.Values.nodeSelector` by `.Values.workers.nodeSelector` for Pod template file too.
+
+This is consistent with how we assign `serviceAccountName`, `VolumeMounts` etc
+####END####
+chart/tests/test_pod_template_file.py
+
+####START####c79bbb26f3
+Remove duplicated/overlapping tests around render_k8s_pod_yaml (#16642)
+
+When making another change here, I noticed that we were basically
+testing the same thing twice in test_taskinstance and
+test_renderedtifields, which does no one any good.
+
+I have updated the tests to use mocking to avoid duplication, and
+exercised a few more of the branches in the functions under test
+####END####
+airflow/models/taskinstance.py
+tests/models/test_renderedtifields.py
+tests/models/test_taskinstance.py
+
+####START####4022746411
+Add type annotations to setup.py (#16658)
+
+
+####END####
+setup.py
+
+####START####ce44b62890
+Add Python 3.9 support (#15515)
+
+This includes several things:
+
+* added per-provider support for python version. Each provider
+  can now declare python versions it does not support
+* excluded ldap core extra from Python 3.9.
+* skip relevant tests in Python 3.9
+####END####
+README.md
+airflow/__init__.py
+dev/provider_packages/prepare_provider_packages.py
+dev/retag_docker_images.py
+tests/plugins/test_plugins_manager.py
+tests/providers/apache/hive/hooks/test_hive.py
+tests/providers/apache/hive/transfers/test_hive_to_mysql.py
+tests/providers/apache/hive/transfers/test_hive_to_samba.py
+tests/providers/apache/hive/transfers/test_mssql_to_hive.py
+tests/providers/apache/hive/transfers/test_mysql_to_hive.py
+tests/providers/elasticsearch/log/elasticmock/fake_elasticsearch.py
+tests/sensors/test_base.py
+tests/sensors/test_smart_sensor_operator.py
+
+####START####5117aaa797
+Fix failing pylint checks (#16656)
+
+
+####END####
+airflow/utils/serve_logs.py
+
+####START####6fc0cc8e91
+Update airflow/hooks/dbapi.py (#16629)
+
+
+####END####
+airflow/hooks/dbapi.py
+
+####START####caf0a8499f
+Add support for managed identity in WASB hook (#16628)
+
+* Add support for managed identity in WASB hook
+* Log info that we're using managed identity credential
+* Must use managed identity credential here if previous branch is engaged
+* Add comment that managed identity will be attempted if no other authentication is provided
+####END####
+airflow/providers/microsoft/azure/hooks/wasb.py
+tests/providers/microsoft/azure/hooks/test_wasb.py
+
+####START####1b2535e442
+Set process title for ``serve-logs`` and ``LocalExecutor`` (#16644)
+
+Follow up of https://github.com/apache/airflow/pull/16623.
+This PR/commits adds title to serve-logs command and multiprocessing
+manager for LocalExecutor.
+
+The serve-logs process is on celery worker when using CeleryExecutor but
+for LocalExecutor, it is a separate process in Scheduler.
+
+**Before**:
+```
+root       124  0.0  0.0   6676  4636 pts/1    Ss   Jun23   0:00  \_ -bash
+root     25299 25.3  2.6 988372 326344 pts/1   Sl+  01:30   0:09  |   \_ /usr/local/bin/python /usr/local/bin/airflow webserver
+root     25510  3.6  0.4 121068 57152 pts/1    S+   01:31   0:00  |       \_ gunicorn: master [airflow-webserver]
+root     25555 35.7  2.5 983584 316564 pts/1   Sl+  01:31   0:08  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root     25556 35.7  2.5 983840 316684 pts/1   Sl+  01:31   0:08  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root     25557 35.5  2.5 983840 316548 pts/1   Sl+  01:31   0:08  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root     25558 37.2  2.5 984920 317700 pts/1   Sl+  01:31   0:08  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root       128  0.0  0.0   6676  4552 pts/2    Ss   Jun23   0:00  \_ -bash
+root     25090  5.8  0.9 467508 118808 pts/2   S+   01:30   0:03      \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     25098  0.0  0.7 466080 97800 pts/2    S+   01:30   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     25099  0.4  0.8 1391812 99788 pts/2   Sl+  01:30   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     25107  0.0  0.8 466080 98548 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25109  0.0  0.8 466080 98548 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25114  0.0  0.8 466080 98548 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25117  0.0  0.8 466080 98548 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25120  0.0  0.8 466080 98552 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25125  0.0  0.8 466080 98548 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'run_after_loop', '2021-06-24T01:31:30.507415+00:00', '--lo
+root     26139  0.0  0.8 468988 102204 pts/2   S+   01:31   0:00          |   \_ airflow task supervisor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'run_after_loop', '2021-06-24T01:31:30.507415+00:00', '--local'
+root     25128  0.0  0.7 466080 98076 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25132  0.0  0.7 466080 98076 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25137  1.1  0.8 466592 100016 pts/2   S    01:30   0:00          \_ airflow scheduler -- DagFileProcessorManager
+root@a7c8aa590704:/opt/airflow# ps aux
+```
+
+**After**:
+```
+root       124  0.0  0.0   6676  4636 pts/1    Ss   Jun23   0:00  \_ -bash
+root     25299 25.3  2.6 988372 326344 pts/1   Sl+  01:30   0:09  |   \_ /usr/local/bin/python /usr/local/bin/airflow webserver
+root     25510  3.6  0.4 121068 57152 pts/1    S+   01:31   0:00  |       \_ gunicorn: master [airflow-webserver]
+root     25555 35.7  2.5 983584 316564 pts/1   Sl+  01:31   0:08  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root     25556 35.7  2.5 983840 316684 pts/1   Sl+  01:31   0:08  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root     25557 35.5  2.5 983840 316548 pts/1   Sl+  01:31   0:08  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root     25558 37.2  2.5 984920 317700 pts/1   Sl+  01:31   0:08  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root       128  0.0  0.0   6676  4552 pts/2    Ss   Jun23   0:00  \_ -bash
+root     25090  5.8  0.9 467508 118808 pts/2   S+   01:30   0:03      \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     25098  0.0  0.7 466080 97800 pts/2    S+   01:30   0:00          \_ airflow serve-logs
+root     25099  0.4  0.8 1391812 99788 pts/2   Sl+  01:30   0:00          \_ airflow executor -- LocalExecutor
+root     25107  0.0  0.8 466080 98548 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25109  0.0  0.8 466080 98548 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25114  0.0  0.8 466080 98548 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25117  0.0  0.8 466080 98548 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25120  0.0  0.8 466080 98552 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25125  0.0  0.8 466080 98548 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'run_after_loop', '2021-06-24T01:31:30.507415+00:00', '--lo
+root     26139  0.0  0.8 468988 102204 pts/2   S+   01:31   0:00          |   \_ airflow task supervisor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'run_after_loop', '2021-06-24T01:31:30.507415+00:00', '--local'
+root     25128  0.0  0.7 466080 98076 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25132  0.0  0.7 466080 98076 pts/2    S+   01:30   0:00          \_ airflow worker -- LocalExecutor
+root     25137  1.1  0.8 466592 100016 pts/2   S    01:30   0:00          \_ airflow scheduler -- DagFileProcessorManager
+root@a7c8aa590704:/opt/airflow# ps aux
+```
+####END####
+airflow/executors/local_executor.py
+airflow/utils/serve_logs.py
+
+####START####88ee2aa7dd
+Move DagFileProcessor and DagFileProcessorProcess out of scheduler_job.py (#16581)
+
+This change moves DagFileProcessor and DagFileProcessorProcess out of scheduler_job.py.
+
+Also, dag_processing.py was moved out of airflow/utils. 
+####END####
+airflow/dag_processing/__init__.py
+airflow/dag_processing/manager.py
+airflow/dag_processing/processor.py
+airflow/jobs/scheduler_job.py
+tests/dag_processing/__init__.py
+tests/dag_processing/test_manager.py
+tests/dag_processing/test_processor.py
+tests/jobs/test_scheduler_job.py
+tests/test_utils/perf/perf_kit/python.py
+tests/test_utils/perf/perf_kit/sqlalchemy.py
+
+####START####ffb1fcacff
+Fix multiple issues in Microsoft AzureContainerInstancesOperator (#15634)
+
+Fix multiple issues in Microsoft AzureContainerInstancesOperator,
+most importantly run sleep during main loop while executing.
+
+####END####
+airflow/providers/microsoft/azure/operators/azure_container_instances.py
+tests/providers/microsoft/azure/operators/test_azure_container_instances.py
+tests/sensors/test_base.py
+tests/sensors/test_smart_sensor_operator.py
+
+####START####fd7e6e1f6e
+Rename test_cycle to check_cycle (#16617)
+
+
+####END####
+airflow/models/dagbag.py
+airflow/utils/dag_cycle_tester.py
+tests/utils/test_dag_cycle.py
+
+####START####86d0a96bf7
+commiting dagPickle session when the airflow tasks run --ship-dag --interactive command is executed FIXES: 15748 (#15890)
+
+
+####END####
+airflow/cli/commands/task_command.py
+
+####START####2543c74c19
+AWS DataSync cancel task on exception (#11011) (#16589)
+
+Small improvements to DataSync operator. 
+
+Most notable is the ability of the operator to cancel an in progress task execution, eg if the Airflow task times out or is killed. This avoids a zombie issue when the AWS DataSync service can have a zombie task running even if Airflow's task has failed. 
+
+Also made some small changes to polling values. DataSync is a batch-based uploading service, it takes several minutes to operate so I changed the polling intervals from 5 seconds to 30 seconds and adjusted max_iterations to what I think is a more reasonable default.
+
+closes: #11011
+####END####
+airflow/providers/amazon/aws/hooks/datasync.py
+airflow/providers/amazon/aws/operators/datasync.py
+tests/providers/amazon/aws/operators/test_datasync.py
+
+####START####6bf18f12b2
+Refactor `dag.clear` method (#16086)
+
+There were a number of "internal" parameters that were to do with
+getting the TIs which should not have been exposed via the public API.
+
+Additionally this method and `get_task_instances` shared a lot of
+similar code (albeit the later was simpler) -- they now both use a
+internal method to do the actual querying.
+####END####
+airflow/api_connexion/endpoints/task_instance_endpoint.py
+airflow/models/dag.py
+airflow/models/taskinstance.py
+docs/conf.py
+tests/models/test_dag.py
+tests/sensors/test_external_task_sensor.py
+
+####START####a2a58d27ef
+Reduce log messages for happy path (#16626)
+
+
+####END####
+airflow/providers/microsoft/azure/hooks/wasb.py
+
+####START####50e334df32
+Add support for non-RSA type key for SFTP hook (#16314)
+
+
+####END####
+airflow/providers/sftp/hooks/sftp.py
+airflow/providers/ssh/hooks/ssh.py
+tests/conftest.py
+tests/providers/sftp/hooks/test_sftp.py
+tests/providers/ssh/hooks/test_ssh.py
+
+####START####c8a628abf4
+Set Process title for Worker when using ``LocalExecutor`` (#16623)
+
+This has annoyed me for a long time. When using  ``LocalExecutor``, it was difficult to see which process is a worker as it just showed up as below -- which had same title as parent scheduler process. This PR/commit adds a title for idle workers and when a task is running it has the "command" that is running in the title, similar to our supervising process
+
+Before:
+
+```
+root       124  0.0  0.0   6676  4636 pts/1    Ss   Jun23   0:00  \_ -bash
+root      1449  0.8  2.6 988356 326312 pts/1   Sl+  Jun23   0:16  |   \_ /usr/local/bin/python /usr/local/bin/airflow webserver
+root      1584  0.0  0.4 121068 56864 pts/1    S+   Jun23   0:01  |       \_ gunicorn: master [airflow-webserver]
+root      1587  0.6  2.5 986144 318712 pts/1   Sl+  Jun23   0:12  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root      1588  0.6  2.5 984776 317672 pts/1   Sl+  Jun23   0:12  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root      1589  0.6  2.5 985688 318148 pts/1   Sl+  Jun23   0:12  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root      1590  0.6  2.5 985200 317776 pts/1   Sl+  Jun23   0:11  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root       128  0.0  0.0   6676  4552 pts/2    Ss   Jun23   0:00  \_ -bash
+root     13933 31.0  0.9 466596 117656 pts/2   S+   00:22   0:01      \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13941  0.0  0.7 466340 97988 pts/2    S+   00:22   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13942  3.2  0.8 1392072 100136 pts/2  Sl+  00:22   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13950  0.0  0.8 466340 98404 pts/2    S+   00:22   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13952  0.0  0.8 466340 98404 pts/2    S+   00:22   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13955  0.0  0.8 466340 98404 pts/2    S+   00:22   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13958  0.0  0.8 466340 98404 pts/2    S+   00:22   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13962  0.0  0.8 466340 98404 pts/2    S+   00:22   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13966  0.0  0.8 466340 98404 pts/2    S+   00:22   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13969  0.0  0.8 466340 98404 pts/2    S+   00:22   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13975  0.0  0.8 466340 98404 pts/2    S+   00:22   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13979  6.5  0.8 466596 99956 pts/2    S    00:22   0:00          \_ airflow scheduler -- DagFileProcessorManager
+```
+
+After (with no running tasks - idle workers):
+
+```
+root       124  0.0  0.0   6676  4636 pts/1    Ss   Jun23   0:00  \_ -bash
+root      1449  0.8  2.6 988356 326312 pts/1   Sl+  Jun23   0:16  |   \_ /usr/local/bin/python /usr/local/bin/airflow webserver
+root      1584  0.0  0.4 121068 56864 pts/1    S+   Jun23   0:01  |       \_ gunicorn: master [airflow-webserver]
+root      1587  0.6  2.5 985752 318184 pts/1   Sl+  Jun23   0:12  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root      1588  0.6  2.5 984776 317672 pts/1   Sl+  Jun23   0:11  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root      1589  0.6  2.5 985688 318148 pts/1   Sl+  Jun23   0:12  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root      1590  0.6  2.5 985200 317776 pts/1   Sl+  Jun23   0:11  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root       128  0.0  0.0   6676  4552 pts/2    Ss   Jun23   0:00  \_ -bash
+root     13237 25.7  0.9 466596 117692 pts/2   S+   00:20   0:02      \_ airflow worker -- LocalExecutor
+root     13245  0.1  0.7 466340 97804 pts/2    S+   00:20   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13246  2.1  0.8 1318340 100104 pts/2  Sl+  00:20   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     13254  0.0  0.8 466340 98396 pts/2    S+   00:20   0:00          \_ airflow worker -- LocalExecutor
+root     13256  0.0  0.8 466340 98396 pts/2    S+   00:20   0:00          \_ airflow worker -- LocalExecutor
+root     13259  0.0  0.8 466340 98396 pts/2    S+   00:20   0:00          \_ airflow worker -- LocalExecutor
+root     13263  0.0  0.8 466340 98396 pts/2    S+   00:20   0:00          \_ airflow worker -- LocalExecutor
+root     13267  0.0  0.8 466340 98396 pts/2    S+   00:20   0:00          \_ airflow worker -- LocalExecutor
+root     13271  0.0  0.8 466340 98396 pts/2    S+   00:20   0:00          \_ airflow worker -- LocalExecutor
+root     13274  0.0  0.8 466340 98396 pts/2    S+   00:20   0:00          \_ airflow worker -- LocalExecutor
+root     13276  0.0  0.8 466340 98396 pts/2    S+   00:20   0:00          \_ airflow worker -- LocalExecutor
+root     13282  4.1  0.8 466596 99952 pts/2    S    00:20   0:00          \_ airflow scheduler -- DagFileProcessorManager
+```
+
+After (with running tasks):
+```
+root@a7c8aa590704:/opt/airflow# ps auxf
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root      6434  0.0  0.0   6652  4584 pts/3    Ss   00:01   0:00 /bin/bash
+root     19250  0.0  0.0   9556  3064 pts/3    R+   00:39   0:00  \_ ps auxf
+root         1  0.0  0.0   2148   720 ?        Ss   Jun23   0:00 /usr/bin/dumb-init -- /entrypoint
+root         7  0.0  0.0   6656  4400 pts/0    Ss   Jun23   0:00 /bin/bash
+root       121  0.0  0.0   8220  3228 pts/0    S+   Jun23   0:00  \_ tmux
+root       101  0.0  0.0  15856  4272 ?        Ss   Jun23   0:00 /usr/sbin/sshd
+root       123  0.0  0.0  10176  5148 ?        Ss   Jun23   0:00 tmux
+root       124  0.0  0.0   6676  4636 pts/1    Ss   Jun23   0:00  \_ -bash
+root      1449  0.6  2.6 988356 326312 pts/1   Sl+  Jun23   0:20  |   \_ /usr/local/bin/python /usr/local/bin/airflow webserver
+root      1584  0.0  0.4 121068 56864 pts/1    S+   Jun23   0:01  |       \_ gunicorn: master [airflow-webserver]
+root      1587  0.4  2.5 986144 318712 pts/1   Sl+  Jun23   0:12  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root      1588  0.4  2.5 984776 317672 pts/1   Sl+  Jun23   0:12  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root      1589  0.4  2.5 985848 318600 pts/1   Sl+  Jun23   0:13  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root      1590  0.4  2.5 985628 318424 pts/1   Sl+  Jun23   0:12  |           \_ [ready] gunicorn: worker [airflow-webserver]
+root       128  0.0  0.0   6676  4552 pts/2    Ss   Jun23   0:00  \_ -bash
+root     19030 17.9  0.9 467108 118628 pts/2   S+   00:38   0:02      \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     19038  0.0  0.7 466084 97776 pts/2    S+   00:38   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     19039  1.4  0.8 1318084 99804 pts/2   Sl+  00:38   0:00          \_ /usr/local/bin/python /usr/local/bin/airflow scheduler
+root     19047  0.0  0.8 466084 98692 pts/2    S+   00:38   0:00          \_ airflow worker -- LocalExecutor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'runme_2', '2021-06-24T00:39:06.539715+00:00', '--local', '
+root     19240 25.3  0.8 470820 104400 pts/2   S+   00:39   0:00          |   \_ airflow task supervisor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'runme_2', '2021-06-24T00:39:06.539715+00:00', '--local', '--po
+root     19246  0.0  0.8 470956 103980 pts/2   S    00:39   0:00          |       \_ airflow task runner: example_bash_operator runme_2 2021-06-24T00:39:06.539715+00:00 91
+root     19049  0.1  0.8 466084 98696 pts/2    S+   00:38   0:00          \_ airflow worker -- LocalExecutor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'runme_1', '2021-06-24T00:39:06.539715+00:00', '--local', '
+root     19241 26.0  0.8 470824 104408 pts/2   S+   00:39   0:00          |   \_ airflow task supervisor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'runme_1', '2021-06-24T00:39:06.539715+00:00', '--local', '--po
+root     19248  0.0  0.8 470824 103720 pts/2   S    00:39   0:00          |       \_ airflow task runner: example_bash_operator runme_1 2021-06-24T00:39:06.539715+00:00 93
+root     19052  0.1  0.8 466084 98760 pts/2    S+   00:38   0:00          \_ airflow worker -- LocalExecutor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'runme_0', '2021-06-24T00:39:06.539715+00:00', '--local', '
+root     19244 26.0  0.8 470824 104404 pts/2   S+   00:39   0:00          |   \_ airflow task supervisor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'runme_0', '2021-06-24T00:39:06.539715+00:00', '--local', '--po
+root     19245  0.0  0.8 471212 104032 pts/2   S    00:39   0:00          |       \_ airflow task runner: example_bash_operator runme_0 2021-06-24T00:39:06.539715+00:00 90
+root     19056  0.1  0.8 466084 98760 pts/2    S+   00:38   0:00          \_ airflow worker -- LocalExecutor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'this_will_skip', '2021-06-24T00:39:06.539715+00:00', '--lo
+root     19243 24.6  0.8 470824 104400 pts/2   S+   00:39   0:00          |   \_ airflow task supervisor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'this_will_skip', '2021-06-24T00:39:06.539715+00:00', '--local'
+root     19247  0.0  0.8 470956 103712 pts/2   S    00:39   0:00          |       \_ airflow task runner: example_bash_operator this_will_skip 2021-06-24T00:39:06.539715+00:00 92
+root     19057  0.1  0.8 466084 98760 pts/2    S+   00:38   0:00          \_ airflow worker -- LocalExecutor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'also_run_this', '2021-06-24T00:39:06.539715+00:00', '--loc
+root     19242 26.6  0.8 470824 104404 pts/2   R+   00:39   0:00          |   \_ airflow task supervisor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'also_run_this', '2021-06-24T00:39:06.539715+00:00', '--local',
+root     19249  0.0  0.8 470824 101976 pts/2   S    00:39   0:00          |       \_ airflow task supervisor: ['airflow', 'tasks', 'run', 'example_bash_operator', 'also_run_this', '2021-06-24T00:39:06.539715+00:00', '--loc
+root     19062  0.0  0.8 466084 98300 pts/2    S+   00:38   0:00          \_ airflow worker -- LocalExecutor
+root     19066  0.0  0.8 466084 98300 pts/2    S+   00:38   0:00          \_ airflow worker -- LocalExecutor
+root     19069  0.0  0.8 466084 98300 pts/2    S+   00:38   0:00          \_ airflow worker -- LocalExecutor
+root     19075  2.7  0.8 466596 100144 pts/2   S    00:38   0:00          \_ airflow scheduler -- DagFileProcessorManager
+```
+
+Once the worker is done executing a task, the worker is renamed back to `airflow worker -- LocalExecutor`
+####END####
+airflow/executors/local_executor.py
+
+####START####4aec25a80e
+fix(smart_sensor): Unbound variable errors (#14774)
+
+Signed-off-by: Shivansh Saini <shivanshs9@gmail.com>
+
+Closes #14770
+####END####
+airflow/sensors/smart_sensor.py
+
+####START####2ab2cbf93d
+Update Boto3 API calls in ECSOperator (#16050)
+
+
+####END####
+airflow/providers/amazon/aws/operators/ecs.py
+tests/providers/amazon/aws/operators/test_ecs.py
+
+####START####3ee916e9e1
+Add schema as DbApiHook instance attribute (#16521)
+
+
+####END####
+airflow/hooks/dbapi.py
+airflow/providers/postgres/hooks/postgres.py
+tests/hooks/test_dbapi.py
+tests/providers/postgres/hooks/test_postgres.py
+
+####START####86c20910ae
+Fix ``AttributeError``: ``datetime.timezone`` object has no attribute ``name`` (#16599)
+
+closes: #16551
+
+Previous implementation tried to force / coerce the provided timezone (from the dag's `start_date`) into a `pendulum.tz.timezone.*` that only worked if the provided timezone was already a pendulum's timezone and it specifically failed when with `datetime.timezone.utc` as timezone. 
+####END####
+airflow/models/dag.py
+tests/models/test_dag.py
+tests/serialization/test_dag_serialization.py
+
+####START####1aa5e20fb3
+UPDATING.md for changes included in 2.1.1 (#16615)
+
+
+####END####
+UPDATING.md
+
+####START####8217db8cb4
+Chart: Support for overriding webserver and flower service ports (#16572)
+
+This allows services to expose sidecars with webservers in them, or even to only expose a sidecar (say enforcing inbound traffic to go through a proxy).
+
+If we are okay with the general approach, both NetworkPolicy and Ingress need similar changes so there is broad support for these types of sidecars.
+
+Closes #16039
+####END####
+chart/tests/test_flower.py
+chart/tests/test_webserver.py
+
+####START####c2af5e3ca2
+Fix file name to verify release packages (#16605)
+
+typo: `check.files.py` -> `check_files.py`
+####END####
+dev/README_RELEASE_AIRFLOW.md
+dev/README_RELEASE_PROVIDER_PACKAGES.md
+
+####START####c8d0b0e1fb
+TaskGroup add default_args (#16557)
+
+* TaskGroup add default_args
+
+* test case && pylint
+
+* TaskGroup default_args docs
+
+* Update docs/apache-airflow/concepts/dags.rst
+
+Co-authored-by: Xinbin Huang <bin.huangxb@gmail.com>
+
+Co-authored-by: Xinbin Huang <bin.huangxb@gmail.com>
+####END####
+airflow/models/baseoperator.py
+airflow/utils/task_group.py
+tests/utils/test_task_group.py
+
+####START####c5e9141803
+Drop support for Helm 2 (#16575)
+
+Helm 2 is EOL, so bump our chart to the v2 apiVersion
+
+https://helm.sh/blog/helm-v2-deprecation-timeline/
+
+
+####END####
+chart/README.md
+chart/UPDATING.md
+
+####START####18cb0bbdbb
+Don't crash attempting to mask secrets in dict with non-string keys (#16601)
+
+
+####END####
+airflow/utils/log/secrets_masker.py
+tests/utils/log/test_secrets_masker.py
+
+####START####129fc61a06
+Always install sphinx_airflow_theme from pypi (#16594)
+
+We don't need a way to specify _in_ setup.py that this should be
+installed from a GitHub release -- it's never needed by users, and if
+you are developing the theme you can install the custom version
+yourself.
+
+(The variable name is confusing too -- it wasn't pulling from git, but
+from a published release on GitHub.)
+
+Removing this just means one less thing to update.
+####END####
+setup.py
+
+####START####5b0acfef87
+Add back-compat layer to clear_task_instances (#16582)
+
+It is unlikely that anyone is using this function directly, but it is
+easy for us to maintain compatibility, so we should
+####END####
+airflow/models/taskinstance.py
+airflow/typing_compat.py
+
+####START####01c9818405
+Ensure that `dag_run.conf` is a dict (#15057)
+
+Co-authored-by: Ash Berlin-Taylor <ash_github@firemirror.com>
+####END####
+airflow/www/api/experimental/endpoints.py
+airflow/www/views.py
+tests/api_connexion/endpoints/test_dag_run_endpoint.py
+tests/www/api/experimental/test_endpoints.py
+tests/www/views/test_views_trigger_dag.py
+
+####START####eeb97cff9c
+Fix pylint error in tests/ (#16585)
+
+I'm not sure why this changed/started failing, as we haven't touched this part of the file recently.
+####END####
+tests/providers/elasticsearch/log/elasticmock/fake_elasticsearch.py
+
+####START####2a59de3e55
+Redact conn secrets in webserver logs (#16579)
+
+
+####END####
+airflow/hooks/base.py
+
+####START####96f764389e
+Fix tasks in an infinite slots pool were never scheduled (#15247)
+
+Infinite pools: Make their `total_slots` be `inf` instead of `-1`
+####END####
+airflow/models/pool.py
+tests/jobs/test_scheduler_job.py
+tests/models/test_pool.py
+
+####START####90f0088c57
+Fix Orphaned tasks stuck in CeleryExecutor as running (#16550)
+
+
+####END####
+airflow/executors/celery_executor.py
+tests/executors/test_celery_executor.py
+
+####START####e5e59b479f
+Remove limitation for elasticsearch library (#16553)
+
+* Remove limitation for elasticsearch library
+
+Elasticsearch <7.6.0 does not work with Python 3.9 (import
+errors on deprecated base64 functionality that have been removed
+in Python 3.9) see:
+
+ihttps://bugzilla.redhat.com/show_bug.cgi?id=1894188
+
+This PR bumps elasticsearch library version to latest available
+(7.13.1 as of this writing) in order to get it Python 3.9
+compatible.
+####END####
+setup.py
+tests/providers/elasticsearch/log/elasticmock/fake_elasticsearch.py
+
+####START####61fdf8442e
+Add test connection method to http hook (#16568)
+
+
+####END####
+airflow/providers/http/hooks/http.py
+tests/providers/http/hooks/test_http.py
+
+####START####19ed074e9c
+Use safe get with AWS DMS describe replication tasks (#16540)
+
+AWS DMS boto3 `describe_replication_tasks` omits `Marker` property in
+the response if no more tasks is available, it also omits
+`ReplicationTasks` property if no tasks is found.
+####END####
+airflow/providers/amazon/aws/hooks/dms.py
+airflow/providers/amazon/aws/operators/dms_describe_tasks.py
+tests/providers/amazon/aws/hooks/test_dms_task.py
+
+####START####9f92786128
+Switches to manually building docker images (#16570)
+
+According to
+https://www.docker.com/blog/changes-to-docker-hub-autobuilds/
+Docker is going to disable autobuilds for free tiers. We might be exempt
+from that via ASF, but docker autobuilds never worked well for us for
+multitude of reasons.
+
+This PR turns manually preparing the image into obligatory, manual step
+when releasing Airflow.
+
+Part of #16555
+####END####
+dev/README_RELEASE_AIRFLOW.md
+
+####START####6b0dfec01f
+update README.md with 1.10 in EOL state (#16556)
+
+
+####END####
+README.md
+
+####START####df8a877795
+Make custom JSON encoder support Decimal (#16383)
+
+
+####END####
+airflow/utils/json.py
+tests/utils/test_json.py
+
+####START####f40d555788
+Adds automated generation of provider issue to track test progress (#16419)
+
+Allows to automatically generate draft of the issue which can be
+used to track progress of testing released providers.
+####END####
+dev/README_RELEASE_PROVIDER_PACKAGES.md
+dev/provider_packages/prepare_provider_packages.py
+setup.py
+
+####START####15baf737ee
+update example_jenkins_job_trigger.py (#16532)
+
+fix initialization of Request which used by jenkins.Jenkins.jenkins_open in DAG demo
+####END####
+airflow/providers/jenkins/example_dags/example_jenkins_job_trigger.py
+
+####START####2d85a95e18
+Prepare for Python 3.9 support (#16536)
+
+This is the first step to add Python 3.9 support to Airflow.
+Hive should be excluded in this version because it requires sasl
+library which for now does not support Python 3.9.
+
+Until the https://github.com/dropbox/PyHive/issues/380 is solved
+we will exclude hive provider. This will be the next step
+to add full support and exclusion but we need to merge it first
+in order to be able to build image from `main`.
+
+Dockerfiles have been updated to remove some obsolete limits and
+test dask executor was disabled conditionally in case
+distributed framework cannot be imported.
+####END####
+setup.py
+tests/executors/test_dask_executor.py
+
+####START####83b23ad197
+Add undocumented parameters to ``LivyOperator`` and ``LivyHook`` docstrings (#16542)
+
+
+####END####
+airflow/providers/apache/livy/hooks/livy.py
+airflow/providers/apache/livy/operators/livy.py
+
+####START####3d8ba64b84
+Add ``extra_headers`` argument to ``LivyHook`` and ``LivyOperator`` (#16512)
+
+Adds an `extra_headers` option to `LivyHook` and `LivyOperator`. This allows passing extra header options to requests before sending a request to Livy. This is required for instance when CSRF protection is enabled (i.e. on HDinsights): https://github.com/MicrosoftDocs/azure-docs/issues/10457.
+####END####
+airflow/providers/apache/livy/hooks/livy.py
+airflow/providers/apache/livy/operators/livy.py
+tests/providers/apache/livy/hooks/test_livy.py
+
+####START####609620a39c
+Fetch Helm Chart inventory from remote cache (#16535)
+
+
+####END####
+docs/exts/docs_build/fetch_inventories.py
+
+####START####28e285ef9a
+Updating the DAG docstring to include render_template_as_native_obj (#16534)
+
+
+####END####
+airflow/models/dag.py
+
+####START####d87ab6d3a5
+Fix bug in mark TI success api (#16524)
+
+Mistakenly checking for the wrong args in TI success API. Introduced in PR https://github.com/apache/airflow/pull/16233. 
+####END####
+airflow/www/views.py
+
+####START####bbc627a3da
+Prepares documentation for rc2 release of Providers (#16501)
+
+* adds clear information that the provider is for 2.1+
+* adds explicit dependency to apache-airflow>=2.1.0 in dependency list
+* adds capability of specifying additional dependencies
+* different providers now can depend on different Airflow version
+* removed pre-commit check and provider info update for
+  provider-schema 2.0.0 compatibility
+  (not needed any more after >= 2.1.0 is used as Airflow >2.0.1
+  allows additional properties in provider_info)
+* Update changelog documentation for all providers
+
+Co-authored-by: jarek <jarek@penguini>
+####END####
+dev/provider_packages/README.md
+dev/provider_packages/prepare_provider_packages.py
+setup.py
+
+####START####db10c6841b
+Add AWS DMS replication task operators (#15850)
+
+
+####END####
+airflow/providers/amazon/aws/example_dags/example_dms_full_load_task.py
+airflow/providers/amazon/aws/hooks/dms.py
+airflow/providers/amazon/aws/operators/dms_create_task.py
+airflow/providers/amazon/aws/operators/dms_delete_task.py
+airflow/providers/amazon/aws/operators/dms_describe_tasks.py
+airflow/providers/amazon/aws/operators/dms_start_task.py
+airflow/providers/amazon/aws/operators/dms_stop_task.py
+airflow/providers/amazon/aws/sensors/dms_task.py
+tests/providers/amazon/aws/hooks/test_dms_task.py
+tests/providers/amazon/aws/operators/test_dms_create_task.py
+tests/providers/amazon/aws/operators/test_dms_delete_task.py
+tests/providers/amazon/aws/operators/test_dms_describe_tasks.py
+tests/providers/amazon/aws/operators/test_dms_start_task.py
+tests/providers/amazon/aws/operators/test_dms_stop_task.py
+tests/providers/amazon/aws/sensors/test_dms_task.py
+
+####START####fa953bacd8
+Add docs index to README.md (#16495)
+
+
+####END####
+README.md
+
+####START####087556f0c2
+Allow null value for operator field in task_instance schema(REST API) (#16516)
+
+This change makes it possible to get "old" task instances from 1.10.x
+####END####
+tests/api_connexion/endpoints/test_task_instance_endpoint.py
+
+####START####cf404b432d
+Update Watchtower version to 1.0.6 (#16469)
+
+Currently a pre 1.0 version of Watchtower is being used. There have been
+many bug fixes and improvements since this version.
+####END####
+setup.py
+
+####START####a7738cf62b
+Chart: Support ``extraContainers`` and ``extraVolumes`` in flower (#16515)
+
+This allows for deploying sidecars in the flower pod.
+####END####
+chart/tests/test_flower.py
+
+####START####3834df6ade
+Fix DAG run state not updated while DAG is paused (#16343)
+
+The state of a DAG run does not update while the DAG is paused.
+The tasks continue to run if the DAG run was kicked off before
+the DAG was paused and eventually finish and are marked correctly.
+The DAG run state does not get updated and stays in Running state until the DAG is unpaused.
+
+This change fixes it by running a check on task exit to update state(if possible)
+ of the DagRun if the task was able to finish the DagRun while the DAG is paused
+
+Co-authored-by: Ash Berlin-Taylor <ash_github@firemirror.com>
+####END####
+airflow/jobs/local_task_job.py
+tests/jobs/test_local_task_job.py
+
+####START####d53371be10
+Bugfix: Allow clearing tasks with just ``dag_id`` and empty ``subdir`` (#16513)
+
+Currently if we run the following command:
+
+```
+airflow tasks clear example_bash_operator --subdir ""
+```
+
+we get the following error:
+
+```
+
+Traceback (most recent call last):
+  File "/usr/local/bin/airflow", line 33, in <module>
+    sys.exit(load_entry_point('apache-airflow', 'console_scripts', 'airflow')())
+  File "/opt/airflow/airflow/__main__.py", line 40, in main
+    args.func(args)
+  File "/opt/airflow/airflow/cli/cli_parser.py", line 48, in command
+    return func(*args, **kwargs)
+  File "/opt/airflow/airflow/utils/cli.py", line 91, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/airflow/airflow/cli/commands/task_command.py", line 454, in task_clear
+    if args.dag_id and not args.subdir and not args.dag_regex and not args.task_regex:
+  File "/opt/airflow/airflow/models/dag.py", line 1413, in clear_dags
+    for dag in dags:
+TypeError: 'DAG' object is not iterable
+```
+
+This is becase `DAG.clear_dags` expects an iterable.
+####END####
+airflow/cli/commands/task_command.py
+
+####START####7453d3e810
+Avoid recursing too deep when redacting logs (#16491)
+
+Fix #16473
+####END####
+airflow/utils/log/secrets_masker.py
+
+####START####2011da25a5
+Add means to Duplicate connections from UI (#15574)
+
+Co-authored-by: Ash Berlin-Taylor <ash_github@firemirror.com>
+Co-authored-by: Tzu-ping Chung <uranusjr@gmail.com>
+####END####
+airflow/www/views.py
+tests/www/views/test_views_connection.py
+
+####START####31481ab258
+We don't need to build against Python 2.7 or 3.5 anymore (#16433)
+
+Airflow 1.10 has reached end of life on June 17th 2021, so we can tidy
+up our build scripts and not have to build these versions anymore
+####END####
+README.md
+
+####START####1c82b4d015
+Fix S3ToFTPOperator (#13796)
+
+
+####END####
+airflow/providers/amazon/aws/transfers/s3_to_ftp.py
+
+####START####26b3440a36
+Update `airflow tasks *` commands to lookup TaskInstances from DagRun Table (#16030)
+
+This change allows to lookup TaskInstances using DagRun.run_id in task commands
+
+Co-authored-by: Ash Berlin-Taylor <ash_github@firemirror.com>
+Co-authored-by: Kaxil Naik <kaxilnaik@gmail.com>
+####END####
+airflow/cli/cli_parser.py
+airflow/cli/commands/task_command.py
+airflow/models/dag.py
+airflow/task/task_runner/standard_task_runner.py
+tests/cli/commands/test_task_command.py
+tests/jobs/test_scheduler_job.py
+
+####START####6236e7e205
+Use resource and action names. (#16410)
+
+
+####END####
+airflow/migrations/versions/849da589634d_prefix_dag_permissions.py
+airflow/migrations/versions/a13f7613ad25_resource_based_permissions_for_default_.py
+
+####START####4c9735ff9b
+Fix unsuccessful KubernetesPod final_state call when `is_delete_operator_pod=True` (#15490)
+
+If a Kubernetes Pod ends in a state other than `SUCCESS` and `is_delete_operator_pod` is True, then use the `final_state` from the previous `create_new_pod_for_operator` call since the pod is already deleted and the current state can't be re-read.
+
+closes: https://github.com/apache/airflow/issues/15456
+
+####END####
+airflow/providers/cncf/kubernetes/operators/kubernetes_pod.py
+airflow/providers/cncf/kubernetes/utils/pod_launcher.py
+kubernetes_tests/test_kubernetes_pod_operator.py
+kubernetes_tests/test_kubernetes_pod_operator_backcompat.py
+tests/providers/cncf/kubernetes/operators/test_kubernetes_pod.py
+
+####START####3cf67be387
+Support non-https elasticsearch external links (#16489)
+
+Also provide an example for `frontend` as its not immediately apparent
+how to build a short(ish) deep link.
+####END####
+airflow/providers/elasticsearch/log/es_task_handler.py
+tests/providers/elasticsearch/log/test_es_task_handler.py
+
+####START####36dc6a8100
+Make job name check optional in SageMakerTrainingOperator (#16327)
+
+closes: #16299
+
+In this commit I make it possible to avoid listing existing training jobs by adding a `check_if_job_exists` parameter to the SageMakerTrainingOperator.
+####END####
+airflow/providers/amazon/aws/operators/sagemaker_training.py
+tests/providers/amazon/aws/operators/test_sagemaker_training.py
+
+####START####a68075f726
+Rename DAG concurrency settings for easier understanding (#16267)
+
+``dag_conccurency`` ->  ``max_active_tasks_per_dag``
+
+Some of Airflow's concurrency settings have been a source of confusion for a lot of users (including me), for example:
+
+- https://stackoverflow.com/questions/56370720/how-to-control-the-parallelism-or-concurrency-of-an-airflow-installation
+- https://stackoverflow.com/questions/38200666/airflow-parallelism
+
+This commit is an attempt to make the settings easier to understand
+
+####END####
+UPDATING.md
+airflow/api_connexion/schemas/dag_schema.py
+airflow/configuration.py
+airflow/exceptions.py
+airflow/jobs/backfill_job.py
+airflow/jobs/scheduler_job.py
+airflow/migrations/versions/30867afad44a_rename_concurrency_column_in_dag_table_.py
+airflow/models/dag.py
+airflow/serialization/serialized_objects.py
+airflow/smart_sensor_dags/smart_sensor_group.py
+airflow/ti_deps/deps/dag_ti_slots_available_dep.py
+tests/api_connexion/endpoints/test_dag_endpoint.py
+tests/api_connexion/schemas/test_dag_schema.py
+tests/dags/test_clear_subdag.py
+tests/jobs/test_backfill_job.py
+tests/jobs/test_scheduler_job.py
+tests/models/test_dag.py
+tests/models/test_taskinstance.py
+tests/serialization/test_dag_serialization.py
+tests/test_utils/perf/scheduler_dag_execution_timing.py
+tests/ti_deps/deps/test_dag_ti_slots_available_dep.py
+
+####START####f2c79b238f
+Backfill: Don't create a DagRun if no tasks match task regex (#16461)
+
+Backfill should not create a DagRun in case there is no any task that matches the regex.
+
+closes: #16460
+####END####
+airflow/cli/commands/dag_command.py
+
+####START####247ba31872
+Fix Elasticsearch external log link with ``json_format`` (#16467)
+
+When using json_format with elasticsearch remote logging the
+execution date is sanitized, so we need to use the same
+sanitized value when building the log_id for external links.
+####END####
+airflow/providers/elasticsearch/log/es_task_handler.py
+tests/providers/elasticsearch/log/test_es_task_handler.py
+
+####START####c158d4c5c4
+Update link to match what is in pre-commit (#16408)
+
+[The k8s schema repository that has been used for chart pytest has gone stale with no updates in 14 months](https://github.com/instrumenta/kubernetes-json-schema). There are no new updates beyond 1.18.1, and [PRs for updates are not being merged](https://github.com/instrumenta/kubernetes-json-schema/pulls). Airflow is using a more active fork [in pre-commit](https://github.com/apache/airflow/blob/main/.pre-commit-config.yaml#L571), so this change uses [that updated fork](https://github.com/yannh/kubernetes-json-schema) in chart pytests too. This updated fork's latest schema is 1.21.1, and has had changes within the last month.
+####END####
+chart/tests/helm_template_generator.py
+
+####START####35e1f6829d
+Chart: Allow configuration of pod resources in helm chart (#16425)
+
+Currently it's possible to configure some of the pod resources via the helm chart values like for example the scheduler pod main container but it's not possible for the `scheduler-log-groomer` container. 
+
+In deployments with `ResourceQuotas` it's desirable to be able to control the `limits` of each container specifically to avoid pods reserve way too much cpu and memory  and eat up the quota unnecessarily. Even though the current helm chart allows to add a `LimitRange` that defines the default `limits` that is not enough. 
+
+This introduces the ability to provide a specific resource blocks for 
+
+* `pod_template_file`: for the pods started by the `KubernetesPodOperator` itself . ([pod_template_file doc](https://airflow.apache.org/docs/apache-airflow/stable/executor/kubernetes.html#pod-template-file))
+* pgbouncer's `metrics-exporter`
+* scheduler's  `scheduler-log-groomer`
+* webserver's initContainer `wait-for-airflow-migrations`
+* worker's `worker-log-groomer`
+####END####
+chart/tests/test_pgbouncer.py
+chart/tests/test_pod_template_file.py
+chart/tests/test_scheduler.py
+chart/tests/test_webserver.py
+chart/tests/test_worker.py
+
+####START####5e12b3de31
+Remove support jinja templated log_id in elasticsearch (#16465)
+
+* Remove support jinja templated log_id in elasticsearch
+
+This simplifies the handling of log_id in elasticsearch remote logging.
+Support for a jinja templated log_id was never explicitly documented, and
+where it was included in examples it was actually broken.
+
+If someone fixed the broken jinja examples and used it, differing formats for
+execution_date may be problematic and updating documents in Elasticsearch
+may be required.
+
+* Fix changelog
+
+* fixup! Fix changelog
+
+Co-authored-by: Kaxil Naik <kaxilnaik@gmail.com>
+####END####
+airflow/providers/elasticsearch/log/es_task_handler.py
+tests/providers/elasticsearch/log/test_es_task_handler.py
+
+####START####d1d02b62e3
+Switch to built-in data structures in SecretsMasker (#16424)
+
+Using Iterable in SecretsMasker might cause undesireable
+side effect in case the object passed as log parameter
+is an iterable object and actually iterating it is not idempotent.
+
+For example in case of botocore, it passes StreamingBody
+object to log and this object is Iterable. However it can be
+iterated only once. Masking causes the object to be iterated
+during logging and results in empty body when actual results
+are retrieved later.
+
+This change only iterates list type of objects and recurrently
+redacts only dicts/strs/tuples/sets/lists which should never
+produce any side effects as all those objects do not have side
+effects when they are accessed.
+
+Fixes: #16148
+####END####
+airflow/utils/log/secrets_masker.py
+tests/utils/log/test_secrets_masker.py
+
+####START####cbf8001d76
+Synchronizes updated changelog after buggfix release (#16464)
+
+
+####END####
+dev/provider_packages/prepare_provider_packages.py
+
+####START####147bcecc49
+Correctly handle None returns from Query.scalar() (#16345)
+
+This is possible when the query does not return a row, according to
+SQLAlchemy documentation. We can handle them to provide better errors in
+unexpected situations.
+
+Toward #8171, fix #16328.
+####END####
+airflow/models/serialized_dag.py
+airflow/www/views.py
+
+####START####0fa4d833f7
+Handle missing/null serialized DAG dependencies (#16393)
+
+When a serialized DAG is missing a "dag_dependencies" field (possible
+when upgrading), PostgreSQL would return NULL when accessing the field
+with a JSON function. This value would fail subsequent code, so we need
+some logic to handle it.
+
+Fix #16356
+####END####
+airflow/models/serialized_dag.py
+tests/models/test_serialized_dag.py
+
+####START####3f674bd6bd
+Add missing tests for snowflake changes (#16463)
+
+Fixes problem introduced in #16420
+####END####
+tests/providers/snowflake/hooks/test_snowflake.py
+
+####START####cc3c13c1f5
+Fix templated default/example values in config ref docs (#16442)
+
+We should show the actual default/example value in the configuration
+reference docs, not the templated values.
+
+e.g. `{dag_id}` like you get in a generated airflow.cfg, not `{{dag_id}}
+like is stored in the airflow.cfg template.
+####END####
+airflow/configuration.py
+docs/conf.py
+
+####START####e31e515b28
+Fix external elasticsearch logs link (#16357)
+
+During the 2.0 upgrade, the external log link when using elasticsearch
+remote logs was broken. This fixes it, including it only being shown if
+`[elasticsearch] frontend` is set.
+
+
+####END####
+airflow/providers/elasticsearch/log/es_task_handler.py
+airflow/utils/log/log_reader.py
+airflow/utils/log/logging_mixin.py
+tests/providers/elasticsearch/log/test_es_task_handler.py
+tests/utils/log/test_log_reader.py
+tests/www/views/test_views_log.py
+tests/www/views/test_views_tasks.py
+
+####START####608dd0ddf6
+Fix formatting and missing import (#16455)
+
+
+####END####
+airflow/providers/snowflake/hooks/snowflake.py
+
+####START####1fba5402bb
+More documentation update for June providers release (#16405)
+
+The provider changelogs were already merged but they could not be
+released due to unavailability of signing key in remote location
+The documentation has once more been updated, including latest
+merges - documentation-only changes were removed from
+bugs/feetures/breaking changes lists.
+
+Few other improvements:
+
+* Pre-commit was added to make sure that the documentation
+  in provider's index.rst files includes the latest changelog.
+* Index.rst now contain includes of the CHANGELOG.rst rather
+  than copy of the CHANGELOG.rst
+* The `prepare-provider-package` breeze command has --non-interactive
+  flag now
+* generated provider package README.rst contain changelog so you can
+  see the changelog directly in PyPI
+* "Suggest change on this page" link in documentation is fixed.
+####END####
+dev/README_RELEASE_PROVIDER_PACKAGES.md
+dev/provider_packages/README.md
+dev/provider_packages/prepare_provider_packages.py
+docs/conf.py
+
+####START####e8d3de828f
+Add ElasticSearch Connection Doc (#16436)
+
+
+####END####
+airflow/providers/elasticsearch/hooks/elasticsearch.py
+
+####START####643e46ca7a
+Added ability for Snowflake to attribute usage to Airflow by adding an application parameter (#16420)
+
+
+####END####
+airflow/providers/snowflake/hooks/snowflake.py
+
+####START####ce28bc52a8
+Disable Pylint member check for ``tests/decorators/test_python.py`` (#16443)
+
+Some PRs are failing this check:
+
+https://github.com/apache/airflow/pull/16408/checks?check_run_id=2823934948#step:9:54
+https://github.com/apache/airflow/pull/16393/checks?check_run_id=2813095540#step:9:54
+
+However those PRs have not changed that file.
+####END####
+tests/decorators/test_python.py
+
+####START####9526a249cc
+Adding `only_active` parameter to /dags endpoint (#14306)
+
+I noticed that the `/dags` endpoint returns information on all entries in the DAG table, which is often many more DAGs than are activeand likely includes DAGs which have been removed from Airflow. 
+
+This PR adds a boolean `only_active` parameter to the `/dags` endpoint which will then only return active DAGs. 
+
+I also noticed that this endpoint was hitting a deprecated codepath by dumping a `DAG` object to the DAGDetailSchema, thus hitting calling `DAG.is_paused()` I have updated the schema to call the correct function (`DAG.get_is_paused`) since I'm assuming the deprecated functions may be removed some day. 
+####END####
+airflow/api_connexion/endpoints/dag_endpoint.py
+airflow/api_connexion/schemas/dag_schema.py
+airflow/models/dag.py
+tests/api_connexion/endpoints/test_dag_endpoint.py
+tests/api_connexion/schemas/test_dag_schema.py
+
+####START####c6e043fd0e
+generate go client with latest openapi generator template (#16411)
+
+* generate go client with latest openapi generator template
+
+* bump client version
+####END####
+clients/README.md

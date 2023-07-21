@@ -1,0 +1,3136 @@
+####START####641e051a272
+Fix the use of wildcard expressions for data streams in update aliases api (#75526)
+
+Prior to this change, supplying a wildcard expression in the `indices` field
+of an alias action would always result in a 404, despite data streams existing
+that could match with the provided wildcard expression.
+
+Closes #75456
+####END####
+server/src/main/java/org/elasticsearch/action/admin/indices/alias/IndicesAliasesRequest.java
+server/src/test/java/org/elasticsearch/cluster/metadata/IndexNameExpressionResolverTests.java
+
+####START####c519b938163
+Make some vector tile body parameters as query parameters (#75522)
+
+Following the same structure of the _search API, this changes makes possible to define some 
+body parameters as query parameters (e.g. defined as URL parameters)
+####END####
+x-pack/plugin/vector-tile/src/javaRestTest/java/org/elasticsearch/xpack/vectortile/VectorTileRestIT.java
+x-pack/plugin/vector-tile/src/main/java/org/elasticsearch/xpack/vectortile/rest/RestVectorTileAction.java
+x-pack/plugin/vector-tile/src/main/java/org/elasticsearch/xpack/vectortile/rest/VectorTileRequest.java
+
+####START####b9bc7a6f3fc
+Configure security for the initial node cli (#74868)
+
+This introduces a new cmd line tool that generates the security configuration
+for a new node in a new cluster (as opposed to joining an existing cluster).
+The security configuration consists of TLS key and certificates, which
+are stored in a directory inside the config path, as well as settings appended
+to the elasticsearch.yml referencing the aforementioned certs.
+####END####
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/DistroTestPlugin.java
+libs/cli/src/main/java/org/elasticsearch/cli/ExitCodes.java
+qa/os/src/test/java/org/elasticsearch/packaging/test/KeystoreManagementTests.java
+qa/os/src/test/java/org/elasticsearch/packaging/util/Archives.java
+qa/os/src/test/java/org/elasticsearch/packaging/util/Docker.java
+qa/os/src/test/java/org/elasticsearch/packaging/util/Installation.java
+server/src/internalClusterTest/java/org/elasticsearch/action/admin/ReloadSecureSettingsIT.java
+server/src/main/java/org/elasticsearch/bootstrap/Bootstrap.java
+server/src/main/java/org/elasticsearch/cli/KeyStoreAwareCommand.java
+server/src/main/java/org/elasticsearch/common/settings/KeyStoreWrapper.java
+x-pack/plugin/security/cli/src/main/java/org/elasticsearch/xpack/security/cli/CertGenUtils.java
+x-pack/plugin/security/cli/src/main/java/org/elasticsearch/xpack/security/cli/ConfigInitialNode.java
+
+####START####4553bf03d5f
+Remove MavenFilteringHack (#73637)
+
+
+####END####
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/MavenFilteringHack.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/rest/CopyRestTestsTask.java
+
+####START####7af39dbc351
+Remove deprecated date histo interval (#75000)
+
+Date histogram interval parameter was deprecated in 7.2, in favor of the more specific fixed_interval and calendar_interval parameters.  The old logic used some poorly understood guessing to decide if it should operate in fixed or calendar mode.  The new logic requires a specific choice by the user, which is more explicit.  In 7.x REST compatibility mode, we will parse the interval as calendar if possible, and otherwise interpret it as fixed.  
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/indices/IndicesRequestCacheIT.java
+server/src/internalClusterTest/java/org/elasticsearch/search/aggregations/bucket/DateHistogramIT.java
+server/src/internalClusterTest/java/org/elasticsearch/search/aggregations/bucket/DateHistogramOffsetIT.java
+server/src/internalClusterTest/java/org/elasticsearch/search/aggregations/bucket/MinDocCountIT.java
+server/src/internalClusterTest/java/org/elasticsearch/search/aggregations/bucket/ShardReduceIT.java
+server/src/internalClusterTest/java/org/elasticsearch/search/aggregations/pipeline/BucketSortIT.java
+server/src/internalClusterTest/java/org/elasticsearch/search/aggregations/pipeline/DateDerivativeIT.java
+server/src/internalClusterTest/java/org/elasticsearch/search/aggregations/pipeline/MaxBucketIT.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/composite/DateHistogramValuesSourceBuilder.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/histogram/DateHistogramAggregationBuilder.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/histogram/DateIntervalConsumer.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/histogram/DateIntervalWrapper.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/composite/CompositeAggregatorTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/composite/LegacyIntervalCompositeAggBuilderTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/histogram/DateHistogramAggregatorTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/pipeline/CumulativeSumAggregatorTests.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/datafeed/extractor/ExtractorUtils.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/rollup/job/DateHistogramGroupConfig.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/rollup/ConfigTestHelpers.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/rollup/job/DateHistogramGroupConfigSerializingTests.java
+x-pack/plugin/rollup/src/main/java/org/elasticsearch/xpack/rollup/RollupJobIdentifierUtils.java
+x-pack/plugin/rollup/src/main/java/org/elasticsearch/xpack/rollup/RollupRequestTranslator.java
+x-pack/plugin/rollup/src/main/java/org/elasticsearch/xpack/rollup/job/RollupIndexer.java
+x-pack/plugin/rollup/src/test/java/org/elasticsearch/xpack/rollup/RollupRequestTranslationTests.java
+x-pack/plugin/rollup/src/test/java/org/elasticsearch/xpack/rollup/action/PutJobStateMachineTests.java
+x-pack/plugin/rollup/src/test/java/org/elasticsearch/xpack/rollup/config/ConfigTests.java
+x-pack/plugin/watcher/src/internalClusterTest/java/org/elasticsearch/xpack/watcher/condition/CompareConditionSearchTests.java
+
+####START####7049061a82c
+Align XCombinedFieldQuery with latest changes (#75483)
+
+In #74678 we released an early fix for a Lucene bug around `combined_fields`
+queries with missing fields. This PR brings our fix up-to-date with what was
+actually committed to Lucene.
+####END####
+server/src/main/java/org/apache/lucene/search/XCombinedFieldQuery.java
+server/src/main/java/org/apache/lucene/search/XMultiNormsLeafSimScorer.java
+server/src/test/java/org/apache/lucene/search/XCombinedFieldQueryTests.java
+
+####START####8e98381c33c
+Bump version after 7.13.4 release
+
+####END####
+server/src/main/java/org/elasticsearch/Version.java
+
+####START####e7a668811de
+Fix RestSnapshotsStatusCancellationIT (#75524)
+
+Reused the fix from the other snapshot API test.
+
+closes #75075
+####END####
+qa/smoke-test-http/src/test/java/org/elasticsearch/http/snapshots/AbstractSnapshotRestTestCase.java
+qa/smoke-test-http/src/test/java/org/elasticsearch/http/snapshots/RestGetSnapshotsCancellationIT.java
+qa/smoke-test-http/src/test/java/org/elasticsearch/http/snapshots/RestSnapshotsStatusCancellationIT.java
+
+####START####6358efd14fe
+Enable compiler warnings for watcher (#75516)
+
+Part of #40366.
+####END####
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/Watcher.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/actions/email/ExecutableEmailAction.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/actions/index/ExecutableIndexAction.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/actions/jira/ExecutableJiraAction.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/common/http/HttpRequest.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/condition/LenientCompare.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/input/InputRegistry.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/input/chain/ChainInput.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/input/chain/ChainInputFactory.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/input/chain/ExecutableChainInput.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/input/transform/ExecutableTransformInput.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/input/transform/TransformInputFactory.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/notification/email/attachment/EmailAttachments.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/notification/email/attachment/EmailAttachmentsParser.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/notification/slack/message/DynamicAttachments.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/transform/script/ExecutableScriptTransform.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/trigger/TriggerService.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/trigger/schedule/ScheduleRegistry.java
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/watch/WatchParser.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/WatcherInfoTransportActionTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/WatcherPluginTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/WatcherServiceTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/actions/ActionWrapperTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/actions/email/EmailActionTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/actions/index/IndexActionTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/actions/jira/ExecutableJiraActionTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/common/http/HttpResponseTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/execution/ExecutionServiceTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/execution/TriggeredWatchStoreTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/history/HistoryStoreTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/input/chain/ChainInputTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/input/chain/ExecutableChainInputTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/input/http/HttpInputTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/input/simple/SimpleInputTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/input/transform/TransformInputTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/notification/email/attachment/DataAttachmentParserTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/notification/email/attachment/EmailAttachmentParsersTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/notification/email/attachment/HttpEmailAttachementParserTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/notification/email/attachment/ReportingAttachmentParserTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/notification/jira/JiraAccountTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/notification/pagerduty/IncidentEventTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/support/FilterXContentTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/support/WatcherIndexTemplateRegistryTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/test/TimeWarpedWatcher.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/test/bench/WatcherExecutorServiceBenchmark.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/test/integration/SearchInputTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/transform/chain/ChainTransformTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/transform/script/ScriptTransformTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/transport/actions/TransportAckWatchActionTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/transport/actions/TransportPutWatchActionTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/trigger/TriggerServiceTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/trigger/schedule/ScheduleRegistryTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/watch/WatchStatusTests.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/watch/WatchTests.java
+
+####START####b165f60984d
+Enable javac warnings in x-pack identity-provider (#75450)
+
+Part of #40366
+####END####
+x-pack/plugin/identity-provider/src/main/java/org/elasticsearch/xpack/idp/saml/sp/WildcardServiceProvider.java
+x-pack/plugin/identity-provider/src/test/java/org/elasticsearch/xpack/idp/action/TransportSamlInitiateSingleSignOnActionTests.java
+x-pack/plugin/identity-provider/src/test/java/org/elasticsearch/xpack/idp/privileges/UserPrivilegeResolverTests.java
+x-pack/plugin/identity-provider/src/test/java/org/elasticsearch/xpack/idp/saml/sp/SamlServiceProviderResolverTests.java
+x-pack/plugin/identity-provider/src/test/java/org/elasticsearch/xpack/idp/saml/test/IdpSamlTestCase.java
+
+####START####5a7ab254bbb
+[ML] Memory based trained model task allocation (#75378)
+
+This commit adds memory tracking to trained model tasks.
+When a trained model deployment is started, we now
+choose a node that has enough free memory to accommodate
+the native process that loads the model.
+
+The memory usage is calculated as twice the model size
+plus some overhead. The reason we require twice the model size
+is that during the loading of the model we store the model once
+and then another time for the inflated object that represents
+the model. After that, the process does return the memory needed
+for storing the model back to the OS. However, if we lowered
+the memory usage after the loading phase it would cause flopping
+with the autoscaling service. For this reason, and as an initial
+implementation, we require twice the model size. In the future,
+we can avoid this waste by writing the model to disk and inflating
+it from there instead.
+
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/MlTasks.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/action/StartTrainedModelDeploymentAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/inference/deployment/TrainedModelDeploymentState.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/inference/deployment/TrainedModelDeploymentTaskState.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ml/MlTasksTests.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/action/TransportStartTrainedModelDeploymentAction.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/deployment/TrainedModelDeploymentTask.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/JobNodeSelector.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/NodeLoadDetector.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/process/MlMemoryTracker.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/process/MlMemoryTrackerTests.java
+
+####START####13c8ee10152
+Reset elastic password cli tool (#74892)
+
+This change introduces a CLI tool that can be used to create
+enrollment tokens. It doesn't require credentials, but simply
+write access to the local filesystem of a node. It uses an
+auto-generated user in the file-realm with superuser role.
+
+For this purpose, this change also introduces a base class for a
+CLI tool that can be used by any CLI tool needs to perform actions
+against an ES node as a superuser without requiring credentials
+from the user. It is worth noting that this doesn't change our
+existing thread model, because already an actor with write access
+to the fs of an ES node, can become superuser (again, by
+adding a superuser to the file realm, albeit manually).
+####END####
+x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/authc/esnative/tool/ResetElasticPasswordTool.java
+x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/tool/BaseRunAsSuperuserCommand.java
+x-pack/qa/security-setup-password-tests/src/test/java/org/elasticsearch/xpack/security/authc/esnative/tool/AbstractPasswordToolTestCase.java
+x-pack/qa/security-setup-password-tests/src/test/java/org/elasticsearch/xpack/security/authc/esnative/tool/ResetElasticPasswordToolIT.java
+x-pack/qa/security-setup-password-tests/src/test/java/org/elasticsearch/xpack/security/authc/esnative/tool/SetupPasswordToolIT.java
+x-pack/qa/security-tools-tests/src/test/java/org/elasticsearch/xpack/security/authc/esnative/tool/ResetElasticPasswordToolTests.java
+
+####START####3dde09a7b4d
+Add filter support to data stream aliases (#74784)
+
+This allows specifying a query as filter on data stream alias,
+which will then always be applied when searching via this alias.
+
+Relates #66163
+####END####
+server/src/main/java/org/elasticsearch/action/admin/indices/alias/TransportIndicesAliasesAction.java
+server/src/main/java/org/elasticsearch/cluster/metadata/AliasAction.java
+server/src/main/java/org/elasticsearch/cluster/metadata/DataStreamAlias.java
+server/src/main/java/org/elasticsearch/cluster/metadata/IndexNameExpressionResolver.java
+server/src/main/java/org/elasticsearch/cluster/metadata/Metadata.java
+server/src/main/java/org/elasticsearch/cluster/metadata/MetadataIndexAliasesService.java
+server/src/main/java/org/elasticsearch/indices/IndicesService.java
+server/src/main/java/org/elasticsearch/rest/action/admin/indices/RestGetAliasesAction.java
+server/src/test/java/org/elasticsearch/action/admin/indices/alias/get/TransportGetAliasesActionTests.java
+server/src/test/java/org/elasticsearch/cluster/metadata/DataStreamAliasTests.java
+server/src/test/java/org/elasticsearch/cluster/metadata/IndexNameExpressionResolverTests.java
+server/src/test/java/org/elasticsearch/cluster/metadata/MetadataIndexAliasesServiceTests.java
+server/src/test/java/org/elasticsearch/cluster/metadata/MetadataTests.java
+server/src/test/java/org/elasticsearch/indices/IndicesServiceTests.java
+test/framework/src/main/java/org/elasticsearch/cluster/metadata/DataStreamTestHelper.java
+x-pack/plugin/data-streams/src/internalClusterTest/java/org/elasticsearch/datastreams/DataStreamIT.java
+x-pack/plugin/data-streams/src/internalClusterTest/java/org/elasticsearch/datastreams/DataStreamsSnapshotsIT.java
+
+####START####383fbd8e071
+[Transform] Optimize composite agg execution using ordered groupings (#75424)
+
+Automatically reorder group_by for composite aggs, ensuring date histogram
+group by comes first. The order is only changed for execution, the provided
+config remains unchanged.
+
+In case of 2 group_by's of the same order type, the configuration order is
+respected. Script and runtime field based group_by's are penalized.
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/transform/transforms/pivot/PivotConfig.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/transform/transforms/TransformConfigTests.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/transform/transforms/pivot/DateHistogramGroupSourceTests.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/transform/transforms/pivot/HistogramGroupSourceTests.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/transform/transforms/pivot/TermsGroupSourceTests.java
+x-pack/plugin/transform/qa/single-node-tests/src/javaRestTest/java/org/elasticsearch/xpack/transform/integration/TransformProgressIT.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/transforms/FunctionFactory.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/transforms/pivot/GroupByOptimizer.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/transforms/pivot/Pivot.java
+x-pack/plugin/transform/src/test/java/org/elasticsearch/xpack/transform/action/TransformConfigLinterTests.java
+x-pack/plugin/transform/src/test/java/org/elasticsearch/xpack/transform/transforms/pivot/GroupByOptimizerTests.java
+x-pack/plugin/transform/src/test/java/org/elasticsearch/xpack/transform/transforms/pivot/PivotTests.java
+
+####START####9032b6f7658
+Make FeatureFactory tests more resilient (#75405)
+
+making sure the spatial relationships between the tile and the generated points is honour.
+####END####
+x-pack/plugin/vector-tile/src/main/java/org/elasticsearch/xpack/vectortile/feature/SimpleFeatureFactory.java
+x-pack/plugin/vector-tile/src/test/java/org/elasticsearch/xpack/vectortile/feature/FeatureFactoryTests.java
+x-pack/plugin/vector-tile/src/test/java/org/elasticsearch/xpack/vectortile/feature/SimpleFeatureFactoryTests.java
+
+####START####db7d6797917
+Fix toXContent of PointInTimeBuilder (#75476)
+
+We should use getStringRep instead of toString to avoid serializing the 
+keep_alive of a point in time in fractional format; otherwise, we won't 
+be able to parse it.
+
+Fixes #75446
+####END####
+server/src/main/java/org/elasticsearch/search/builder/PointInTimeBuilder.java
+server/src/main/java/org/elasticsearch/search/builder/SearchSourceBuilder.java
+server/src/test/java/org/elasticsearch/search/builder/PointInTimeBuilderTests.java
+
+####START####b460aadbfc1
+Re-enable BWC for ILM move-to-step backport (#75498)
+
+This also adjusts the version constants now that #75480 has been merged.
+
+Relates to #75480 and #75435
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/action/MoveToStepAction.java
+
+####START####a40ca70de69
+Correct XCombinedFieldQuery equals and hashCode (#75402)
+
+Previously the equals and hashCode methods only compared the query terms. This
+meant that queries on different fields, or with different field weights, were
+considered equal.
+
+During boolean query rewrites, duplicate clauses are removed. So because equals/
+hashCode was incorrect, rewrites could accidentally drop combined_fields query
+clauses.
+####END####
+server/src/main/java/org/apache/lucene/search/XCombinedFieldQuery.java
+server/src/test/java/org/apache/lucene/search/XCombinedFieldQueryTests.java
+
+####START####3d5843a2362
+Allow ILM move-to-step without `action` or `name` (#75435)
+
+* Allow ILM move-to-step without `action` or `name`
+
+This commit enhances ILM's move-to-step API to allow dropping the `name`, or dropping both the
+`action` and `name`. For example:
+
+```json
+POST /_ilm/move/foo-1
+{
+  "current_step": {
+    "phase": "hot",
+    "action": "rollover",
+    "name": "check-rollover-ready"
+  },
+  "next_step": {
+    "phase": "warm",
+    "action": "forcemerge"
+  }
+}
+```
+
+Will move to the first step in the `forcemerge` action in the `warm` phase (without having to know
+the specific step name).
+
+Another example:
+
+```json
+POST /_ilm/move/foo-1
+{
+  "current_step": {
+    "phase": "hot",
+    "action": "rollover",
+    "name": "check-rollover-ready"
+  },
+  "next_step": {
+    "phase": "warm"
+  }
+}
+```
+
+Will move to the first step in the `warm` phase (without having to know the specific action name).
+
+Bear in mind that the execution order is still entirely an implementation detail, so "first" in the
+above sentences means the first step that ILM would execute.
+
+Resolves #58128
+
+* Apply Andrei's wording change (thanks!)
+
+Co-authored-by: Andrei Dan <andrei.dan@elastic.co>
+
+* Log index and policy name when the concrete step key can't be resolved
+
+Co-authored-by: Andrei Dan <andrei.dan@elastic.co>
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/action/MoveToStepAction.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/action/MoveToStepRequestTests.java
+x-pack/plugin/ilm/qa/multi-node/src/javaRestTest/java/org/elasticsearch/xpack/ilm/TimeseriesMoveToStepIT.java
+x-pack/plugin/ilm/src/main/java/org/elasticsearch/xpack/ilm/IndexLifecycleService.java
+x-pack/plugin/ilm/src/main/java/org/elasticsearch/xpack/ilm/PolicyStepsRegistry.java
+x-pack/plugin/ilm/src/main/java/org/elasticsearch/xpack/ilm/action/TransportMoveToStepAction.java
+
+####START####5f782e22094
+Fix failure on attempt to overwrite multi fields (#75454)
+
+We used to throw a parsing exception when trying to overwrite a multi field on
+indexing a document. These errors got lost on some recent changes in
+DocumentParser around runtime fields and not detected in tests. This PR adds a
+test for this case and restores parts of the logic in
+DocumentParser#getLeafMapper to prevent this kind of overwrite from happening.
+
+Fixes #75343
+####END####
+server/src/main/java/org/elasticsearch/index/mapper/DocumentParser.java
+server/src/test/java/org/elasticsearch/index/mapper/DocumentParserTests.java
+
+####START####5485d3ebdd5
+[Rest Api Compatibility] Do not return _doc for empty mappings in template (#75448)
+
+Previously the compatibility layer was always returning an _doc in mappings for get
+template.
+This commit does not return _doc in empty mappings.
+Returning just {} empty object (v7 and v8 behaviour)
+
+also moving term lookups tests which are already fixed (relates #74544)
+
+relates #70966
+relates main meta issue #51816
+relates types removal meta #54160
+####END####
+server/src/main/java/org/elasticsearch/cluster/metadata/IndexTemplateMetadata.java
+
+####START####e978b726c89
+ILM: execute cached steps even if policy is updated (#75296)
+
+This makes ILM honour the cached phase even when the underlying policy
+is updated to not contain the cached actions.
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/PhaseCacheManagement.java
+x-pack/plugin/ilm/qa/multi-node/src/javaRestTest/java/org/elasticsearch/xpack/ilm/ChangePolicyforIndexIT.java
+x-pack/plugin/ilm/src/main/java/org/elasticsearch/xpack/ilm/IndexLifecycleTransition.java
+x-pack/plugin/ilm/src/main/java/org/elasticsearch/xpack/ilm/PolicyStepsRegistry.java
+x-pack/plugin/ilm/src/test/java/org/elasticsearch/xpack/ilm/IndexLifecycleTransitionTests.java
+
+####START####cf575f4766e
+Make NestedObjectMapper its own class (#74410)
+
+Nested objects are implemented via a Nested class directly on object mappers,
+even though nested and non-nested objects have quite different semantics. In
+addition, most call-sites that need to get an object mapper in fact need a nested
+object mapper. To make it clearer that nested and object mappers are different
+beasts with different implementations and different requirements, we should
+split them into different classes.
+####END####
+server/src/main/java/org/elasticsearch/action/fieldcaps/TransportFieldCapabilitiesAction.java
+server/src/main/java/org/elasticsearch/index/cache/bitset/BitsetFilterCache.java
+server/src/main/java/org/elasticsearch/index/mapper/DocumentMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/DocumentParser.java
+server/src/main/java/org/elasticsearch/index/mapper/DynamicFieldsBuilder.java
+server/src/main/java/org/elasticsearch/index/mapper/Mapping.java
+server/src/main/java/org/elasticsearch/index/mapper/MappingLookup.java
+server/src/main/java/org/elasticsearch/index/mapper/NestedObjectMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/ObjectMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/RootObjectMapper.java
+server/src/main/java/org/elasticsearch/index/query/NestedQueryBuilder.java
+server/src/main/java/org/elasticsearch/index/query/SearchExecutionContext.java
+server/src/main/java/org/elasticsearch/index/query/support/NestedScope.java
+server/src/main/java/org/elasticsearch/index/search/NestedHelper.java
+server/src/main/java/org/elasticsearch/indices/IndicesModule.java
+server/src/main/java/org/elasticsearch/search/NestedDocuments.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/nested/NestedAggregationBuilder.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/nested/NestedAggregator.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/nested/NestedAggregatorFactory.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/nested/ReverseNestedAggregationBuilder.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/nested/ReverseNestedAggregator.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/nested/ReverseNestedAggregatorFactory.java
+server/src/main/java/org/elasticsearch/search/sort/FieldSortBuilder.java
+server/src/main/java/org/elasticsearch/search/sort/SortBuilder.java
+server/src/test/java/org/elasticsearch/action/admin/indices/rollover/MetadataRolloverServiceTests.java
+server/src/test/java/org/elasticsearch/cluster/action/index/MappingUpdatedActionTests.java
+server/src/test/java/org/elasticsearch/index/mapper/DocumentMapperTests.java
+server/src/test/java/org/elasticsearch/index/mapper/DocumentParserTests.java
+server/src/test/java/org/elasticsearch/index/mapper/FieldAliasMapperValidationTests.java
+server/src/test/java/org/elasticsearch/index/mapper/MappingLookupTests.java
+server/src/test/java/org/elasticsearch/index/mapper/NestedObjectMapperTests.java
+server/src/test/java/org/elasticsearch/index/mapper/ObjectMapperMergeTests.java
+server/src/test/java/org/elasticsearch/index/query/SearchExecutionContextTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/nested/NestedAggregatorTests.java
+server/src/test/java/org/elasticsearch/search/sort/AbstractSortTestCase.java
+test/framework/src/main/java/org/elasticsearch/search/aggregations/AggregatorTestCase.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/dataframe/analyses/Classification.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/dataframe/analyses/OutlierDetection.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/dataframe/analyses/Regression.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/dataframe/extractor/ExtractedFieldsDetector.java
+
+####START####dbfd86a56cd
+Remove support for configurable PKCS#11 keystores (#75404)
+
+In theory, Elasticsearch supported configuring a PKCS#11 keystore
+anywhere where a keystore/truststore could be used. For example:
+
+    xpack.security.http.ssl.keystore.type: pkcs11
+
+However, this support was poorly tested and broken.
+This commit removes PKCS#11 support from any configurable SSL context.
+
+It does not affect the ability to use a PKCS#11 keystore as the JRE's
+system default keystore/truststore.
+
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ssl/CertParsingUtils.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ssl/SSLConfiguration.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ssl/StoreKeyConfig.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ssl/TrustConfig.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ssl/StoreKeyConfigTests.java
+
+####START####7c6f13b2c7e
+Weaken assertions in SearchWhileRelocatingIT (#75345)
+
+Closes #74767
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/search/basic/SearchWhileRelocatingIT.java
+
+####START####3bd26728138
+Fix Snapshot Out of Order Finalization Repo Corruption (#75362)
+
+* Fix up shard generations in `SnapshotsInProgress` during snapshot finalization (don't do it earlier because it's a really heavy computation and we have a ton of places where it would have to run).
+* Adjust finalization queue to be able to work with changing snapshot entries after they've been enqueued for finalisation
+* Still one remaining bug left after this (see TODO about leaking generations) that I don't feel confident in fixing for `7.13.4` due to the complexity of a fix and how minor the blob leak is (+ it's cleaned up just fine during snapshot deletes)
+
+Closes #75336 
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/snapshots/ConcurrentSnapshotsIT.java
+server/src/main/java/org/elasticsearch/cluster/SnapshotsInProgress.java
+server/src/main/java/org/elasticsearch/snapshots/SnapshotsService.java
+test/framework/src/main/java/org/elasticsearch/snapshots/AbstractSnapshotIntegTestCase.java
+test/framework/src/main/java/org/elasticsearch/snapshots/mockstore/MockRepository.java
+test/framework/src/main/java/org/elasticsearch/test/ESIntegTestCase.java
+
+####START####a1d98f34070
+Remove obsolete BWC in OS stats (#75376)
+
+
+####END####
+server/src/main/java/org/elasticsearch/monitor/os/OsStats.java
+
+####START####4af7150a40a
+[Rest Api Compatibility] Allow to use size -1 (#75342)
+
+previously disallowed in #70209. However since now the recommendation is
+to not set the field at all - and rely on a default - this would be a
+shape change for users prefering to set -1 so far.
+With request compatible with v7 they will still be allowed to do this
+and will get a warning.
+
+relates #69548
+relates #51816
+####END####
+server/src/main/java/org/elasticsearch/rest/action/search/RestSearchAction.java
+server/src/main/java/org/elasticsearch/search/builder/SearchSourceBuilder.java
+server/src/test/java/org/elasticsearch/search/builder/SearchSourceBuilderTests.java
+
+####START####8bd8f2a1802
+Fix broken test for dimension keywords (#75408)
+
+Test was failing because it was testing 1024 bytes long keyword and assertion was failing.
+
+Closes #75225
+####END####
+server/src/test/java/org/elasticsearch/index/mapper/KeywordFieldMapperTests.java
+
+####START####e245a80ac38
+Mute GeoIpDownloaderIT#testInvalidTimestamp (#75398)
+
+
+####END####
+modules/ingest-geoip/src/internalClusterTest/java/org/elasticsearch/ingest/geoip/GeoIpDownloaderIT.java
+
+####START####2aff8e59c79
+Ensure system index upgrade mechanism can handle integer _meta.verion (#75383)
+
+Some system indices, such as .tasks, had integer _meta.version
+properties before we switched to using an Elasticsearch version there.
+This commit ensures the code that reads the _meta.version from the
+mapping can handle integers as well as "real" versions.
+####END####
+server/src/main/java/org/elasticsearch/indices/SystemIndexManager.java
+server/src/test/java/org/elasticsearch/indices/SystemIndexManagerTests.java
+
+####START####1c89878d46e
+Increase client timeout on CCS tests (#75346)
+
+Increase the client timeout for CCS tests that are occasionally
+timing out.
+####END####
+x-pack/plugin/eql/qa/common/src/main/java/org/elasticsearch/test/eql/RemoteClusterAwareEqlRestTestCase.java
+
+####START####381c4efda25
+Add null check for shard stats to data tier telemetry (#75185)
+
+This adds a null check, as `getShardStats(index)` may return null.
+
+Co-authored-by: Elastic Machine <elasticmachine@users.noreply.github.com>
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/DataTiersUsageTransportAction.java
+
+####START####cb37989bd9b
+Add a tool for creating enrollment tokens (#74890)
+
+This change introduces a CLI tool that can be used to create
+enrollment tokens. It doesn't require credentials, but simply
+write access to the local filesystem of a node. It uses an
+auto-generated user in the file-realm with superuser role.
+
+For this purpose, this change also introduces a base class for a
+CLI tool that can be used by any CLI tool needs to perform actions
+against an ES node as a superuser without requiring credentials
+from the user. It is worth noting that this doesn't change our
+existing thread model, because already an actor with write access
+to the fs of an ES node, can become superuser (again, by
+adding a superuser to the file realm, albeit manually).
+
+Co-authored-by: Adam Locke <adam.locke@elastic.co>
+####END####
+x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/enrollment/tool/CreateEnrollmentTokenTool.java
+x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/tool/BaseRunAsSuperuserCommand.java
+x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/enrollment/CreateEnrollmentTokenTests.java
+x-pack/qa/security-tools-tests/src/test/java/org/elasticsearch/xpack/security/enrollment/tool/BaseRunAsSuperuserCommandTests.java
+x-pack/qa/security-tools-tests/src/test/java/org/elasticsearch/xpack/security/enrollment/tool/CreateEnrollmentTokenToolTests.java
+
+####START####5ed1edf4f44
+Resolve date math expressions before looking up index metadata (#75314)
+
+
+####END####
+server/src/main/java/org/elasticsearch/cluster/metadata/IndexNameExpressionResolver.java
+server/src/main/java/org/elasticsearch/ingest/IngestService.java
+server/src/test/java/org/elasticsearch/ingest/IngestServiceTests.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/GenerateSnapshotNameStep.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/GenerateSnapshotNameStepTests.java
+
+####START####640fd9bad16
+[ML] Rename JobNodeLoadDetectorTests to match tested class (#75370)
+
+Tested class is `NodeLoadDetector` thus the test class name
+should be `NodeLoadDetectorTests`.
+####END####
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/job/NodeLoadDetectorTests.java
+
+####START####935a38895bf
+Introduce searchable snapshots index setting for cascade deletion of snapshots (#74977)
+
+Today there is no relationship between the lifecycle of a 
+snapshot mounted as an index and the lifecycle of index 
+itself. This lack of relationship makes it possible to delete 
+a snapshot in a repository while the mounted index still 
+exists, causing the shards to fail in the future.
+
+On the other hand creating a snapshot that contains a 
+single index to later mount it as a searchable snapshot 
+index becomes more and more natural for users and 
+ILM; but it comes with the risk to forget to delete the
+ snapshot when the searchable snapshot index is 
+deleted from the cluster, "leaking" snapshots in 
+repositories.
+
+We'd like to improve the situation and provide a way 
+to automatically delete the snapshot when the mounted 
+index is deleted. To opt in for this behaviour, a user has 
+to enable a specific index setting when mounting the 
+snapshot (the proposed name for the setting is 
+index.store.snapshot.delete_searchable_snapshot). 
+
+Elasticsearch then verifies that the snapshot to mount 
+contains only 1 snapshotted index and that the snapshot 
+is not used by another mounted index with a different 
+value for the opt in setting, and mounts the snapshot 
+with the new private index setting. 
+
+This is the part implemented in this commit.
+
+In follow-up pull requests this index setting will be used 
+when the last mounted index is deleted and removed 
+from the cluster state in order to add the searchable 
+snapshot id to a list of snapshots to delete in the 
+repository metadata. Snapshots that are marked as 
+"to delete" will not be able to be restored or cloned, and 
+Elasticsearch will take care of deleting the snapshot as 
+soon as possible. Then ILM will be changed to use this 
+setting when mounting a snapshot as a cold or frozen 
+index and delete_searchable_snapshot option in ILM 
+will be removed. Finally, deleting a snapshot that is 
+still used by mounted indices will be prevented.
+####END####
+server/src/main/java/org/elasticsearch/snapshots/RestoreService.java
+server/src/main/java/org/elasticsearch/snapshots/SearchableSnapshotsSettings.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/SearchableSnapshotsRepositoryIntegTests.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/SearchableSnapshots.java
+
+####START####940a890958f
+Update "ssl-config" to support X-Pack features (#74887)
+
+This commit upgrades the existing SSPL licensed "ssl-config" library
+to include additional features that are supported by the X-Pack SSL
+library.
+
+This commit does not make any changes to X-Pack to use these new
+features - it introduces them in preparation for their future use by
+X-Pack.
+
+The reindex module is updated to reflect API changes in ssl-config
+####END####
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/CompositeTrustConfig.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/DefaultJdkTrustConfig.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/DerParser.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/EmptyKeyConfig.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/KeyStoreUtil.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/PemKeyConfig.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/PemTrustConfig.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/PemUtils.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/SslConfiguration.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/SslConfigurationLoader.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/SslFileUtil.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/SslKeyConfig.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/SslTrustConfig.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/StoreKeyConfig.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/StoreTrustConfig.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/StoredCertificate.java
+libs/ssl-config/src/main/java/org/elasticsearch/common/ssl/TrustEverythingConfig.java
+libs/ssl-config/src/test/java/org/elasticsearch/common/ssl/PemKeyConfigTests.java
+libs/ssl-config/src/test/java/org/elasticsearch/common/ssl/PemTrustConfigTests.java
+libs/ssl-config/src/test/java/org/elasticsearch/common/ssl/PemUtilsTests.java
+libs/ssl-config/src/test/java/org/elasticsearch/common/ssl/SslConfigurationLoaderTests.java
+libs/ssl-config/src/test/java/org/elasticsearch/common/ssl/SslConfigurationTests.java
+libs/ssl-config/src/test/java/org/elasticsearch/common/ssl/StoreKeyConfigTests.java
+libs/ssl-config/src/test/java/org/elasticsearch/common/ssl/StoreTrustConfigTests.java
+modules/reindex/src/main/java/org/elasticsearch/index/reindex/ReindexSslConfig.java
+modules/reindex/src/test/java/org/elasticsearch/index/reindex/ReindexRestClientSslTests.java
+
+####START####2320a388338
+[Rest Api Compatibility] Allow transforming warnings per test (#75187)
+
+Warning related transformations missed the possibility to apply per single test only.
+Also a warning changed in #67158 for indices.close so this PR also applies the transformation for 7.x test
+
+relates #51816
+####END####
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/rest/compat/RestCompatTestTransformTask.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/rest/transform/warnings/InjectAllowedWarnings.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/rest/transform/warnings/RemoveWarnings.java
+build-tools-internal/src/test/java/org/elasticsearch/gradle/internal/test/rest/transform/TransformTests.java
+build-tools-internal/src/test/java/org/elasticsearch/gradle/internal/test/rest/transform/warnings/InjectAllowedWarningsRegexTests.java
+build-tools-internal/src/test/java/org/elasticsearch/gradle/internal/test/rest/transform/warnings/InjectAllowedWarningsTests.java
+build-tools-internal/src/test/java/org/elasticsearch/gradle/internal/test/rest/transform/warnings/InjectWarningsRegexTests.java
+build-tools-internal/src/test/java/org/elasticsearch/gradle/internal/test/rest/transform/warnings/InjectWarningsTests.java
+build-tools-internal/src/test/java/org/elasticsearch/gradle/internal/test/rest/transform/warnings/RemoveWarningsTests.java
+
+####START####9c7a869c341
+Move some constants from SearchableSnapshotsConstants to server (#75308)
+
+Elasticsearch's server sometimes has to do things 
+differently in order to handle searchable snapshots 
+shards. In such cases it relies on index settings 
+and hard coded values to know if a shard is a 
+searchable snapshot one.
+
+This commit adds a new SearchableSnapshotsSettings 
+class in server that provides methods to check if 
+an index is a searchable snapshot index. This class 
+also contains the names of some index settings 
+related to searchable snapshots that are required 
+by the server.
+####END####
+server/src/main/java/org/elasticsearch/cluster/metadata/IndexMetadataVerifier.java
+server/src/main/java/org/elasticsearch/cluster/metadata/MetadataCreateIndexService.java
+server/src/main/java/org/elasticsearch/repositories/RepositoriesService.java
+server/src/main/java/org/elasticsearch/repositories/blobstore/FileRestoreContext.java
+server/src/main/java/org/elasticsearch/snapshots/SearchableSnapshotsSettings.java
+x-pack/plugin/autoscaling/src/test/java/org/elasticsearch/xpack/autoscaling/util/FrozenUtilsTests.java
+x-pack/plugin/ccr/src/main/java/org/elasticsearch/xpack/ccr/action/AutoFollowCoordinator.java
+x-pack/plugin/ccr/src/main/java/org/elasticsearch/xpack/ccr/action/TransportPutFollowAction.java
+x-pack/plugin/ccr/src/main/java/org/elasticsearch/xpack/ccr/action/TransportResumeFollowAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/cluster/routing/allocation/DataTierAllocationDecider.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/XPackPlugin.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/MigrateAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/SearchableSnapshotAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/searchablesnapshots/MountSearchableSnapshotRequest.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/searchablesnapshots/SearchableSnapshotsConstants.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/cluster/metadata/IndexMetadataConversionTests.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/cluster/routing/allocation/DataTierAllocationDeciderTests.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/MigrateActionTests.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/searchablesnapshots/SearchableSnapshotsConstantsTests.java
+x-pack/plugin/frozen-indices/src/main/java/org/elasticsearch/xpack/frozen/FrozenIndices.java
+x-pack/plugin/frozen-indices/src/main/java/org/elasticsearch/xpack/frozen/action/TransportFreezeIndexAction.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/BaseSearchableSnapshotsIntegTestCase.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/FrozenSearchableSnapshotsIntegTests.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/SearchableSnapshotsIntegTests.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/SearchableSnapshotsSystemIndicesIntegTests.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/allocation/SearchableSnapshotsRelocationIntegTests.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/cache/blob/SearchableSnapshotsBlobStoreCacheIntegTests.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/cache/full/SearchableSnapshotsPersistentCacheIntegTests.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/cache/full/SearchableSnapshotsPrewarmingIntegTests.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/cache/shared/NodesCachesStatsIntegTests.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/recovery/SearchableSnapshotRecoveryStateIntegrationTests.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/SearchableSnapshots.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/action/AbstractTransportSearchableSnapshotsAction.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/action/SearchableSnapshotsUsageTransportAction.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/action/TransportMountSearchableSnapshotAction.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/allocation/SearchableSnapshotAllocator.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/allocation/SearchableSnapshotIndexEventListener.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/allocation/SearchableSnapshotIndexFoldersDeletionListener.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/allocation/decider/DedicatedFrozenNodeAllocationDecider.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/allocation/decider/HasFrozenCacheAllocationDecider.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/allocation/decider/SearchableSnapshotAllocationDecider.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/allocation/decider/SearchableSnapshotEnableAllocationDecider.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/allocation/decider/SearchableSnapshotRepositoryExistsAllocationDecider.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/store/SearchableSnapshotDirectory.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/store/input/BaseSearchableSnapshotIndexInput.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/upgrade/SearchableSnapshotIndexMetadataUpgrader.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/AbstractSearchableSnapshotsRestTestCase.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/allocation/SearchableSnapshotAllocatorTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/cache/blob/BlobStoreCacheServiceTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/upgrade/SearchableSnapshotIndexMetadataUpgraderTests.java
+
+####START####5b36c903fd2
+Mute SimpleFeatureFactoryTests test points (#75359)
+
+
+####END####
+x-pack/plugin/vector-tile/src/test/java/org/elasticsearch/xpack/vectortile/feature/SimpleFeatureFactoryTests.java
+
+####START####0f2e2213a8d
+Make GeoIpDownloaderIT.testInvalidTimestamp more robust (#75330)
+
+This change adds additional assertion in GeoIpDownloaderIT.testInvalidTimestamp which makes sure that validity checks work both ways (so going out of validity and back) and it should fix race in cleanUp method leading to occasional failures.
+
+Closes #75221
+Closes #74358
+####END####
+modules/ingest-geoip/src/internalClusterTest/java/org/elasticsearch/ingest/geoip/GeoIpDownloaderIT.java
+
+####START####26ad7e4f648
+Implement system index access level that includes everything except net-new indices (#74803)
+
+This PR implements a system index access level that includes all system indices, except net-new system indices.
+
+This new access level is leveraged to fix the error in the Get Alias API described in #74687. 
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/aliases/NetNewSystemIndexAliasIT.java
+server/src/main/java/org/elasticsearch/action/admin/indices/create/TransportCreateIndexAction.java
+server/src/main/java/org/elasticsearch/cluster/metadata/IndexAbstractionResolver.java
+server/src/main/java/org/elasticsearch/cluster/metadata/IndexNameExpressionResolver.java
+server/src/main/java/org/elasticsearch/indices/SystemIndices.java
+server/src/test/java/org/elasticsearch/action/admin/indices/alias/get/TransportGetAliasesActionTests.java
+
+####START####dcd38779f9a
+Geometry formatters should be applied to the full array (#75177)
+
+Changes the way we fetch values from source in geo fields so we can format all data in one go.
+####END####
+modules/lang-painless/src/main/java/org/elasticsearch/painless/action/PainlessExecuteAction.java
+server/src/main/java/org/elasticsearch/common/geo/GeoFormatterFactory.java
+server/src/main/java/org/elasticsearch/common/geo/GeometryFormatterFactory.java
+server/src/main/java/org/elasticsearch/index/mapper/AbstractGeometryFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/GeoPointFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/GeoShapeFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/LegacyGeoShapeFieldMapper.java
+server/src/main/java/org/elasticsearch/search/lookup/FieldValues.java
+x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/common/CartesianFormatterFactory.java
+x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/index/mapper/GeoShapeWithDocValuesFieldMapper.java
+x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/index/mapper/PointFieldMapper.java
+x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/index/mapper/ShapeFieldMapper.java
+
+####START####db814f403b2
+Track Lucene field usage (#74227)
+
+Adds a field usage API that reports shard-level statistics about which Lucene fields have been accessed, and which
+parts of the Lucene data structures have been accessed.
+
+Field usage statistics are automatically captured when queries are runnning on a cluster. A shard-level search request
+that accesses a given field, even if multiple times during that request, is counted as a single use.
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/search/stats/FieldUsageStatsIT.java
+server/src/main/java/org/elasticsearch/action/ActionModule.java
+server/src/main/java/org/elasticsearch/action/admin/indices/stats/CommonStats.java
+server/src/main/java/org/elasticsearch/action/admin/indices/stats/FieldUsageShardRequest.java
+server/src/main/java/org/elasticsearch/action/admin/indices/stats/FieldUsageShardResponse.java
+server/src/main/java/org/elasticsearch/action/admin/indices/stats/FieldUsageStatsAction.java
+server/src/main/java/org/elasticsearch/action/admin/indices/stats/FieldUsageStatsRequest.java
+server/src/main/java/org/elasticsearch/action/admin/indices/stats/FieldUsageStatsResponse.java
+server/src/main/java/org/elasticsearch/action/admin/indices/stats/TransportFieldUsageAction.java
+server/src/main/java/org/elasticsearch/cluster/routing/RoutingTable.java
+server/src/main/java/org/elasticsearch/index/engine/RecoverySourcePruneMergePolicy.java
+server/src/main/java/org/elasticsearch/index/engine/TranslogDirectoryReader.java
+server/src/main/java/org/elasticsearch/index/fieldvisitor/FieldNamesProvidingStoredFieldsVisitor.java
+server/src/main/java/org/elasticsearch/index/fieldvisitor/FieldsVisitor.java
+server/src/main/java/org/elasticsearch/index/search/stats/FieldUsageStats.java
+server/src/main/java/org/elasticsearch/index/search/stats/ShardFieldUsageTracker.java
+server/src/main/java/org/elasticsearch/index/shard/IndexShard.java
+server/src/main/java/org/elasticsearch/rest/action/admin/indices/RestFieldUsageStatsAction.java
+server/src/main/java/org/elasticsearch/search/internal/FieldUsageTrackingDirectoryReader.java
+server/src/main/java/org/elasticsearch/search/internal/FilterFieldNamesProvidingStoredFieldsVisitor.java
+server/src/main/java/org/elasticsearch/search/internal/FilterStoredFieldVisitor.java
+server/src/test/java/org/elasticsearch/index/shard/IndexReaderWrapperTests.java
+test/framework/src/main/java/org/elasticsearch/index/shard/SearcherHelper.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/WaitForNoFollowersStepTests.java
+x-pack/plugin/security/qa/operator-privileges-tests/src/javaRestTest/java/org/elasticsearch/xpack/security/operator/Constants.java
+
+####START####15a3b3541d9
+[Transform] improve performance by using point in time API for search (#74984)
+
+Use point in time API for every checkpoint in transform. Using point in time reduces pressure
+on the source indexes, e.g. less refreshes. In case, pit isn't supported (e.g. when searching
+remote clusters) it falls back to ordinary search requests as before.
+
+closes #73481
+####END####
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/TransformServices.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/transforms/ClientTransformIndexer.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/transforms/ClientTransformIndexerBuilder.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/transforms/TransformIndexer.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/transforms/TransformPersistentTasksExecutor.java
+x-pack/plugin/transform/src/test/java/org/elasticsearch/xpack/transform/transforms/ClientTransformIndexerTests.java
+x-pack/plugin/transform/src/test/java/org/elasticsearch/xpack/transform/transforms/TransformIndexerFailureHandlingTests.java
+x-pack/plugin/transform/src/test/java/org/elasticsearch/xpack/transform/transforms/TransformIndexerStateTests.java
+x-pack/plugin/transform/src/test/java/org/elasticsearch/xpack/transform/transforms/TransformIndexerTests.java
+x-pack/plugin/transform/src/test/java/org/elasticsearch/xpack/transform/transforms/TransformTaskTests.java
+
+####START####232921f62a1
+Add logging of shard failures (#75275)
+
+
+####END####
+server/src/main/java/org/elasticsearch/action/ShardOperationFailedException.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/checkpoint/CheckpointException.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/checkpoint/DefaultCheckpointProvider.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/checkpoint/RemoteClusterResolver.java
+x-pack/plugin/transform/src/main/java/org/elasticsearch/xpack/transform/transforms/TransformIndexer.java
+x-pack/plugin/transform/src/test/java/org/elasticsearch/xpack/transform/checkpoint/DefaultCheckpointProviderTests.java
+
+####START####05dc376db0f
+Mute FeatureFactoryTests testPoint methods (#75326)
+
+
+####END####
+x-pack/plugin/vector-tile/src/test/java/org/elasticsearch/xpack/vectortile/feature/FeatureFactoryTests.java
+
+####START####f1aa1cfcfab
+[TEST] Add logging when LDAP server starts/stops (#75322)
+
+This commit adds logging to the in memory LDAP server in LdapTestCase
+that indicates when the server starts and stops and the addresses on
+which it is listening.
+
+Relates: #75176
+####END####
+x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/authc/ldap/support/LdapTestCase.java
+
+####START####a537258b68b
+Use contains relation for geo_point intersection over geo_point field (#75272)
+
+ Lucene does not match points that are encoded to Integer.MAX_VALUE for intersects.
+####END####
+server/src/main/java/org/elasticsearch/index/mapper/GeoPointFieldMapper.java
+server/src/test/java/org/elasticsearch/search/geo/GeoPointShapeQueryTests.java
+
+####START####e5eb0475d5b
+Refactor SimpleFeatureFactory so it has no external dependencies (#75232)
+
+SimpleFeatureFactory has no external dependencies now.
+
+####END####
+x-pack/plugin/vector-tile/src/main/java/org/elasticsearch/xpack/vectortile/feature/FeatureFactory.java
+x-pack/plugin/vector-tile/src/main/java/org/elasticsearch/xpack/vectortile/feature/FeatureFactoryUtils.java
+x-pack/plugin/vector-tile/src/main/java/org/elasticsearch/xpack/vectortile/feature/SimpleFeatureFactory.java
+x-pack/plugin/vector-tile/src/main/java/org/elasticsearch/xpack/vectortile/feature/SphericalMercatorUtils.java
+x-pack/plugin/vector-tile/src/main/java/org/elasticsearch/xpack/vectortile/rest/RestVectorTileAction.java
+x-pack/plugin/vector-tile/src/test/java/org/elasticsearch/xpack/vectortile/feature/FeatureFactoriesConsistencyTests.java
+x-pack/plugin/vector-tile/src/test/java/org/elasticsearch/xpack/vectortile/feature/FeatureFactoryTests.java
+x-pack/plugin/vector-tile/src/test/java/org/elasticsearch/xpack/vectortile/feature/SimpleFeatureFactoryTests.java
+
+####START####4f30201947d
+Update ILM message for out of order phases error (#75099)
+
+
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/TimeseriesLifecycleType.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/TimeseriesLifecycleTypeTests.java
+
+####START####f8185e57028
+Fix testPreferCopyWithHighestMatchingOperations (#75170)
+
+In #74081 this test failed with a `NoNodeAvailableException` within the
+`indexRandom()` call immediately after stopping a node. This could
+happen if the `node-left` event wasn't fully applied before calling
+`indexRandom()` with an empty list of docs but with `forceRefresh` set
+to true: since there's no docs, the replica wouldn't be marked as stale,
+so the final refresh would detect the missing node, failing its
+`assertNoFailures` wrapper.
+
+This commit avoids calling `indexRandom()` with no docs in this
+location. It also enhances `assertNoFailures` to report the details of
+each failure, rather than just the summary.
+
+Closes #74081
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/gateway/ReplicaShardAllocatorIT.java
+test/framework/src/main/java/org/elasticsearch/test/hamcrest/ElasticsearchAssertions.java
+
+####START####3c54a9ad3a4
+Fix BanFailureLoggingTests (#75171)
+
+Today both `BanFailureLoggingTests` fail to remove the ban and report
+this in the logs. `testLogsAtDebugOnDisconnectionDuringBan` does not
+wait for this message to be logged, so the logging might happen
+concurrently with the logger being stopped and removed, resulting in a
+`Attempted to append to non-started appender mock` failure.
+
+This commit ensures that both test cases wait for the expected removal
+failure message to be logged.
+
+Closes #75129
+####END####
+server/src/test/java/org/elasticsearch/tasks/BanFailureLoggingTests.java
+
+####START####03275d6c444
+Snapshot clones do not conflict with index deletes (#75298)
+
+Today we refuse to delete an index if it is the subject of an ongoing
+non-partial snapshot, but we also consider the indices targetted by
+ongoing clones. This commit ignores clones in the conflict detection
+logic.
+####END####
+server/src/main/java/org/elasticsearch/snapshots/SnapshotsService.java
+server/src/test/java/org/elasticsearch/snapshots/SnapshotsServiceTests.java
+
+####START####44de6f8d76b
+Move SearchableSnapshotsUtils from x-pack core to plugin (#75299)
+
+
+####END####
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/SearchableSnapshots.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/SearchableSnapshotsUtils.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/cache/full/CacheService.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/cache/shared/FrozenCacheService.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/store/input/BaseSearchableSnapshotIndexInput.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/store/input/CachedBlobContainerIndexInput.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/store/input/ChecksumBlobContainerIndexInput.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/store/input/DirectBlobContainerIndexInput.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/store/input/FrozenIndexInput.java
+x-pack/plugin/searchable-snapshots/src/main/java/org/elasticsearch/xpack/searchablesnapshots/store/input/MetadataCachingIndexInput.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/SearchableSnapshotsUtilsTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/cache/common/SparseFileTrackerTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/cache/common/TestUtils.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/store/IndexInputStatsTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/store/SearchableSnapshotDirectoryStatsTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/store/SearchableSnapshotDirectoryTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/store/input/DirectBlobContainerIndexInputTests.java
+
+####START####154105f48e1
+Revert "Improve BoundedBreakIteratorScanner fragmentation algorithm (#73785)"
+
+This reverts commit 1fc09f9ce143c94d7438e2394c7f66a29b814ebc.
+
+####END####
+server/src/main/java/org/apache/lucene/search/uhighlight/BoundedBreakIteratorScanner.java
+server/src/test/java/org/apache/lucene/search/uhighlight/BoundedBreakIteratorScannerTests.java
+
+####START####23781bb5552
+Remove xpack actions for vector field (#75017)
+
+We have already decided not to have xpack usage for field mappers
+(see #53076). As mappings stats of all fields is already tracked
+in cluster stats.
+Moreover xpack usage for vector field is a quite expensive operation
+(see #74974).
+
+This removes xpack actions for vector field.
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/XPackClientPlugin.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/XPackField.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/action/XPackInfoFeatureAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/action/XPackUsageFeatureAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/vectors/VectorsFeatureSetUsage.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/vectors/VectorsFeatureSetUsageTests.java
+x-pack/plugin/security/qa/operator-privileges-tests/src/javaRestTest/java/org/elasticsearch/xpack/security/operator/Constants.java
+x-pack/plugin/vectors/src/main/java/org/elasticsearch/xpack/vectors/Vectors.java
+x-pack/plugin/vectors/src/main/java/org/elasticsearch/xpack/vectors/VectorsInfoTransportAction.java
+x-pack/plugin/vectors/src/main/java/org/elasticsearch/xpack/vectors/VectorsUsageTransportAction.java
+x-pack/plugin/vectors/src/test/java/org/elasticsearch/xpack/vectors/VectorsInfoTransportActionTests.java
+
+####START####c061964a3a4
+Fix Default Restore not Restoring Indices when DS are Restored (#75266)
+
+There was a simple bug that caused the default to `*` or `_all` on the request to not work anymore
+when resolving what indices to restore because we would add datastream indices to the restore array,
+thus causing the indices filtering to think we only wanted those specific indices.
+
+closes #75192
+####END####
+server/src/main/java/org/elasticsearch/snapshots/RestoreService.java
+x-pack/plugin/data-streams/src/internalClusterTest/java/org/elasticsearch/datastreams/DataStreamsSnapshotsIT.java
+
+####START####379fad1ed9e
+Refactor significance heuristic tests for easier extensability (#75264)
+
+The significant terms heuristic tests do not lend themselves well for new heuristics being added.
+
+This commit extracts common code and builds an abstract significant heuristic test class.
+
+This way new heuristics get the common suite of tests by extending a test class.
+####END####
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/terms/AbstractSignificanceHeuristicTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/terms/SignificantTermsAggregatorTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/terms/heuristic/ChiSquareTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/terms/heuristic/GNDTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/terms/heuristic/JLHScoreTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/terms/heuristic/MutualInformationTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/terms/heuristic/PercentageScoreTests.java
+
+####START####4410d76c95a
+Prevent searchable snapshots indices to be shrunk/split (#75227)
+
+Today if we try to shrink or to split a searchable snapshot 
+index using the Resize API a new index will be created 
+but can't be assigned, and even if it was assigned it won't 
+work as the number of shards can't be changed and must 
+always match the number of shards from the snapshot.
+
+This commit adds some verification to prevent a snapshot 
+backed indices to be resized and if an attempt is made, 
+throw a better error message.
+
+Note that cloning is supported since #56595 and in this 
+change we make sure that it is only used to convert the 
+searchable snapshot index back to a regular index.
+
+Relates #74977 (comment)
+####END####
+server/src/main/java/org/elasticsearch/cluster/metadata/MetadataCreateIndexService.java
+x-pack/plugin/searchable-snapshots/src/internalClusterTest/java/org/elasticsearch/xpack/searchablesnapshots/SearchableSnapshotsResizeIntegTests.java
+
+####START####6912832d27c
+Cleanup Listener Handling in AuthorizationService (#75252)
+
+Two parts here:
+1. Don't synchonize on the async supplier. Even though these aren't
+actually async yet it seeems, the synchronization wouldn't work anyway
+if they were. If this were to be called concurrently the current approach would cause
+blocking needlessly though. Either way, synchonizing ever call and all the downstream calls
+is just unnecessarily hard on the JIT here.
+2. The async look over the interceptors was needlessly slow with all the synchronization etc.
+in the `StepListener`. Also it made the stacktraces on transport thread extremely deep and complicated.
+Simplified and made this faster by using a normal listener/iterator without any synchronization.
+####END####
+x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/authz/AuthorizationService.java
+
+####START####9c91f171f41
+OnChange listener now only runs when there is actual change (#75207)
+
+OperationModeFileWatcher#onChange maybe called when the file content
+remains the same. When this happens, the newOperationMode will be the
+same as the currentOperationMode and the onChange listener should not
+run.
+
+This PR checks whether the value actually changes before invoking the
+listener.
+
+Resolves: #44701
+
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/license/OperationModeFileWatcher.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/license/OperationModeFileWatcherTests.java
+
+####START####1946104577b
+[ML] muting bwc tests for backport of #74265 (#75263)
+
+
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/job/config/Job.java
+
+####START####a7ce8e37ac6
+Introduce key/value REST test transform (#75193)
+
+This commit introduces replaceValueTextByKeyValue which allows
+replacements based on a given key/value pair. This is useful
+for REST test transforms that that may not have a well known structure.
+
+This commit also implements this new transform to fix a Watcher compat test.
+This commit also fixes a latent bug that would prevent the traversal when multiple
+differing transforms matched.
+####END####
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/rest/compat/RestCompatTestTransformTask.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/rest/transform/RestTestTransformer.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/rest/transform/text/ReplaceTextual.java
+
+####START####2397b4496b0
+Make PUT shutdown API idempotent (#75161)
+
+This PR makes the PUT shutdown API idempotent, as well as allowing
+switching from shutdown types.
+
+Co-authored-by: Lee Hinman <dakrone@users.noreply.github.com>
+####END####
+x-pack/plugin/shutdown/qa/multi-node/src/javaRestTest/java/org/elasticsearch/xpack/shutdown/NodeShutdownIT.java
+x-pack/plugin/shutdown/src/main/java/org/elasticsearch/xpack/shutdown/TransportPutShutdownNodeAction.java
+
+####START####87a0711044c
+Unmute RareTermsIT (#75169)
+
+
+####END####
+qa/mixed-cluster/src/test/java/org/elasticsearch/backwards/RareTermsIT.java
+
+####START####3a76a398cbb
+[ML] Simplify node load memory calculation for various tasks (#75186)
+
+Refactors calculation of node memory load so that there is a
+framework for supporting various different ML tasks. This results
+in simpler code and it is a step towards making it easier to
+add memory tracking for future tasks.
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/MlTasks.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/action/OpenJobAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/action/StartDataFrameAnalyticsAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/action/StartDatafeedAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/dataframe/DataFrameAnalyticsState.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/dataframe/DataFrameAnalyticsTaskState.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/job/config/JobState.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/job/config/JobTaskState.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/job/snapshot/upgrade/SnapshotUpgradeState.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/job/snapshot/upgrade/SnapshotUpgradeTaskState.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/utils/MemoryTrackedTaskState.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ml/utils/MlTaskParams.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/autoscaling/MlAutoscalingDeciderService.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/NodeLoad.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/NodeLoadDetector.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/snapshot/upgrader/SnapshotUpgradeTaskParams.java
+
+####START####054e1e54e0c
+Wrap exception with SendRequestTransportException in CancellableTasksIT (#75216)
+
+
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/action/admin/cluster/node/tasks/CancellableTasksIT.java
+
+####START####ff8aede63a6
+[Rest Api Compatibility] MoreLikeThisQuery with types (#75123)
+
+previously removed in #42198
+also adding a type for MultiTermVectorsResponse in failures
+
+relates #54160
+relates #51816
+####END####
+server/src/main/java/org/elasticsearch/action/termvectors/MultiTermVectorsResponse.java
+server/src/main/java/org/elasticsearch/action/termvectors/TermVectorsResponse.java
+server/src/main/java/org/elasticsearch/index/query/MoreLikeThisQueryBuilder.java
+
+####START####1855782defb
+[Rest Api Compatibility] Allow copy_settings flag for resize operations (#75184)
+
+previously removed in #38514, deprecated in 7.x and defaulted to true.
+With rest api compatibility and when value is true it is ignored and warning is emitted
+when value is false, an exception is thrown
+
+relates #51816
+####END####
+server/src/main/java/org/elasticsearch/rest/action/admin/indices/RestResizeHandler.java
+
+####START####caa7e1678ba
+Fix AbstractSimpleTransportTestCase#testFailToSend (#75211)
+
+Adjust test after changing how exception is wrapped.
+####END####
+test/framework/src/main/java/org/elasticsearch/transport/AbstractSimpleTransportTestCase.java
+
+####START####cbfb9b0e40e
+[ML] Fix forecasts deletion action when there are many forecast documents. (#75127)
+
+
+####END####
+server/src/main/java/org/elasticsearch/index/reindex/DeleteByQueryRequest.java
+x-pack/plugin/ml/qa/native-multi-node-tests/src/javaRestTest/java/org/elasticsearch/xpack/ml/integration/ForecastIT.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/action/TransportDeleteForecastAction.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/action/TransportDeleteForecastActionTests.java
+x-pack/qa/reindex-tests-with-security/src/test/java/org/elasticsearch/xpack/security/ReindexWithSecurityIT.java
+
+####START####563e1fb8e1a
+[Rest Api Compatibility] Return adjust_pure_negative values (#75182)
+
+the adjust_pure_negative value used to be always present in to_xcontent
+response, but it was changed in #49543 to only serialise this field when
+the value is false
+
+relates #51816
+####END####
+server/src/main/java/org/elasticsearch/index/query/BoolQueryBuilder.java
+
+####START####45e38b50054
+[TEST] Re-enable ReadActionsTests (#75208)
+
+Enable this integration test again, with a set timeout on each search
+action.
+
+Relates: #53340
+####END####
+x-pack/plugin/security/src/internalClusterTest/java/org/elasticsearch/xpack/security/authz/ReadActionsTests.java
+
+####START####b9b1af12fbf
+Mute AbstractSimpleTransportTestCase#testToFail (#75210)
+
+
+####END####
+test/framework/src/main/java/org/elasticsearch/transport/AbstractSimpleTransportTestCase.java
+
+####START####59ae46f3f21
+Wrap exception with SendRequestTransportException instead of TransportException (#73551)
+
+Prevents login at WARN level underlaying 4xx exceptions.
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/action/admin/cluster/node/tasks/CancellableTasksIT.java
+server/src/internalClusterTest/java/org/elasticsearch/search/SearchCancellationIT.java
+server/src/main/java/org/elasticsearch/transport/TransportService.java
+x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/transport/SecurityServerTransportInterceptor.java
+
+####START####b6fc5a2aefe
+[Test] More robust reloading test for file service tokens (#75203)
+
+Instead relying on the countDownLatch, the entry assertion is now
+perfomred in an assertBusy block so that non-atomic file update will not
+cause failures.
+####END####
+x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/authc/service/FileServiceAccountTokenStoreTests.java
+
+####START####5fb4c050958
+Deprecate SimpleFS and replace it with NIOFS (#75156) (#75196)
+
+SimpleFS is deprecated and will be removed in Lucene 9. This commit
+deprecates SimpleFS in 7.x and uses NIOFS for SimpleFS in Elasticsearch
+7.15 or later as it offers superior or equivalent performance to
+SimpleFS.
+####END####
+plugins/store-smb/src/internalClusterTest/java/org/elasticsearch/index/store/smb/SmbNIOFSTests.java
+plugins/store-smb/src/main/java/org/elasticsearch/index/store/smb/SmbNIOFSDirectoryFactory.java
+plugins/store-smb/src/main/java/org/elasticsearch/plugin/store/smb/SMBStorePlugin.java
+plugins/store-smb/src/test/java/org/elasticsearch/index/store/smb/SmbNIOFSDirectoryTests.java
+server/src/main/java/org/elasticsearch/cluster/metadata/MetadataCreateIndexService.java
+server/src/main/java/org/elasticsearch/cluster/metadata/MetadataUpdateSettingsService.java
+server/src/main/java/org/elasticsearch/index/IndexModule.java
+server/src/main/java/org/elasticsearch/index/store/FsDirectoryFactory.java
+server/src/test/java/org/elasticsearch/cluster/metadata/MetadataCreateIndexServiceTests.java
+server/src/test/java/org/elasticsearch/index/store/FsDirectoryFactoryTests.java
+server/src/test/java/org/elasticsearch/plugins/PluginsServiceTests.java
+x-pack/plugin/deprecation/src/main/java/org/elasticsearch/xpack/deprecation/DeprecationChecks.java
+x-pack/plugin/deprecation/src/main/java/org/elasticsearch/xpack/deprecation/IndexDeprecationChecks.java
+x-pack/plugin/deprecation/src/test/java/org/elasticsearch/xpack/deprecation/IndexDeprecationChecksTests.java
+
+####START####cd4e987412e
+Fix ccs wildcard pattern in _terms_enum API (#75190)
+
+This change adds the support in the _terms_enum API for wildcard index
+pattern that targets remote cluster with security enabled.
+
+Closes #75152
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/termsenum/action/TermsEnumRequest.java
+
+####START####c9c5d1f84ca
+Adjust version checks after sliced PIT backport
+
+####END####
+server/src/main/java/org/elasticsearch/search/slice/SliceBuilder.java
+
+####START####d08b851a5b8
+Accept settings in snake case in Docker image (#74327)
+
+Closes #74036. Since some orchestration platforms forbid periods in
+environment variable names, allow Docker users to pass settings to ES
+using an alternative name scheme. For example:
+
+    bootstrap.memory_lock
+
+...becomes:
+
+    ES_BOOTSTRAP_MEMORY__LOCK
+
+The setting name is uppercased, prefixed, all underscores are converted
+to double underscores, and all periods are converted to underscores.
+####END####
+qa/os/src/test/java/org/elasticsearch/packaging/test/DockerTests.java
+
+####START####e4df4d72057
+Script: Def encoding parser (#74840)
+
+Parse and validate the def encoding string.
+
+Broken out of e26fa4e
+####END####
+modules/lang-painless/src/main/java/org/elasticsearch/painless/Def.java
+modules/lang-painless/src/test/java/org/elasticsearch/painless/DefEncodingTests.java
+
+####START####abc7a4776d4
+Avoid auto following leader system indices in CCR (#72815)
+
+Relates #67686
+####END####
+x-pack/plugin/ccr/src/internalClusterTest/java/org/elasticsearch/xpack/ccr/AutoFollowIT.java
+x-pack/plugin/ccr/src/test/java/org/elasticsearch/xpack/ccr/action/AutoFollowCoordinatorTests.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ccr/AutoFollowMetadata.java
+
+####START####91a15914356
+Add constraints to dimension fields (#74939)
+
+This PR adds the following constraints to dimension fields:
+
+    It must be an indexed field and must has doc values
+    It cannot be multi-valued
+    The number of dimension fields in the index mapping must not be more than 16. This should be configurable through an index property (index.mapping.dimension_fields.limit)
+    keyword fields cannot be more than 1024 bytes long
+    keyword fields must not use a normalizer
+
+Based on the code added in PR #74450
+Relates to #74660
+####END####
+server/src/main/java/org/elasticsearch/common/settings/IndexScopedSettings.java
+server/src/main/java/org/elasticsearch/index/IndexSettings.java
+server/src/main/java/org/elasticsearch/index/mapper/IpFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/KeywordFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/MappedFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/MapperService.java
+server/src/main/java/org/elasticsearch/index/mapper/MappingLookup.java
+server/src/main/java/org/elasticsearch/index/mapper/NumberFieldMapper.java
+server/src/test/java/org/elasticsearch/index/mapper/DocumentMapperTests.java
+server/src/test/java/org/elasticsearch/index/mapper/IpFieldMapperTests.java
+server/src/test/java/org/elasticsearch/index/mapper/KeywordFieldMapperTests.java
+server/src/test/java/org/elasticsearch/index/mapper/WholeNumberFieldMapperTests.java
+x-pack/plugin/ccr/src/test/java/org/elasticsearch/xpack/ccr/action/TransportResumeFollowActionTests.java
+
+####START####95469c3ba2f
+Fix _terms_enum default indices options (#75172)
+
+This commit changes the default indices options of the new terms enum API
+to be consistent with _search.
+This change also fixes the shards statistics in the response when ccs is involved.
+
+Closes #75155
+####END####
+x-pack/plugin/core/src/internalClusterTest/java/org/elasticsearch/xpack/core/termsenum/CCSTermsEnumIT.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/termsenum/action/TermsEnumAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/termsenum/action/TermsEnumRequest.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/termsenum/action/TransportTermsEnumAction.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/termsenum/TermsEnumRequestTests.java
+
+####START####9780f674acc
+Improve stability of GeoIpDownloaderIT test suite. (#74558)
+
+Adjust GeoIpDownloaderIT test suit to wait for managed databases files
+to be removed after each test.
+
+After each test geoip downloader is disabled,  which should eventually
+remove the managed geoip database files. This happens in the background.
+However a new test starts that assumes that the builtin databases are used
+then that test can fail, because expected assertions will fail. The changes
+in this commit should address this.
+
+Closes #74358
+####END####
+modules/ingest-geoip/src/internalClusterTest/java/org/elasticsearch/ingest/geoip/GeoIpDownloaderIT.java
+
+####START####1b0ef6a5deb
+[Rest Api Compatibility] Dummy REST action for indices.upgrade api (#75136)
+
+indices upgrade api (/_upgrade or /{index}/_upgrade) was removed and _reindex is suggested to be used instead.
+There is no easy way to translate _upgrade request to _reindex requests. The dummy Upgrade action will return an exception to a user with a message indicating that _reindex should be used.
+
+upgrade api removal #64732
+relates #51816
+####END####
+server/src/main/java/org/elasticsearch/action/ActionModule.java
+server/src/main/java/org/elasticsearch/rest/action/admin/indices/RestUpgradeActionDeprecated.java
+
+####START####2eb131d61a4
+testFailedTasksCount: report whether task completes (#75167)
+
+Investigatng #69731, this commit adds a check to report whether the
+unexpected task that causes the test failure eventually completes.
+####END####
+server/src/test/java/org/elasticsearch/action/admin/cluster/node/tasks/TransportTasksActionTests.java
+
+####START####bb37e09d92e
+Rename field_masking_span to span_field_masking (#74718)
+
+`field_masking_span` is the only span query that does not begin with
+`span_`.  This commit deprecates the existing name and adds a new
+name `span_field_masking` to better fit with the other queries.
+####END####
+server/src/main/java/org/elasticsearch/index/query/FieldMaskingSpanQueryBuilder.java
+server/src/test/java/org/elasticsearch/index/query/FieldMaskingSpanQueryBuilderTests.java
+server/src/test/java/org/elasticsearch/search/SearchModuleTests.java
+
+####START####bdc77da2fb4
+Do not reuse the SetBackedScalingCuckooFilter during merging (#75111)
+
+Fixes an IAE that is thrown when the underlaying circuit breaker is closed.
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/search/aggregations/bucket/terms/RareTermsIT.java
+server/src/main/java/org/elasticsearch/common/util/SetBackedScalingCuckooFilter.java
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/terms/InternalMappedRareTerms.java
+server/src/test/java/org/elasticsearch/common/util/SetBackedScalingCuckooFilterTests.java
+
+####START####063a1f2d30d
+Filter out CA PrivateKeyEntry when creating a KeyManager (#73807)
+
+In 8.0, with security on by default, we store the HTTP
+layer CA PrivateKeyEntry in the http.ssl keystore (along
+with the node certificate) so that it is available in our
+Enrollment API transport actions.
+When loading a keystore, the current behavior is that the
+X509ExtendedKeyManager will iterate through the PrivateKeyEntry
+objects and will return the first key/certificate that satisfies
+the requirements of the client and the server configuration,
+and lacks any additional logic/filters.
+We need the KeyManager to deterministically pick the node
+certificate/key in all cases as this is the intended entry to be
+used for TLS on the HTTP layer.
+This change introduces filtering when creating the in-memory
+keystore the KeyManager is loaded with, so that it will not
+include PrivateKeyEntry objects when:
+- there are more than 1 PrivateKeyEntry objects in the keystore
+- The leaf certificate associated with the PrivateKeyEntry is a
+CA certificate
+Related: #75097
+
+Co-authored-by: Ioannis Kakavas <ioannis@elastic.co>
+####END####
+client/rest-high-level/qa/ssl-enabled/src/javaRestTest/java/org/elasticsearch/client/EnrollmentIT.java
+client/rest-high-level/src/test/java/org/elasticsearch/client/SecurityIT.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/XPackSettings.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ssl/StoreKeyConfig.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ssl/StoreKeyConfigTests.java
+x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/action/enrollment/TransportKibanaEnrollmentAction.java
+x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/action/enrollment/TransportNodeEnrollmentAction.java
+x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/rest/action/enrollment/RestKibanaEnrollAction.java
+x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/authc/saml/SamlMetadataCommandTests.java
+x-pack/plugin/security/src/test/java/org/elasticsearch/xpack/security/authc/saml/SamlRealmTests.java
+
+####START####cdf67e0fd5c
+Support search slicing with point-in-time (#74457)
+
+This PR adds support for using the `slice` option in point-in-time searches. By
+default, the slice query splits documents based on their Lucene ID. This
+strategy is more efficient than the one used for scrolls, which is based on the
+`_id` field and must iterate through the whole terms dictionary. When slicing a
+search, the same point-in-time ID must be used across slices to guarantee the
+partitions don't overlap or miss documents.
+
+Closes #65740.
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/search/slice/SearchSliceIT.java
+server/src/main/java/org/elasticsearch/search/DefaultSearchContext.java
+server/src/main/java/org/elasticsearch/search/SearchService.java
+server/src/main/java/org/elasticsearch/search/slice/DocIdSliceQuery.java
+server/src/main/java/org/elasticsearch/search/slice/SliceBuilder.java
+server/src/test/java/org/elasticsearch/search/DefaultSearchContextTests.java
+server/src/test/java/org/elasticsearch/search/slice/DocIdSliceQueryTests.java
+server/src/test/java/org/elasticsearch/search/slice/SliceBuilderTests.java
+
+####START####b9ad014174b
+Use interval.getStringRep for ReportingAttachment's interval (#75146)
+
+Using getStringRep here rather than (implicitly) toString so that the
+interval is serialized exactly as it was provided, rather than
+converting to some other human readable form.
+####END####
+x-pack/plugin/watcher/src/main/java/org/elasticsearch/xpack/watcher/notification/email/attachment/ReportingAttachment.java
+x-pack/plugin/watcher/src/test/java/org/elasticsearch/xpack/watcher/notification/email/attachment/ReportingAttachmentParserTests.java
+
+####START####7b08a27775d
+Migrate to data tiers fix for phase with deactivated migrate action (#75102)
+
+* Migrate to data tiers fix for phase with deactivated migrate action
+
+This fixes the migration to also take into account explicitly deactivated
+migrate actions. A phase with both an allocate action (which we update
+to not contain routing rules anymore) and a deactivated migrate action
+will not configure any allocation routing rules.
+
+This changes the migrate service to also enable the migrate action.
+
+* Remove the deactivated migrate action
+
+Co-authored-by: Elastic Machine <elasticmachine@users.noreply.github.com>
+####END####
+x-pack/plugin/ilm/src/main/java/org/elasticsearch/xpack/cluster/metadata/MetadataMigrateToDataTiersRoutingService.java
+x-pack/plugin/ilm/src/test/java/org/elasticsearch/xpack/cluster/metadata/MetadataMigrateToDataTiersRoutingServiceTests.java
+
+####START####915f9f5236b
+Yet more logging for testFailedTasksCount (#75143)
+
+Relates #69731
+####END####
+server/src/test/java/org/elasticsearch/action/admin/cluster/node/tasks/TransportTasksActionTests.java
+
+####START####5c5f377dc4b
+SearchModuleTests uses wrong check for deprecated query names (#74906)
+
+SearchModuleTests checks through a list of queries that it expects to be
+registered, and separately checks a through a list of queries that have
+not been deprecated. This second check filters out non-deprecated
+queries by seeing if they have deprecated names; but this will miss queries
+that have been renamed (for example, we plan to rename field_masking_span
+to span_field_masking, and this query will be perfectly valid but have a
+deprecated name). This commit changes the filter to check that there are
+any undeprecated names instead.
+####END####
+server/src/test/java/org/elasticsearch/search/SearchModuleTests.java
+
+####START####2ffd09d899e
+Fix IndexLifecycleRunnerTests.testRunAsyncActionReturningFalseEntersError (#75125)
+
+Avoid ConcurrentModificationException by using a thread safe collection
+in the test, as we write to the ILM history store in an async way.
+
+Co-authored-by: Elastic Machine <elasticmachine@users.noreply.github.com>
+####END####
+x-pack/plugin/ilm/src/test/java/org/elasticsearch/xpack/ilm/IndexLifecycleRunnerTests.java
+
+####START####ba6278a72cd
+[ML] Add license key check argument to pytorch_inference (#75135)
+
+Same change as #75134, but only for the master branch.
+####END####
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/pytorch/process/PyTorchBuilder.java
+
+####START####6de4d35750c
+[ML] Adding license key check arguments (#75134)
+
+From version 7.15 the ML native processes will have
+a command line option to confirm that a valid Elastic
+license key is installed when they are started.
+
+This change adds the necessary argument for the autodetect,
+normalize and data_frame_analyzer processes.
+####END####
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/dataframe/process/AnalyticsBuilder.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/process/autodetect/AutodetectBuilder.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/process/normalizer/NormalizerBuilder.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/dataframe/process/AnalyticsBuilderTests.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/job/process/autodetect/AutodetectBuilderTests.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/job/process/normalizer/NormalizerBuilderTests.java
+
+####START####faafdf70a8d
+[ML] Limit the input sequence length for NLP processors (#74905)
+
+BERT models have a limit on the length of the input sequence (the number of tokens
+in the tokenized string rather than the input string) and throw an error if that length 
+is exceeded. This PR adds a check on the tokenized string and throws a bad request
+exception with a clear error message if the input is too large.
+
+The max length defaults to 512 but is configurable via the max_sequence_length field 
+in the task config.
+
+####END####
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/nlp/BertRequestBuilder.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/nlp/FillMaskProcessor.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/nlp/NerProcessor.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/nlp/NerResultProcessor.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/nlp/NlpTask.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/nlp/NlpTaskConfig.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/nlp/PassThroughProcessor.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/nlp/SentimentAnalysisProcessor.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/inference/nlp/TaskType.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/inference/nlp/BertRequestBuilderTests.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/inference/nlp/FillMaskProcessorTests.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/inference/nlp/NerProcessorTests.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/inference/nlp/NerResultProcessorTests.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/inference/nlp/NlpTaskConfigTests.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/inference/nlp/SentimentAnalysisProcessorTests.java
+
+####START####0a8f725647f
+Support for wildcards and override option for dot_expander processor (#74601)
+
+
+####END####
+modules/ingest-common/src/main/java/org/elasticsearch/ingest/common/DotExpanderProcessor.java
+modules/ingest-common/src/test/java/org/elasticsearch/ingest/common/DotExpanderProcessorFactoryTests.java
+modules/ingest-common/src/test/java/org/elasticsearch/ingest/common/DotExpanderProcessorTests.java
+
+####START####404e9865b69
+Json processor: add_to_root_conflict_strategy option (#74967)
+
+
+####END####
+modules/ingest-common/src/main/java/org/elasticsearch/ingest/common/JsonProcessor.java
+modules/ingest-common/src/main/java/org/elasticsearch/ingest/common/Processors.java
+modules/ingest-common/src/test/java/org/elasticsearch/ingest/common/JsonProcessorFactoryTests.java
+modules/ingest-common/src/test/java/org/elasticsearch/ingest/common/JsonProcessorTests.java
+server/src/test/java/org/elasticsearch/common/xcontent/BaseXContentTestCase.java
+
+####START####d9ff10adf64
+Adjusting persistent task local abort supported version after backport (#75067)
+
+This change adjusts the supported version added in #74115
+following the backport to 7.15.0 that was done in #75002.
+
+It is possible to remove far more code from master following
+the backport, however, this would make the ML change to use
+the functionality harder as then that would need substantial
+changes during its backport.  It will be easier to make the
+ML change that uses the functionality while master still has
+the concept of supported/not supported for this functionality,
+then do a final followup PR that removes the unnecessary code
+from master.
+####END####
+server/src/main/java/org/elasticsearch/persistent/CompletionPersistentTaskAction.java
+server/src/test/java/org/elasticsearch/persistent/CompletionPersistentTaskRequestTests.java
+
+####START####15f6cfe6e16
+Dry Up XContent Parser Construction (#75114)
+
+Cleanup duplication in how we parse byte arrrays directly.
+####END####
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/cbor/CborXContent.java
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/json/JsonXContent.java
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/smile/SmileXContent.java
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/yaml/YamlXContent.java
+
+####START####61a7dcac85a
+Fix persistent task local abort integration test (#75121)
+
+Fixes a race condition where the tasks API may report
+local tasks before the published cluster state contains
+their corresponding persistent tasks.
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/persistent/PersistentTasksExecutorIT.java
+
+####START####a6bdca72ee7
+Remove Outdated BwC Code from o.e.a.fieldcaps (#75107)
+
+Follow up to #75022 removing now outdated BwC code from `8.x` + some additional related dead BwC removal.
+In `7.x` we can't drop the index-level transport action I think because of technical
+BwC with the transport client so this is just an 8.x PR.
+####END####
+server/src/main/java/org/elasticsearch/action/ActionModule.java
+server/src/main/java/org/elasticsearch/action/fieldcaps/FieldCapabilities.java
+server/src/main/java/org/elasticsearch/action/fieldcaps/FieldCapabilitiesIndexRequest.java
+server/src/main/java/org/elasticsearch/action/fieldcaps/FieldCapabilitiesIndexResponse.java
+server/src/main/java/org/elasticsearch/action/fieldcaps/FieldCapabilitiesRequest.java
+server/src/main/java/org/elasticsearch/action/fieldcaps/FieldCapabilitiesResponse.java
+server/src/main/java/org/elasticsearch/action/fieldcaps/IndexFieldCapabilities.java
+server/src/main/java/org/elasticsearch/action/fieldcaps/TransportFieldCapabilitiesAction.java
+server/src/main/java/org/elasticsearch/action/fieldcaps/TransportFieldCapabilitiesIndexAction.java
+server/src/test/java/org/elasticsearch/action/fieldcaps/FieldCapabilitiesIndexRequestTests.java
+server/src/test/java/org/elasticsearch/action/fieldcaps/FieldCapabilitiesRequestTests.java
+server/src/test/java/org/elasticsearch/action/fieldcaps/FieldCapabilitiesResponseTests.java
+x-pack/plugin/security/qa/operator-privileges-tests/src/javaRestTest/java/org/elasticsearch/xpack/security/operator/Constants.java
+
+####START####0f493c39385
+[ML] Fix race condition between job open, close and kill (#75113)
+
+This is a followup to #74976.
+
+The changes of #74976 reverted many of the changes of #71656
+because #74415 made them redundant. #74415 did this by making
+killed jobs as closing so that the standard "job closed immediately
+after open" functionality was used instead of reissuing the kill
+immediately after opening. However, it turns out that this
+"job closed immediately after open" functionality is not
+perfect for the case of a job that is killed while it is opening.
+It causes AutodetectCommunicator.close() to be called instead
+of AutodetectCommunicator.killProcess(). Both do a lot of the
+same things, but AutodetectCommunicator.close() finalizes
+the job, and this can cause problems if the job is being killed
+as part of a feature reset.
+
+This change reinstates some of the functionality of #71656
+but in a different place that hopefully won't reintroduce the
+problems that led to #74415.
+
+We can detect that a kill has happened early on during an
+open or close operation by checking if the task's allocation
+ID has been removed from the map after ProcessContext.setDying()
+returns true. If ProcessContext.setDying() returns true this
+means the job has not been previously closed, so it must have
+been killed. Then we can call AutodetectCommunicator.killProcess()
+instead of AutodetectCommunicator.close() during the cleanup
+that happens when we detect that a recently started process is
+no longer wanted.
+
+Relates #75069
+####END####
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/process/autodetect/AutodetectProcessManager.java
+
+####START####62a6db957be
+Remove redundant method from StoreKeyConfig (#74836)
+
+StoreKeyConfig#x509Certificates was introduced in #72207 in order
+to retrieve all certificates from the keystore used for HTTP TLS
+and then filter out to get the CA certificate. Since we explicitly
+add the CA key/cert as a PrivateKeyEntry on startup, we can
+iterate on the PrivateKeyEntry objects instead.
+
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ssl/StoreKeyConfig.java
+x-pack/plugin/security/src/main/java/org/elasticsearch/xpack/security/action/enrollment/TransportKibanaEnrollmentAction.java
+
+####START####1f726800a66
+[Rest Api Compatibility] Clean up x-pack/plugin rest compat tests (#74701)
+
+this PR removes tests which are not meant to be fixed (ml/, vectors/) to a separate "not to be fixed list" so that we can see which compatible changes are meant to be implemented.
+
+relates #51816
+####END####
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/process/autodetect/writer/JsonDataToProcessWriter.java
+
+####START####a56b4031e1e
+Mute GeoPointShapeQueryTests#testFieldAlias (#75104)
+
+
+####END####
+server/src/test/java/org/elasticsearch/search/geo/GeoPointShapeQueryTests.java
+
+####START####a5061d1c113
+Fix Snapshot State Machine Bug in Concurrent Clone and Delete (#75068)
+
+Unfortunately obvious bug when multiple deletes are queued up together with
+a clone operation that was waiting for one of those deletes.
+
+Co-authored-by: Tanguy Leroux <tlrx.dev@gmail.com>
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/snapshots/ConcurrentSnapshotsIT.java
+server/src/main/java/org/elasticsearch/cluster/SnapshotDeletionsInProgress.java
+server/src/main/java/org/elasticsearch/snapshots/SnapshotsService.java
+server/src/test/java/org/elasticsearch/cluster/SnapshotDeletionsInProgressTests.java
+
+####START####c0d9f51b3e4
+Fix ByteSizeValue parse exceptions (#74902)
+
+ByteSizeValue.parseBytesSizeValue would in some cases throw an
+IllegalArgumentException or NumberFormatException. Now always throws
+ElasticsearchParseException.
+
+Relates #71855
+####END####
+server/src/main/java/org/elasticsearch/common/unit/ByteSizeValue.java
+server/src/main/java/org/elasticsearch/common/unit/RelativeByteSizeValue.java
+server/src/test/java/org/elasticsearch/common/unit/ByteSizeValueTests.java
+
+####START####ebe8a9b58f5
+Alias field does not work with geo_shape query (#74895)
+
+Fixes the resolution of the field name in the geo_shape query.
+####END####
+server/src/main/java/org/elasticsearch/index/query/GeoShapeQueryBuilder.java
+server/src/main/java/org/elasticsearch/index/query/LegacyGeoShapeQueryProcessor.java
+server/src/test/java/org/elasticsearch/index/query/GeoShapeQueryBuilderTests.java
+server/src/test/java/org/elasticsearch/search/geo/GeoPointShapeQueryTests.java
+server/src/test/java/org/elasticsearch/search/geo/GeoShapeQueryTests.java
+server/src/test/java/org/elasticsearch/search/geo/LegacyGeoShapeQueryTests.java
+server/src/test/java/org/elasticsearch/test/geo/RandomShapeGenerator.java
+test/framework/src/main/java/org/elasticsearch/search/geo/GeoPointShapeQueryTestCase.java
+test/framework/src/main/java/org/elasticsearch/search/geo/GeoShapeQueryTestCase.java
+x-pack/plugin/spatial/src/internalClusterTest/java/org/elasticsearch/xpack/spatial/search/GeoShapeWithDocValuesQueryTests.java
+
+####START####0f508a99f2a
+Fix EQL Blocking IntegTests (#75088)
+
+Same as #75083
+####END####
+x-pack/plugin/eql/src/internalClusterTest/java/org/elasticsearch/xpack/eql/action/AbstractEqlBlockingIntegTestCase.java
+
+####START####fef187463ac
+Fix SQL Blocking IntegTests (#75083)
+
+We have a number of failures in these tests due to #75022
+which makes the field caps transport action fork to the management pool.
+-> we have to always fork in this test now to not block the management pool.
+####END####
+x-pack/plugin/sql/src/internalClusterTest/java/org/elasticsearch/xpack/sql/action/AbstractSqlBlockingIntegTestCase.java
+
+####START####6c9bdb03b4b
+Bump version after 7.13.3 release
+
+####END####
+server/src/main/java/org/elasticsearch/Version.java
+
+####START####9bb473427bd
+[Rest Api Compatibility] Add conditions to InjectHeaders transformation (#75001)
+
+adding a conditions that has to be satisfied in order to apply headers in InjectHeaders.
+this will allow to skip the transformation for cat operations
+relates #51816
+####END####
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/rest/compat/RestCompatTestTransformTask.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/rest/transform/headers/InjectHeaders.java
+build-tools-internal/src/test/java/org/elasticsearch/gradle/internal/test/rest/transform/TransformTests.java
+build-tools-internal/src/test/java/org/elasticsearch/gradle/internal/test/rest/transform/header/InjectHeaderTests.java
+
+####START####623044ed701
+[TEST] CCSDuelIT to not check successful shards (#75062)
+
+CCSDuelIT sometimes fails due to an unexpected number of shards returned in the refresh response. We create an index with a certain number of shards and no replicas, and sometimes the number of shards refresh is higher by one than the shards we created. This is not symptom of a problem though, as we are checking that there are no failures, but rather indicates a relocation happening, during which both copies of the same shard have been refreshed.
+
+Closes #61258
+Closes #72637
+Closes #67754
+####END####
+qa/multi-cluster-search/src/test/java/org/elasticsearch/search/CCSDuelIT.java
+
+####START####49a57eed426
+Fix TransportFieldCapabilitiesAction Blocking Transport Thread (#75022)
+
+Running a request per index could take a very long time here if the request covers
+a larger number of shards (especially when security is enabled).
+Forking it to the management pool saves the transport thread from getting blocked.
+Also, to make this request run quicker (again especially with security enabled)
+I removed the redundant index-level request fan-out here as well to save one step
+of redundant request handling and authorization (the shard level request is authorized
+separately again anyway). In a follow-up to 8.x because of 7.x BwC issues, we can
+refactor away the redundant  index-level fan out as well.
+
+####END####
+server/src/main/java/org/elasticsearch/action/fieldcaps/TransportFieldCapabilitiesAction.java
+server/src/main/java/org/elasticsearch/action/fieldcaps/TransportFieldCapabilitiesIndexAction.java
+
+####START####bf952a4c488
+Fix sort on nanosecond date fields with missing values (#74760)
+
+For missing values on date fields we use Long.MIN_VALUE by default. This is okay
+when the resolution of the field is milliseconds. For nanoseconds though,
+negative values can lead to IllegalArgumentExpections when we try to format them
+internally.
+This change fixes this by explicitely setting the minimum value to 0L (which
+corresponds to 1970-01-01T00:00:00.000 for nanosecond resolution) when no other
+explicit missing value is defined and the target numeric type is a nanosecond
+type (this is true for nanosecond fields and when "numeric_type" is explicitely
+set). This way we correct the behaviour for single typed indices and cases where
+we are sorting across multiple indices with mixed "date" and "date_nanos" type
+where "numeric_type" is set in the sort definition.
+
+Closes #73763
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/search/sort/FieldSortIT.java
+server/src/main/java/org/elasticsearch/common/time/DateUtils.java
+server/src/main/java/org/elasticsearch/index/fielddata/IndexFieldData.java
+server/src/main/java/org/elasticsearch/index/fielddata/IndexNumericFieldData.java
+server/src/main/java/org/elasticsearch/index/fielddata/fieldcomparator/LongValuesComparatorSource.java
+server/src/main/java/org/elasticsearch/index/fielddata/plain/SortedNumericIndexFieldData.java
+server/src/main/java/org/elasticsearch/index/fielddata/plain/SortedSetOrdinalsIndexFieldData.java
+server/src/test/java/org/elasticsearch/common/lucene/LuceneTests.java
+server/src/test/java/org/elasticsearch/index/search/nested/LongNestedSortingTests.java
+
+####START####8b0e463ab80
+Skip noop normalizing (#74656)
+
+It looks like we'd intended to skip noop normalizing to save on building
+a bunch of lucene components that ultimately just return the same
+string. But we didn't really test it and, sadly, we made the wrong null
+check. This fixes the check.
+
+Co-authored-by: Elastic Machine <elasticmachine@users.noreply.github.com>
+####END####
+server/src/main/java/org/elasticsearch/index/mapper/KeywordFieldMapper.java
+
+####START####646b4d1067a
+Simplify number parsing (#74993)
+
+Simplify the code we use to parse numeric values from documents so it is
+a bit more readable and easier to share.
+
+####END####
+server/src/main/java/org/elasticsearch/index/mapper/NumberFieldMapper.java
+
+####START####1c35e3265e8
+Simplify RuntimeField toXContent implementation (#75043)
+
+RuntimeField has a default toXContent method that prints out the outer part of the field's definition, while LeafRuntimeField holds a ToXContent instance variable that prints out the inner part, which RuntimeField.Builder implements and leans on Parameter's serialization.
+
+We can greatly simplify this now that LeafRuntimeField is introduced, by having one full implementation as part of LeafRuntimeField, that prints out the full content. Instead of taking a ToXContent constructor argument, LeafRuntimeField takes a list of parameters, each one implementing ToXContent. This way RuntimeField.Builder does not have to implement ToXContent.
+####END####
+server/src/main/java/org/elasticsearch/index/mapper/AbstractScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/LeafRuntimeField.java
+server/src/main/java/org/elasticsearch/index/mapper/RuntimeField.java
+server/src/test/java/org/elasticsearch/index/mapper/TestRuntimeField.java
+
+####START####01872e8ed5b
+Fix GCS Keystore Handling in FIPS Mode (#75028)
+
+In FIPS mode loading the `.p12` keystore used by the new SDK version is not supported
+because of "PBE AlgorithmParameters not available". Fortunately, the SDK still includes
+the old jks trust store so we can just manually load it the same way it was loaded by
+the previous version to fix things.
+Also, fixed `SocketAccess` to properly rethrow this kind of exception and not run into
+a class cast issue.
+
+Closes #75023
+
+relates https://github.com/googleapis/google-api-java-client/pull/1738
+
+####END####
+plugins/repository-gcs/src/main/java/org/elasticsearch/repositories/gcs/GoogleCloudStorageService.java
+plugins/repository-gcs/src/main/java/org/elasticsearch/repositories/gcs/SocketAccess.java
+
+####START####04308b54cf2
+Fix tests for new markAsLocallyAborted method (#75021)
+
+Two test fixes following on from #74115
+
+Fixes #75004
+Fixes #75012
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/persistent/PersistentTasksExecutorIT.java
+server/src/test/java/org/elasticsearch/persistent/PersistentTasksNodeServiceTests.java
+
+####START####60c28389063
+Replace internal usages of SimpleFS with NIOFS (#74996)
+
+SimpleFS is deprecated and removed in Lucene 9. This commit replaces its 
+internal usages with NIOFS. Two other usages (store type and SMB) need
+to be deprecated before switching to niofs.
+####END####
+distribution/tools/keystore-cli/src/test/java/org/elasticsearch/common/settings/KeyStoreWrapperTests.java
+server/src/internalClusterTest/java/org/elasticsearch/cluster/routing/AllocationIdIT.java
+server/src/main/java/org/elasticsearch/common/settings/KeyStoreWrapper.java
+server/src/main/java/org/elasticsearch/env/NodeEnvironment.java
+server/src/main/java/org/elasticsearch/gateway/MetadataStateFormat.java
+server/src/main/java/org/elasticsearch/index/store/Store.java
+server/src/main/java/org/elasticsearch/index/translog/Checkpoint.java
+server/src/main/java/org/elasticsearch/indices/analysis/HunspellService.java
+server/src/test/java/org/elasticsearch/gateway/MetadataStateFormatTests.java
+server/src/test/java/org/elasticsearch/gateway/PersistedClusterStateServiceTests.java
+server/src/test/java/org/elasticsearch/indices/analysis/AnalysisModuleTests.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/snapshots/sourceonly/SourceOnlySnapshotRepository.java
+
+####START####2815d779a2d
+SQL: More information when printing Alias and LocalRelation nodes (#74847)
+
+* SQL: More information when printing Alias and LocalRelation nodes
+
+* less verbose LocalRelation representation
+####END####
+x-pack/plugin/ql/src/main/java/org/elasticsearch/xpack/ql/expression/Alias.java
+x-pack/plugin/sql/qa/server/single-node/src/test/java/org/elasticsearch/xpack/sql/qa/single_node/CliExplainIT.java
+x-pack/plugin/sql/src/main/java/org/elasticsearch/xpack/sql/plan/logical/LocalRelation.java
+x-pack/plugin/sql/src/main/java/org/elasticsearch/xpack/sql/session/EmptyExecutable.java
+x-pack/plugin/sql/src/main/java/org/elasticsearch/xpack/sql/session/SingletonExecutable.java
+
+####START####785eb4b8438
+[ML] Fix race in AbstractNativeProcessTests (#75029)
+
+The order of closure of the process input stream and
+logging stream is extremely important to whether the
+process is considered to have crashed or exited
+gracefully.
+
+Previously it was not possible to simulate this from
+the unit test code alone, so this change introduces a
+protected function into the AbstractNativeProcess class
+that the unit test code can override to control the
+point at which the log stream is considered to have
+disconnected.
+
+Fixes #75027
+####END####
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/process/AbstractNativeProcess.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/process/logging/CppLogMessageHandler.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/process/AbstractNativeProcessTests.java
+
+####START####ace2988389f
+[ML] Fix race condition between job opening and feature reset (#74976)
+
+There was a point during the job opening sequence where performing
+a feature reset could hang.
+
+This happened when the kill request issued by feature reset was
+executed after the job's persistent task was assigned but before
+the job's native process was started. The persistent task was
+incorrectly left running in this situation, yet the job opening
+sequence was aborted which meant the subsequent close request
+issued by feature reset would wait for a very long time for the
+persistent task to disappear.
+
+The fix is to make the kill process request cancel the persistent
+task consistently based on its request parameters and not on the
+current state of the task.
+
+Fixes #74141
+####END####
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/action/TransportKillProcessAction.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/process/autodetect/AutodetectProcessManager.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/job/process/autodetect/ProcessContext.java
+
+####START####353f189d1cc
+Simplify RuntimeField creation (#75009)
+
+* Simplify RuntimeField creation
+
+Now that AbstractScriptFieldType and LeafRuntimeField are separate, we can further simplify the creation of runtime fields. Their builder always creates a new instance of the same class (LeafRuntimeField), which can be shared throughout all the builders. The only bit that changes is the MappedFieldType instance, which becomes the only required abstract method in the base builder.
+
+Also, the dynamically created runtime field variant that parses its values from source can be created through a builder which makes sure that we reuse as much code as possible.
+
+* checkstyle
+
+* restore MappedFieldType
+####END####
+server/src/main/java/org/elasticsearch/index/mapper/AbstractScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/BooleanScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/DateScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/DoubleScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/GeoPointScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/IpScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/KeywordScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/LeafRuntimeField.java
+server/src/main/java/org/elasticsearch/index/mapper/LongScriptFieldType.java
+server/src/test/java/org/elasticsearch/index/mapper/DocumentParserTests.java
+server/src/test/java/org/elasticsearch/index/mapper/FieldTypeLookupTests.java
+server/src/test/java/org/elasticsearch/index/mapper/TestRuntimeField.java
+server/src/test/java/org/elasticsearch/index/query/SearchExecutionContextTests.java
+
+####START####4d462e766ce
+Fix ChangePolicyforIndexIT.testChangePolicyForIndex (#75003)
+
+The `check-rollover-ready` step is subject to the refresh making the
+doc count stats available. The `refresh` execution is not deterministic
+(especially for indices that are not queried) so the index might end up
+staying in the `hot` phase and failing the test.
+
+This triggers the refresh when writting to the index.
+####END####
+x-pack/plugin/ilm/qa/multi-node/src/javaRestTest/java/org/elasticsearch/xpack/ilm/ChangePolicyforIndexIT.java
+
+####START####d3eb540fe4f
+Ensure replica requests are marked as index_data (#75008)
+
+This is related to #73497. Currently replica requests are wrapped in a
+concrete replica shard request. This leads to the transport layer not
+properly identifying them as replica index_data requests and not
+compressing them properly. This commit resolves this bug.
+####END####
+server/src/main/java/org/elasticsearch/action/support/replication/TransportReplicationAction.java
+server/src/main/java/org/elasticsearch/transport/RawIndexingDataTransportRequest.java
+server/src/main/java/org/elasticsearch/transport/TcpTransport.java
+test/framework/src/main/java/org/elasticsearch/transport/AbstractSimpleTransportTestCase.java
+
+####START####d56ebc7ffba
+Mute PersistentTasksExecutorIT* tests
+
+Due to #75012.
+
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/persistent/PersistentTasksExecutorIT.java
+
+####START####e4e9693b724
+Mute PersistentTasksNodeServiceTests.testTaskLocalAbort (#75007)
+
+Due to https://github.com/elastic/elasticsearch/issues/75004
+####END####
+server/src/test/java/org/elasticsearch/persistent/PersistentTasksNodeServiceTests.java
+
+####START####cbcc219b869
+Fix aggs test failures (again) (#74965)
+
+The tests for the debugging information in the filters aggregation where
+too specific for the kind of randomization we run with. We mostly fixed
+them in #74750 by replacing `equalTo(1)` with `greaterThanOrEqualTo(1)`.
+But we missed a spot. In all fairness, we ran the test a couple thousand
+times and it didn't fail. But letting the ES build chew on it gets many
+many many thousands of executions over a month. So it found the spot.
+This performs one additional `equalTo(1)` to `greaterThanOrEqualTo(1)`
+replacement.
+
+Closes #74936
+####END####
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/filter/FiltersAggregatorTests.java
+
+####START####dee2f8c6d9b
+Make LeafRuntimeField final (#74991)
+
+LeafRuntimeField requires subclasses to define its type name, but it is already known from the MappedFieldType that is provided as constructor argument, as it can be made a final class.
+####END####
+server/src/main/java/org/elasticsearch/index/mapper/BooleanScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/DateScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/DoubleScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/GeoPointScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/IpScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/KeywordScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/LeafRuntimeField.java
+server/src/main/java/org/elasticsearch/index/mapper/LongScriptFieldType.java
+
+####START####7d980ad6e58
+Adding the option to abort persistent tasks locally (#74115)
+
+It has been possible for master node actions to unassign
+persistent tasks for a couple of years now by calling a
+method on the persistent tasks cluster service.  However,
+this requires some specialist master node action that knows
+it should unassign a persistent task as part of its work.
+It was not previously possible for code running on an
+arbitrary node in the cluster to unassign a persistent task.
+
+This change adds a new method, markAsLocallyAborted,
+to AllocatedPersistentTask.  This method stops the task
+running on the node it is currently running on, and signals
+to the master node that it should unassign the task from
+this node.  The master node will then assign the task to
+a node that it is eligible to be assigned to (which may be
+the original node unless extra measures have been taken
+to prevent this).
+
+The first intended use of this action will be by plugins that
+want to unassign tasks in a controlled way in response to
+being told that a node is shutting down by the node shutdown
+API.  In this case code running on the node that is about to
+be shut down can make sure its persistent tasks are in a
+state where little rework will be required on reassignment,
+then mark them as aborted locally, which will trigger the
+master node to reassign them to a node that is not about to
+shut down.
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/persistent/PersistentTasksExecutorIT.java
+server/src/main/java/org/elasticsearch/persistent/AllocatedPersistentTask.java
+server/src/main/java/org/elasticsearch/persistent/CompletionPersistentTaskAction.java
+server/src/main/java/org/elasticsearch/persistent/PersistentTasksNodeService.java
+server/src/main/java/org/elasticsearch/persistent/PersistentTasksService.java
+server/src/test/java/org/elasticsearch/persistent/CompletionPersistentTaskRequestTests.java
+server/src/test/java/org/elasticsearch/persistent/PersistentTasksNodeServiceTests.java
+server/src/test/java/org/elasticsearch/persistent/RestartPersistentTaskRequestTests.java
+server/src/test/java/org/elasticsearch/persistent/TestPersistentTasksPlugin.java
+x-pack/plugin/ccr/src/main/java/org/elasticsearch/xpack/ccr/action/ShardFollowTaskCleaner.java
+
+####START####488829f4542
+mute RareTermsIT (#74986)
+
+
+####END####
+qa/mixed-cluster/src/test/java/org/elasticsearch/backwards/RareTermsIT.java
+
+####START####2f32bb4863e
+Add test logging debug to SimpleBlocksIT.testAddBlockWhileIndexingDocuments (#74952)
+
+Relates #74345
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/blocks/SimpleBlocksIT.java
+server/src/main/java/org/elasticsearch/action/admin/indices/readonly/AddIndexBlockResponse.java
+server/src/main/java/org/elasticsearch/cluster/metadata/MetadataIndexStateService.java
+
+####START####c6641bf00c2
+Rename ParseContext to DocumentParserContext (#74963)
+
+ParseContext is used to parse documents. It was easily confused with ParserContext (now renamed to MappingParserContext) which is instead used to parse mappings.
+
+To remove any confusion, this commit renames ParseContext to DocumentParserContext and adapts its subclasses accordingly.
+####END####
+modules/mapper-extras/src/main/java/org/elasticsearch/index/mapper/MatchOnlyTextFieldMapper.java
+modules/mapper-extras/src/main/java/org/elasticsearch/index/mapper/RankFeatureFieldMapper.java
+modules/mapper-extras/src/main/java/org/elasticsearch/index/mapper/RankFeaturesFieldMapper.java
+modules/mapper-extras/src/main/java/org/elasticsearch/index/mapper/ScaledFloatFieldMapper.java
+modules/mapper-extras/src/main/java/org/elasticsearch/index/mapper/SearchAsYouTypeFieldMapper.java
+modules/mapper-extras/src/main/java/org/elasticsearch/index/mapper/TokenCountFieldMapper.java
+modules/parent-join/src/main/java/org/elasticsearch/join/mapper/ParentIdFieldMapper.java
+modules/parent-join/src/main/java/org/elasticsearch/join/mapper/ParentJoinFieldMapper.java
+modules/percolator/src/main/java/org/elasticsearch/percolator/PercolatorFieldMapper.java
+modules/percolator/src/test/java/org/elasticsearch/percolator/CandidateQueryTests.java
+modules/percolator/src/test/java/org/elasticsearch/percolator/PercolatorFieldMapperTests.java
+modules/percolator/src/test/java/org/elasticsearch/percolator/QueryBuilderStoreTests.java
+plugins/analysis-icu/src/main/java/org/elasticsearch/index/mapper/ICUCollationKeywordFieldMapper.java
+plugins/mapper-annotated-text/src/main/java/org/elasticsearch/index/mapper/annotatedtext/AnnotatedTextFieldMapper.java
+plugins/mapper-murmur3/src/main/java/org/elasticsearch/index/mapper/murmur3/Murmur3FieldMapper.java
+plugins/mapper-size/src/main/java/org/elasticsearch/index/mapper/size/SizeFieldMapper.java
+server/src/internalClusterTest/java/org/elasticsearch/search/fieldcaps/FieldCapabilitiesIT.java
+server/src/main/java/org/elasticsearch/index/mapper/AbstractGeometryFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/BinaryFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/BooleanFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/CompletionFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/DateFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/DocCountFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/DocumentParser.java
+server/src/main/java/org/elasticsearch/index/mapper/DocumentParserContext.java
+server/src/main/java/org/elasticsearch/index/mapper/DynamicFieldsBuilder.java
+server/src/main/java/org/elasticsearch/index/mapper/FieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/FieldNamesFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/GeoPointFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/GeoShapeFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/IdFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/IgnoredFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/IpFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/KeywordFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/LegacyGeoShapeFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/MetadataFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/NumberFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/RangeFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/RangeType.java
+server/src/main/java/org/elasticsearch/index/mapper/RoutingFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/SeqNoFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/SourceFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/TextFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/VersionFieldMapper.java
+server/src/main/java/org/elasticsearch/index/mapper/flattened/FlattenedFieldMapper.java
+server/src/main/java/org/elasticsearch/search/suggest/completion/context/CategoryContextMapping.java
+server/src/main/java/org/elasticsearch/search/suggest/completion/context/ContextMapping.java
+server/src/main/java/org/elasticsearch/search/suggest/completion/context/GeoContextMapping.java
+server/src/test/java/org/elasticsearch/index/mapper/BooleanScriptFieldTypeTests.java
+server/src/test/java/org/elasticsearch/index/mapper/DocumentParserTests.java
+server/src/test/java/org/elasticsearch/index/mapper/ExternalMetadataMapper.java
+server/src/test/java/org/elasticsearch/index/mapper/FakeStringFieldMapper.java
+server/src/test/java/org/elasticsearch/index/mapper/MappingLookupTests.java
+server/src/test/java/org/elasticsearch/index/mapper/ParametrizedMapperTests.java
+test/framework/src/main/java/org/elasticsearch/index/mapper/MockFieldMapper.java
+test/framework/src/main/java/org/elasticsearch/index/mapper/TestDocumentParserContext.java
+x-pack/plugin/analytics/src/main/java/org/elasticsearch/xpack/analytics/mapper/HistogramFieldMapper.java
+x-pack/plugin/data-streams/src/main/java/org/elasticsearch/xpack/datastreams/mapper/DataStreamTimestampFieldMapper.java
+x-pack/plugin/mapper-aggregate-metric/src/main/java/org/elasticsearch/xpack/aggregatemetric/mapper/AggregateDoubleMetricFieldMapper.java
+x-pack/plugin/mapper-constant-keyword/src/main/java/org/elasticsearch/xpack/constantkeyword/mapper/ConstantKeywordFieldMapper.java
+x-pack/plugin/mapper-unsigned-long/src/main/java/org/elasticsearch/xpack/unsignedlong/UnsignedLongFieldMapper.java
+x-pack/plugin/mapper-version/src/main/java/org/elasticsearch/xpack/versionfield/VersionStringFieldMapper.java
+x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/index/mapper/GeoShapeWithDocValuesFieldMapper.java
+x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/index/mapper/PointFieldMapper.java
+x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/index/mapper/ShapeFieldMapper.java
+x-pack/plugin/vectors/src/main/java/org/elasticsearch/xpack/vectors/mapper/DenseVectorFieldMapper.java
+x-pack/plugin/vectors/src/main/java/org/elasticsearch/xpack/vectors/mapper/SparseVectorFieldMapper.java
+x-pack/plugin/wildcard/src/main/java/org/elasticsearch/xpack/wildcard/mapper/WildcardFieldMapper.java
+
+####START####72a58bc3386
+[Rest Api Compatibility] _time and _term sort orders (#74919)
+
+Previously removed in #39450, deprecated in es6 but not removed in es 7.
+defaults to _key behaviour
+
+relates #51816
+####END####
+server/src/main/java/org/elasticsearch/search/aggregations/InternalOrder.java
+
+####START####67fbc337ea7
+Json processor: allow duplicate keys (#74956)
+
+
+####END####
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/FilterXContentParser.java
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/XContentParser.java
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/XContentSubParser.java
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/cbor/CborXContentParser.java
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/json/JsonXContentParser.java
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/smile/SmileXContentParser.java
+libs/x-content/src/main/java/org/elasticsearch/common/xcontent/support/MapXContentParser.java
+modules/ingest-common/src/main/java/org/elasticsearch/ingest/common/JsonProcessor.java
+modules/ingest-common/src/main/java/org/elasticsearch/ingest/common/Processors.java
+modules/ingest-common/src/test/java/org/elasticsearch/ingest/common/JsonProcessorTests.java
+server/src/test/java/org/elasticsearch/common/xcontent/BaseXContentTestCase.java
+server/src/test/java/org/elasticsearch/common/xcontent/cbor/CborXContentTests.java
+server/src/test/java/org/elasticsearch/common/xcontent/smile/SmileXContentTests.java
+
+####START####973610a0157
+Fix ExplainLifecycleIT.testExplainFilters (#74941)
+
+Explain `onlyErrors` is tricky to integration test as all the ILM steps
+are now retryable (so the `explain` API might not catch a particular
+failing step when it's in the `ERROR` state as when we retry we move it
+back into the step that failed).
+
+This adds an unit test for the "explain onlyErrors" case.
+####END####
+x-pack/plugin/ilm/qa/multi-node/src/javaRestTest/java/org/elasticsearch/xpack/ilm/ExplainLifecycleIT.java
+x-pack/plugin/ilm/src/main/java/org/elasticsearch/xpack/ilm/action/TransportExplainLifecycleAction.java
+x-pack/plugin/ilm/src/test/java/org/elasticsearch/xpack/ilm/action/TransportExplainLifecycleActionTests.java
+
+####START####a01ba7ff9b7
+Prevent Massive Oversizing of Buckets List in BucketsAggregator (#74962)
+
+We must pre-size the buckets list by the number of buckets in the ord,
+not all the ords combined. This led to a reported OOM.
+Also, removed a redundant loop here.
+####END####
+server/src/main/java/org/elasticsearch/search/aggregations/bucket/BucketsAggregator.java
+
+####START####9a693b96468
+[TEST] Fix BooleanScriptFieldTypeTests#testDualingQueries
+
+The document is created within the parser context, and an external one should not be used.
+
+####END####
+server/src/test/java/org/elasticsearch/index/mapper/BooleanScriptFieldTypeTests.java
+
+####START####565651378a1
+Separate AbstractScriptFieldType from RuntimeField implementations (#74768)
+
+AbstractScriptFieldType extends MappedFieldType and also implements
+RuntimeField. This means that the name() of a runtime field has to be the
+same as the name() of its corresponding mapped field type. However, for
+object fields we will want the nested child fields to have a specific short name,
+while their MappedFieldType will need to have a name that includes the parent.
+
+To make this distinction possible, this commit changes AbstractScriptFieldType
+subclasses to return their own implementations of RuntimeField from their
+type parsers instead of implementing the interface directly.
+####END####
+server/src/main/java/org/elasticsearch/index/mapper/AbstractScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/BooleanScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/DateScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/DoubleScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/DynamicFieldsBuilder.java
+server/src/main/java/org/elasticsearch/index/mapper/GeoPointScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/IpScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/KeywordScriptFieldType.java
+server/src/main/java/org/elasticsearch/index/mapper/LeafRuntimeField.java
+server/src/main/java/org/elasticsearch/index/mapper/LongScriptFieldType.java
+server/src/test/java/org/elasticsearch/index/mapper/BooleanScriptFieldTypeTests.java
+server/src/test/java/org/elasticsearch/index/mapper/DateScriptFieldTypeTests.java
+server/src/test/java/org/elasticsearch/index/mapper/DoubleScriptFieldTypeTests.java
+server/src/test/java/org/elasticsearch/index/mapper/GeoPointScriptFieldTypeTests.java
+server/src/test/java/org/elasticsearch/index/mapper/IpScriptFieldTypeTests.java
+server/src/test/java/org/elasticsearch/index/mapper/KeywordScriptFieldTypeTests.java
+server/src/test/java/org/elasticsearch/index/mapper/LongScriptFieldTypeTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/range/RangeAggregatorTests.java
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/terms/TermsAggregatorTests.java
+
+####START####2700cc802cc
+Simplify ParseContext (#74831)
+
+ We currently have one ParseContext class, which is used to parse incoming documents, not to be confused with the former ParserContext (now renamed to MappingParserContext) which is instead used to parse mappings.
+
+There are a few implementations of ParseContext, but mostly the InternalParseContext one is used. There is also a FilterParseContext that allows to delegate to a given context for all methods besides the one explicitly overridden by it.
+
+This commit attempts to simplify ParseContext by extracting its InternalParseContext implementation and moving it where it's used, within DocumentParser and making it private, so that the super-class can be used. This allows to hide some implementation details that only InternalParseContext knows about on nested documents and the way they are stored in lucene.
+
+Also, we are introducing separate test implementations in place of reusing InternalParseContext in tests too.
+
+Additionally FilterParseContext can be greatly simplified by relying on a copy constructor, that makes it so that it does not have to override every single method to delegate to the provided context, at least for the behaviour that can't be overridden (final methods).
+####END####
+modules/percolator/src/test/java/org/elasticsearch/percolator/CandidateQueryTests.java
+modules/percolator/src/test/java/org/elasticsearch/percolator/PercolatorFieldMapperTests.java
+modules/percolator/src/test/java/org/elasticsearch/percolator/QueryBuilderStoreTests.java
+server/src/main/java/org/elasticsearch/index/mapper/DocumentParser.java
+server/src/main/java/org/elasticsearch/index/mapper/ParseContext.java
+server/src/test/java/org/elasticsearch/index/mapper/BooleanScriptFieldTypeTests.java
+server/src/test/java/org/elasticsearch/index/mapper/DocumentParserTests.java
+test/framework/src/main/java/org/elasticsearch/index/mapper/TestParseContext.java
+
+####START####cbf7b40aae6
+Fix AllocationRoutedStepTests.testExecuteAllocateNotComplete (#74915)
+
+* Fix AllocationRoutedStepTests.testExecuteAllocateNotComplete
+
+The randomMap of allocation routings that we generated could include a
+key that was not a random attribute name but a node role name (eg. `ml`)
+
+* Use randomValueOtherThanMany like it's meant to
+
+* Use method reference
+
+Co-authored-by: Przemko Robakowski <przemko.robakowski@elastic.co>
+
+Co-authored-by: Elastic Machine <elasticmachine@users.noreply.github.com>
+Co-authored-by: Przemko Robakowski <przemko.robakowski@elastic.co>
+####END####
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/AllocateActionTests.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/AllocationRoutedStepTests.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/CheckShrinkReadyStepTests.java
+
+####START####744c75d34a1
+[Rest Api Compatibility] Rename BulkItemResponse.Failure type field (#74937)
+
+it should return type instead of _type
+relates #51816
+####END####
+server/src/main/java/org/elasticsearch/action/bulk/BulkItemResponse.java
+
+####START####2ec84a503d3
+Adjust BWC for cuckoo filter after backport (#74950)
+
+After backporting #74736, remove the BwC serialisation for 8.0.
+####END####
+server/src/main/java/org/elasticsearch/common/util/CuckooFilter.java
+
+####START####04a92829947
+Fix GeoIpProcessor when there's no updated db (#74944)
+
+This change fixes problem with GeoIpProcessor when there's GeoIpTaskState present in the cluster state but there's no database matching the one used by the processor. It can happen when there are some but not all databases already updated.
+####END####
+modules/ingest-geoip/src/main/java/org/elasticsearch/ingest/geoip/GeoIpProcessor.java
+modules/ingest-geoip/src/main/java/org/elasticsearch/ingest/geoip/IngestGeoIpPlugin.java
+modules/ingest-geoip/src/test/java/org/elasticsearch/ingest/geoip/GeoIpProcessorFactoryTests.java
+
+####START####24ff3957693
+Remove Lucene's PackedInt dependency from Cuckoo filter (#74736)
+
+Forks the Lucene data structure into a class called PackedArray that can be serialised using
+Elasticsearch streams.
+####END####
+qa/mixed-cluster/src/test/java/org/elasticsearch/backwards/RareTermsIT.java
+server/src/main/java/org/elasticsearch/common/util/CuckooFilter.java
+
+####START####d41dfc99039
+Upgrade GCS SDK to 1.117.1 (#74938)
+
+We're behind the ugprade schedule by quite a bit here, upgrading to the latest version
+and adjusting our test fixture accordingly.
+####END####
+plugins/repository-gcs/src/test/java/org/elasticsearch/repositories/gcs/GoogleCloudStorageBlobContainerRetriesTests.java
+test/fixtures/gcs-fixture/src/main/java/fixture/gcs/GoogleCloudStorageHttpHandler.java
+
+####START####fec87bf2897
+Less RoutingNodes allocations (#74911)
+
+No longer create as many RoutingNodes, since they are expensive.
+
+Closes #74325
+####END####
+x-pack/plugin/autoscaling/src/main/java/org/elasticsearch/xpack/autoscaling/storage/ReactiveStorageDeciderService.java
+
+####START####1a57164cf61
+EQL: Remove "fields" section from sequence in-progress searches (#74824)
+
+
+####END####
+x-pack/plugin/eql/src/main/java/org/elasticsearch/xpack/eql/execution/assembler/ExecutionManager.java
+x-pack/plugin/eql/src/main/java/org/elasticsearch/xpack/eql/plan/physical/EsQueryExec.java
+
+####START####7b5b9d0bfc1
+[ML] Avoid 5s wait in AbstractNativeProcessTests (#74916)
+
+Calling close() before counting down the latch was causing a 5 second wait and timeout in the tests
+####END####
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/process/AbstractNativeProcessTests.java
+
+####START####721917c3bae
+Permit more temp files in data path (#74921)
+
+When a node starts up it creates, then immediately deletes, files called
+`.es_temp_file.tmp` and `.es_temp_file.final`. If the node is killed at
+exactly the wrong moment then we may leave one of these files on disk.
+
+When upgrading from 7.x to 8.0 we reorganise the contents of the data
+path, but bail out if we encounter anything unexpected to avoid causing
+damage in unexpected situations. However we don't consider the temporary
+files mentioned above as expected, so their existence will cause an
+upgrade to fail.
+
+This commit adjusts the logic to permit these files to exist during the
+ugprade.
+
+Closes #74908
+####END####
+server/src/main/java/org/elasticsearch/env/NodeEnvironment.java
+
+####START####0254dc35038
+Warn on possible master service starvation (#74820)
+
+Today the master service processes pending tasks in priority order. If
+high-priority tasks arrive too frequently then low-priority tasks are
+starved of access to the master service and are not executed. This can
+cause certain tasks to appear to be stuck due to apparently-unrelated
+overloads elsewhere.
+
+With this commit we measure the interval between times when the pending
+task queue is empty; if this interval exceeds a configurable threshold
+then we log a warning.
+####END####
+qa/evil-tests/src/test/java/org/elasticsearch/threadpool/EvilThreadPoolTests.java
+server/src/main/java/org/elasticsearch/cluster/service/ClusterApplierService.java
+server/src/main/java/org/elasticsearch/cluster/service/MasterService.java
+server/src/main/java/org/elasticsearch/common/settings/ClusterSettings.java
+server/src/main/java/org/elasticsearch/common/util/concurrent/EsExecutors.java
+server/src/main/java/org/elasticsearch/common/util/concurrent/PrioritizedEsThreadPoolExecutor.java
+server/src/test/java/org/elasticsearch/cluster/service/MasterServiceTests.java
+server/src/test/java/org/elasticsearch/cluster/service/TaskExecutorTests.java
+server/src/test/java/org/elasticsearch/common/util/concurrent/PrioritizedExecutorsTests.java
+test/framework/src/main/java/org/elasticsearch/cluster/coordination/MockSinglePrioritizingExecutor.java
+test/framework/src/main/java/org/elasticsearch/cluster/service/FakeThreadPoolMasterService.java
+test/framework/src/main/java/org/elasticsearch/test/MockLogAppender.java
+
+####START####b3e171b6005
+changing hard coded 10k page size limit to 65k (#74651)
+
+changes hard code 10k page size limit to 65k(default for `search.max_bucket`)
+
+Closes #57719
+
+Co-authored-by: Hendrik Muhs <hendrik.muhs@elastic.co>
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/transform/transforms/SettingsConfig.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/transform/transforms/pivot/PivotConfig.java
+
+####START####bec0d9424ab
+Fix ActionConfigStatsTests.testEqualsAndHashcode (#74907)
+
+Additional fixes for `ActionConfigStatsTests.testEqualsAndHashcode`
+
+Relates to #74849
+####END####
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/ActionConfigStatsTests.java
+
+####START####b83c4fb46d1
+Call fixRedundantIncludes on dynamic mapping updates (#74903)
+
+Dynamic mappings updates containing nested mappings were not fixing
+their redundant include settings before being posted back to the put
+mappings service; this meant that a dynamic mapping that had both
+'include_in_parent' and 'include_in_root' set to 'true' could cause an
+error if it was returned from multiple shards, because the first mapping
+would be updated to have 'include_in_root' set to 'false' when merged,
+and merging this with the second mapping with 'include_in_root' set to
+'true' would cause a conflict.
+
+This commit ensures that fixRedundantIncludes is called on dynamic
+mappings before they are posted back to the mapping service.
+
+Fixes #74899
+####END####
+server/src/main/java/org/elasticsearch/index/mapper/DocumentParser.java
+server/src/test/java/org/elasticsearch/index/mapper/NestedObjectMapperTests.java
+
+####START####4ff3c89bc40
+Fix Plain Highlighter ordering for `none` (#74084)
+
+The plain highlighter should order the fragments by order of appearance by
+default, but sorts them by score internally. This fix changes the sorting
+comparator in case ordering by score is not selected (the default) and adds
+testing around this.
+
+Closes #58236
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/search/fetch/subphase/highlight/HighlighterSearchIT.java
+server/src/main/java/org/elasticsearch/search/fetch/subphase/highlight/PlainHighlighter.java
+
+####START####588fe5c5f15
+Move DeterministicTaskQueue to appropriate package (#74901)
+
+`o.e.c.coordination.DeterministicTaskQueue` is today used in various
+places, not just for tests of the cluster coordination subsystem. It's
+also a bit of a pain to construct, requiring a nonempty `Settings` and a
+`Random` even though essentially everyone passes in the same values.
+This commit moves this class to the more generic `o.e.c.util.concurrent`
+package, adds some Javadoc, and makes it easier to construct.
+####END####
+server/src/test/java/org/elasticsearch/action/support/ListenerTimeoutsTests.java
+server/src/test/java/org/elasticsearch/action/support/RetryableActionTests.java
+server/src/test/java/org/elasticsearch/cluster/InternalClusterInfoServiceSchedulingTests.java
+server/src/test/java/org/elasticsearch/cluster/NodeConnectionsServiceTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/ClusterBootstrapServiceTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/ClusterFormationFailureHelperTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/CoordinatorTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/ElectionSchedulerFactoryTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/FollowersCheckerTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/JoinHelperTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/LagDetectorTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/LeaderCheckerTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/NodeJoinTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/PreVoteCollectorTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/PublicationTransportHandlerTests.java
+server/src/test/java/org/elasticsearch/discovery/PeerFinderTests.java
+server/src/test/java/org/elasticsearch/monitor/fs/FsHealthServiceTests.java
+server/src/test/java/org/elasticsearch/snapshots/SnapshotResiliencyTests.java
+server/src/test/java/org/elasticsearch/transport/TransportServiceDeserializationFailureTests.java
+test/framework/src/main/java/org/elasticsearch/cluster/coordination/AbstractCoordinatorTestCase.java
+test/framework/src/main/java/org/elasticsearch/cluster/coordination/MockSinglePrioritizingExecutor.java
+test/framework/src/main/java/org/elasticsearch/common/util/concurrent/DeterministicTaskQueue.java
+test/framework/src/main/java/org/elasticsearch/test/disruption/DisruptableMockTransport.java
+test/framework/src/test/java/org/elasticsearch/cluster/coordination/MockSinglePrioritizingExecutorTests.java
+test/framework/src/test/java/org/elasticsearch/common/util/concurrent/DeterministicTaskQueueTests.java
+test/framework/src/test/java/org/elasticsearch/test/disruption/DisruptableMockTransportTests.java
+x-pack/plugin/ccr/src/test/java/org/elasticsearch/xpack/ccr/repository/CcrRestoreSourceServiceTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/allocation/SearchableSnapshotAllocatorTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/cache/common/CacheFileTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/cache/common/SparseFileTrackerTests.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/cache/common/TestUtils.java
+x-pack/plugin/searchable-snapshots/src/test/java/org/elasticsearch/xpack/searchablesnapshots/cache/shared/FrozenCacheServiceTests.java
+
+####START####2f8ef642d55
+Indicate quorumness of discovered nodes earlier (#74823)
+
+Today the `ClusterFormationFailureHelper` logs a message of the form
+`have discovered [...] which is/is not a quorum`. The `[...]` describes
+all the nodes that have been discovered, which obscures the important
+fact about whether they're a quorum or not by pushing it a long way into
+the message. Also it can be confusing to say that the discovered nodes
+form a quorum when our local state is stale and they're not a quorum
+according to a fresher state.
+
+This commit reorders the message to put the quorumness before the list
+of nodes, and weakens the wording to call it a `possible quorum` to
+account for the local state possibly being stale.
+####END####
+server/src/main/java/org/elasticsearch/cluster/coordination/ClusterFormationFailureHelper.java
+server/src/test/java/org/elasticsearch/cluster/coordination/ClusterFormationFailureHelperTests.java
+server/src/test/java/org/elasticsearch/cluster/coordination/CoordinatorTests.java
+
+####START####90c98e17966
+Fix ActionConfigStatsTests.testEqualsAndHashcode (#74849)
+
+This change fixes failing ActionConfigStatsTests.testEqualsAndHashcode by making sure we use different shrink number of shards after mutation.
+
+Closes #74817
+####END####
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/ActionConfigStatsTests.java
+
+####START####577e9e47615
+Fix Concurrent Snapshot Repository Remove Issues (#74880)
+
+We need to fail repository operations as soon as a repository has been shut down
+to avoid getting into broken cluster state situations where operations are created
+in the cluster state but the repository they target was removed concurrently.
+
+closes #74858
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/snapshots/DedicatedClusterSnapshotRestoreIT.java
+server/src/main/java/org/elasticsearch/action/admin/cluster/repositories/cleanup/TransportCleanupRepositoryAction.java
+server/src/main/java/org/elasticsearch/repositories/blobstore/BlobStoreRepository.java
+server/src/main/java/org/elasticsearch/snapshots/SnapshotsService.java
+
+####START####1fc09f9ce14
+Improve BoundedBreakIteratorScanner fragmentation algorithm (#73785)
+
+The current approach begins by finding the nearest preceding and following boundaries, and expands the following boundary greedily while it respects the problem restriction. This is fine asymptotically, but BreakIterator which is used to find each boundary is sometimes expensive.
+
+The new approach maximizes the after boundary by scanning for the last boundary preceding the position that would cause the condition to be violated (i.e. knowing start boundary and offset, how many characters are left before resulting length is fragment size). If this scan finds the start boundary, it means it's impossible to satisfy the problem restriction, and we get the first boundary following offset instead (or better, since we already scanned [offset, targetEndOffset], start from targetEndOffset + 1).
+####END####
+server/src/main/java/org/apache/lucene/search/uhighlight/BoundedBreakIteratorScanner.java
+server/src/test/java/org/apache/lucene/search/uhighlight/BoundedBreakIteratorScannerTests.java
+
+####START####1db75f75ca5
+Polish and cleanup test related plugins (#74673)
+
+- avoid eagerly created test cluster
+- remove duplicate superflous configuration
+- resolve system properties via provider factory
+- move common test configuration / setup into rest test base plugin
+
+####END####
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/rest/compat/YamlRestCompatTestPlugin.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/RestTestBasePlugin.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/StandaloneRestTestPlugin.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/rest/JavaRestTestPlugin.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/rest/RestTestUtil.java
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/test/rest/YamlRestTestPlugin.java
+
+####START####0f30c79e4b5
+Remove legacy geo code from AbstractGeometryQueryBuilder classes (#74741)
+
+removes references to Legacy ShapeParser and ShapeBuilder in AbstractGeometryQueryBuilder classes 
+in favour to Geometry and GeometryParser.
+####END####
+modules/percolator/src/test/java/org/elasticsearch/percolator/PercolateQueryBuilderTests.java
+server/src/main/java/org/elasticsearch/index/query/AbstractGeometryQueryBuilder.java
+server/src/main/java/org/elasticsearch/index/query/GeoShapeQueryBuilder.java
+server/src/main/java/org/elasticsearch/index/query/QueryBuilders.java
+server/src/test/java/org/elasticsearch/index/query/GeoShapeQueryBuilderGeoPointTests.java
+server/src/test/java/org/elasticsearch/index/query/GeoShapeQueryBuilderGeoShapeTests.java
+server/src/test/java/org/elasticsearch/index/query/GeoShapeQueryBuilderTests.java
+server/src/test/java/org/elasticsearch/index/query/MoreLikeThisQueryBuilderTests.java
+server/src/test/java/org/elasticsearch/index/query/ScriptQueryBuilderTests.java
+server/src/test/java/org/elasticsearch/index/query/functionscore/FunctionScoreQueryBuilderTests.java
+test/framework/src/main/java/org/elasticsearch/geo/GeometryTestUtils.java
+test/framework/src/main/java/org/elasticsearch/test/AbstractQueryTestCase.java
+test/framework/src/test/java/org/elasticsearch/test/AbstractQueryTestCaseTests.java
+x-pack/plugin/spatial/src/main/java/org/elasticsearch/xpack/spatial/index/query/ShapeQueryBuilder.java
+x-pack/plugin/spatial/src/test/java/org/elasticsearch/xpack/spatial/index/query/GeoShapeWithDocValuesQueryBuilderTests.java
+x-pack/plugin/spatial/src/test/java/org/elasticsearch/xpack/spatial/index/query/ShapeQueryBuilderTests.java
+
+####START####718d79cf0cb
+Adjust BWC version for compressing async search response (#74882)
+
+Relates #74766
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/async/AsyncTaskIndexService.java
+
+####START####ab23cc06d15
+EQL: Remove "yet" from unsupported pipe error message (#74850)
+
+
+####END####
+x-pack/plugin/eql/src/main/java/org/elasticsearch/xpack/eql/parser/LogicalPlanBuilder.java
+x-pack/plugin/eql/src/test/java/org/elasticsearch/xpack/eql/parser/ExpressionTests.java
+
+####START####83de8acfe79
+Reenable BWC for ILM telemetry configurations (#74864)
+
+
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/IndexLifecycleFeatureSetUsage.java
+
+####START####667f95b7928
+Fix Metadata and IndexMetadata XContent Parsing not Draining Parser (#74844)
+
+Exactly the same as #73268 but for metadata and index metadata which can run into
+the same bug.
+####END####
+server/src/main/java/org/elasticsearch/cluster/metadata/IndexMetadata.java
+server/src/main/java/org/elasticsearch/cluster/metadata/Metadata.java
+server/src/main/java/org/elasticsearch/repositories/blobstore/ChecksumBlobStoreFormat.java
+
+####START####e25d70685e2
+Fix test compression setting upgrade tests (#74790)
+
+This is related to #74755. The test to check that compression settings
+are compatible after upgrade uses the cluster.remote prefix for remote
+cluster settings. These settings did not exist in early versions of 6.x.
+This commit adds an assume true to ensure that the test is not run
+against older versions.
+####END####
+qa/full-cluster-restart/src/test/java/org/elasticsearch/upgrades/FullClusterRestartIT.java
+
+####START####2dd2945babf
+Fix RestGetSnapshotsCancellationIT Failures (#74827)
+
+Found this to be the easiest fix, the alternative would have been to actually
+wait for all snapshot meta threads to become blocked but that's kind of hacky.
+
+closes #74743
+####END####
+qa/smoke-test-http/src/test/java/org/elasticsearch/http/snapshots/RestGetSnapshotsCancellationIT.java
+
+####START####e26fa4e6da7
+Script: User funcs are script instance methods (#74268)
+
+User defined functions are instance methods on the Script class.
+
+Update lambdas and method references to capture the script `this`
+reference.
+
+Def method encoding string takes an extra char at index 1, whether
+to capture the script reference.
+
+For runtime fields, this means emit, which is an script instance
+method already, now works in user defined functions.
+
+Fixes: #69742
+Refs: #68235
+####END####
+modules/lang-painless/src/main/java/org/elasticsearch/painless/Def.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/FunctionRef.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/LambdaBootstrap.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/MethodWriter.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/antlr/Walker.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/phase/DefaultIRTreeToASMBytesPhase.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/phase/DefaultSemanticAnalysisPhase.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/phase/DefaultUserTreeToIRTreePhase.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/symbol/Decorations.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/symbol/IRDecorations.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/symbol/SemanticScope.java
+modules/lang-painless/src/main/java/org/elasticsearch/painless/toxcontent/DecorationToXContent.java
+modules/lang-painless/src/test/java/org/elasticsearch/painless/EmitTests.java
+modules/lang-painless/src/test/java/org/elasticsearch/painless/FunctionRefTests.java
+modules/lang-painless/src/test/java/org/elasticsearch/painless/TestFieldScript.java
+modules/lang-painless/src/test/java/org/elasticsearch/painless/ToXContentTests.java
+modules/lang-painless/src/test/java/org/elasticsearch/painless/UserFunctionTests.java
+
+####START####a0d26954bd9
+Improve efficiency of Grok circular reference check (#74814)
+
+This change is a tweak to #74581 which removes the N^2
+loop that was added in that PR.
+####END####
+libs/grok/src/main/java/org/elasticsearch/grok/Grok.java
+
+####START####c8c420094f5
+[ML] autoscaling context current capacity could be null, this commit handles that (#74822)
+
+context commit may be null. This should only really happen early in a cluster's life cycle or if a node was just recently brought online. Mainly because the current node sizes have not been discovered yet and cached.
+
+This change should really have been part of #74691
+####END####
+x-pack/plugin/ml/qa/native-multi-node-tests/src/javaRestTest/java/org/elasticsearch/xpack/ml/integration/AutoscalingIT.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/autoscaling/MlAutoscalingDeciderService.java
+
+####START####d70b090e488
+Reduce memory usage in SimpleClusterStateIT#testLargeClusterStatePublishing (#73773)
+
+In order to produce a large cluster state this test was creating 1000s
+of text fields for index mappings. The in memory representation for
+these mappings can consume all the heap causing OOMs. This commit
+changes the mapping type for a boolean that's more lightweight.
+
+Closes #73050
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/cluster/SimpleClusterStateIT.java
+
+####START####12b4fcf0fe9
+ReindexIT wait for task to really start (#73018)
+
+Reindex and friends have tasks that start but are not ready to
+rethrottle before they figured out if they are leader or worker
+tasks. Now wait for the task to fully start before rethrottling.
+
+Also added additional assertions to help see if the inability
+to rethrottle is caused by some failure.
+
+Closes #60811
+####END####
+client/rest-high-level/src/test/java/org/elasticsearch/client/ESRestHighLevelClientTestCase.java
+client/rest-high-level/src/test/java/org/elasticsearch/client/ReindexIT.java
+
+####START####90e663b3443
+Always use DirectoryReader for realtime get from translog (#74722)
+
+Reading from translog during a realtime get requires special handling in some higher level components, e.g.
+ShardGetService, where we're doing a bunch of tricks to extract other stored fields from the source. Another issue with
+the current approach relates to #74227 where we introduce a new "field usage tracking" directory wrapper that's always
+applied, and we want to make sure that we can still quickly do realtime gets from translog without creating an in-memory
+index of the document, even when this directory wrapper exists.
+
+This PR introduces a directory reader that contains a single translog indexing operation. This can be used during a
+realtime get to access documents that haven't been refreshed yet. In the normal case, all information relevant to resolve
+the realtime get is mocked out to provide fast access to _id and _source. In case where more values are requested (e.g.
+access to other stored fields) etc., this reader will index the document into an in-memory Lucene segment that is
+created on-demand.
+
+Relates #64504
+####END####
+server/src/main/java/org/elasticsearch/common/lucene/uid/PerThreadIDVersionAndSeqNoLookup.java
+server/src/main/java/org/elasticsearch/common/lucene/uid/VersionsAndSeqNoResolver.java
+server/src/main/java/org/elasticsearch/index/engine/Engine.java
+server/src/main/java/org/elasticsearch/index/engine/InternalEngine.java
+server/src/main/java/org/elasticsearch/index/engine/ReadOnlyEngine.java
+server/src/main/java/org/elasticsearch/index/engine/SingleDocDirectoryReader.java
+server/src/main/java/org/elasticsearch/index/engine/TranslogDirectoryReader.java
+server/src/main/java/org/elasticsearch/index/engine/TranslogLeafReader.java
+server/src/main/java/org/elasticsearch/index/fieldvisitor/CustomFieldsVisitor.java
+server/src/main/java/org/elasticsearch/index/fieldvisitor/FieldsVisitor.java
+server/src/main/java/org/elasticsearch/index/get/ShardGetService.java
+server/src/main/java/org/elasticsearch/index/mapper/Mapping.java
+server/src/test/java/org/elasticsearch/index/engine/InternalEngineTests.java
+server/src/test/java/org/elasticsearch/index/shard/ShardGetServiceTests.java
+test/framework/src/main/java/org/elasticsearch/index/engine/EngineTestCase.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/security/authz/accesscontrol/DocumentSubsetBitsetCache.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/security/authz/accesscontrol/DocumentSubsetReader.java
+
+####START####85f0a029c25
+Optimize Away Small Resumable Uploads in GCS Repository (#74813)
+
+Similar to ChunkedOutputStream we can optimize away small resumable uploads
+to speed up small meta writes (and improve stability with JDK-8 in 7.x).
+####END####
+plugins/repository-gcs/src/internalClusterTest/java/org/elasticsearch/repositories/gcs/GoogleCloudStorageBlobStoreRepositoryTests.java
+plugins/repository-gcs/src/main/java/org/elasticsearch/repositories/gcs/GoogleCloudStorageBlobStore.java
+plugins/repository-gcs/src/main/java/org/elasticsearch/repositories/gcs/GoogleCloudStorageRepository.java
+plugins/repository-gcs/src/test/java/org/elasticsearch/repositories/gcs/GoogleCloudStorageBlobContainerRetriesTests.java
+plugins/repository-gcs/src/test/java/org/elasticsearch/repositories/gcs/GoogleCloudStorageBlobStoreContainerTests.java
+
+####START####1ea7e5000e2
+Fix gradle func tests running in idea (#74811)
+
+* Fix gradle func tests running in idea
+
+* Tweak wrapper task
+####END####
+build-conventions/src/main/java/org/elasticsearch/gradle/internal/conventions/EclipseConventionPlugin.java
+
+####START####59d4508b165
+Compress async search responses before storing (#74766)
+
+Related to #67594
+
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/async/AsyncTaskIndexService.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/async/AsyncSearchIndexServiceTests.java
+x-pack/plugin/eql/src/internalClusterTest/java/org/elasticsearch/xpack/eql/action/AsyncEqlSearchActionIT.java
+x-pack/plugin/sql/src/internalClusterTest/java/org/elasticsearch/xpack/sql/action/AsyncSqlSearchActionIT.java
+
+####START####005f209771e
+Revert "Compress async search responses before storing (#74766)"
+
+This reverts commit 55175dec5f7bcbfffdbf46f406e0259efed6fec3.
+
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/async/AsyncTaskIndexService.java
+x-pack/plugin/eql/src/internalClusterTest/java/org/elasticsearch/xpack/eql/action/AsyncEqlSearchActionIT.java
+x-pack/plugin/sql/src/internalClusterTest/java/org/elasticsearch/xpack/sql/action/AsyncSqlSearchActionIT.java
+
+####START####55175dec5f7
+Compress async search responses before storing (#74766)
+
+Related to #67594
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/async/AsyncTaskIndexService.java
+x-pack/plugin/eql/src/internalClusterTest/java/org/elasticsearch/xpack/eql/action/AsyncEqlSearchActionIT.java
+x-pack/plugin/sql/src/internalClusterTest/java/org/elasticsearch/xpack/sql/action/AsyncSqlSearchActionIT.java
+
+####START####8bbba5f8ff9
+Fix unit test classpath when testing shadow jar projects (#74783)
+
+
+####END####
+build-tools-internal/src/main/java/org/elasticsearch/gradle/internal/ElasticsearchTestBasePlugin.java
+
+####START####e14ba5e0d51
+Add phase configs to ILM telemetry (#74575)
+
+This PR adds some ILM action configurations to each set of phase stats within the 
+ILM usage response. Additionally, the change detects if the migrate action should 
+be added for a phase and lists the action in the list of phases. 
+####END####
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/IndexLifecycleFeatureSetUsage.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/SetPriorityAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/ShrinkAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/ilm/TimeseriesLifecycleType.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/ActionConfigStatsTests.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/ilm/PhaseStatsTests.java
+x-pack/plugin/ilm/src/main/java/org/elasticsearch/xpack/ilm/IndexLifecycleUsageTransportAction.java
+x-pack/plugin/ilm/src/test/java/org/elasticsearch/xpack/ilm/PhaseStatsTests.java
+
+####START####f9991e61496
+[ML] prevent accidentally asking for more resources when scaling down and improve scaling size estimations (#74691)
+
+This commit addresses two problems:
+
+ - Our memory estimations are not very exact. Consequently, its possible to request for too much or too little by a handful of KBs, while this is not a large issue in ESS, for custom tier sizes, it may be. 
+ - When scaling down, it was possible that part of the scale down was actually a scale up! This was due to some floating point rounding errors and poor estimations. Even though are estimations are better, it is best to NOT request higher resources in a scale down, no matter what. 
+
+One of the ways we improve the calculation is during JVM size calculations. Instead of having the knot point be `2gb` it has been changed to `1.2gb`. This accounts for the "window of uncertainty" for JVM sizes.
+ 
+closes: #74709 
+####END####
+x-pack/plugin/ml/qa/native-multi-node-tests/src/javaRestTest/java/org/elasticsearch/xpack/ml/integration/AutoscalingIT.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/autoscaling/MlAutoscalingDeciderService.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/autoscaling/NativeMemoryCapacity.java
+x-pack/plugin/ml/src/main/java/org/elasticsearch/xpack/ml/utils/NativeMemoryCalculator.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/autoscaling/MlAutoscalingDeciderServiceTests.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/autoscaling/NativeMemoryCapacityTests.java
+x-pack/plugin/ml/src/test/java/org/elasticsearch/xpack/ml/utils/NativeMemoryCalculatorTests.java
+
+####START####bdd62d76c3a
+Fix aggs test failures (#74750)
+
+The tests for the debugging information in the filters aggregation where
+too specific for the kind of randomization we run with. They asserted
+that the indices contained only a single segment which is *usually*
+true, but our test randomization framework sometimes emit many segmented
+indices, just to exercise the code. That's a good thing. But the tests
+had a wrong assertion. This swaps the assertion from `equalTo(1)` to
+`greaterThanOrEqualTo(1)`.
+
+Closes #74677
+
+####END####
+server/src/test/java/org/elasticsearch/search/aggregations/bucket/filter/FiltersAggregatorTests.java
+
+####START####9c015987300
+Add 7.15.0 version constant
+
+####END####
+server/src/main/java/org/elasticsearch/Version.java
+
+####START####c23cb99b719
+Add index disk usage API (#74051)
+
+This change adds a new API that supports analyzing the disk usage of 
+each field of an index.
+####END####
+server/src/internalClusterTest/java/org/elasticsearch/action/admin/indices/diskusage/IndexDiskUsageAnalyzerIT.java
+server/src/main/java/org/elasticsearch/action/ActionModule.java
+server/src/main/java/org/elasticsearch/action/admin/indices/diskusage/AnalyzeDiskUsageShardRequest.java
+server/src/main/java/org/elasticsearch/action/admin/indices/diskusage/AnalyzeDiskUsageShardResponse.java
+server/src/main/java/org/elasticsearch/action/admin/indices/diskusage/AnalyzeIndexDiskUsageAction.java
+server/src/main/java/org/elasticsearch/action/admin/indices/diskusage/AnalyzeIndexDiskUsageRequest.java
+server/src/main/java/org/elasticsearch/action/admin/indices/diskusage/AnalyzeIndexDiskUsageResponse.java
+server/src/main/java/org/elasticsearch/action/admin/indices/diskusage/IndexDiskUsageAnalyzer.java
+server/src/main/java/org/elasticsearch/action/admin/indices/diskusage/IndexDiskUsageStats.java
+server/src/main/java/org/elasticsearch/action/admin/indices/diskusage/TransportAnalyzeIndexDiskUsageAction.java
+server/src/main/java/org/elasticsearch/common/lucene/FilterIndexCommit.java
+server/src/main/java/org/elasticsearch/index/engine/CombinedDeletionPolicy.java
+server/src/main/java/org/elasticsearch/index/store/LuceneFilesExtensions.java
+server/src/main/java/org/elasticsearch/rest/action/admin/indices/RestAnalyzeIndexDiskUsageAction.java
+server/src/test/java/org/elasticsearch/action/admin/indices/diskusage/IndexDiskUsageAnalyzerTests.java
+x-pack/plugin/security/qa/operator-privileges-tests/src/javaRestTest/java/org/elasticsearch/xpack/security/operator/Constants.java
+
+####START####7603fded046
+Improve circular reference detection in grok processor (#74581)
+
+
+####END####
+libs/grok/src/main/java/org/elasticsearch/grok/Grok.java
+libs/grok/src/test/java/org/elasticsearch/grok/GrokTests.java
+
+####START####aa76ebbfbec
+Set max allowed size for stored async response (#74455)
+
+Add a dynamic transient cluster setting search.max_async_search_response_size
+that controls the maximum allowed size for a stored async search
+response. The default max size is 10Mb. An attempt to store
+an async search response larger than this size will result in error.
+
+Relates to #67594
+####END####
+server/src/main/java/org/elasticsearch/common/io/stream/BytesStreamOutput.java
+server/src/main/java/org/elasticsearch/common/settings/ClusterSettings.java
+server/src/main/java/org/elasticsearch/search/SearchService.java
+x-pack/plugin/async-search/src/internalClusterTest/java/org/elasticsearch/xpack/search/AsyncSearchActionIT.java
+x-pack/plugin/async-search/src/main/java/org/elasticsearch/xpack/search/TransportSubmitAsyncSearchAction.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/async/AsyncResponse.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/async/AsyncTaskIndexService.java
+x-pack/plugin/core/src/main/java/org/elasticsearch/xpack/core/search/action/AsyncSearchResponse.java
+x-pack/plugin/core/src/test/java/org/elasticsearch/xpack/core/async/AsyncSearchIndexServiceTests.java
+x-pack/plugin/ql/src/main/java/org/elasticsearch/xpack/ql/async/AsyncTaskManagementService.java
+
+####START####27023aa85d1
+Mute ExecuteWatchQueuedStatsTests (#74747)
+
+Relates #66392
+####END####
+x-pack/plugin/watcher/src/internalClusterTest/java/org/elasticsearch/xpack/watcher/execution/ExecuteWatchQueuedStatsTests.java
+
+####START####603ebf7b7f7
+[Rest Api Compatibility] Types for Percolate Query Api (#74698)
+
+Previously removed in #46985. The yaml test is included in this PR, but
+will be removed once #74689 is merged.
+
+relates #54160
+relates main meta issue #51816
+####END####
+modules/percolator/src/main/java/org/elasticsearch/percolator/PercolateQueryBuilder.java
+modules/percolator/src/test/java/org/elasticsearch/percolator/PercolateQueryBuilderTests.java
+server/src/main/java/org/elasticsearch/action/search/MultiSearchRequest.java
+
+####START####eca57352b5b
+Remove Outdated GetSnapshots BwC Handling in Rest Tests (#74734)
+
+The group-by-repository response format is gone as a result of #74451
+=> cleaning up its last remnants from REST tests.
+####END####
+qa/full-cluster-restart/src/test/java/org/elasticsearch/upgrades/FullClusterRestartIT.java
+qa/repository-multi-version/src/test/java/org/elasticsearch/upgrades/MultiVersionRepositoryAccessIT.java
+test/framework/src/main/java/org/elasticsearch/test/rest/ESRestTestCase.java
+
+####START####4fa1c8db463
+[Rest Api Compatibility] Allow for type in geo shape query (#74553)
+
+Allowing to specify type in geo_shape query. previously removed by #47792
+types removal compatible meta #54160
+main meta issue #51816
+####END####
+server/src/main/java/org/elasticsearch/index/query/AbstractGeometryQueryBuilder.java
+
+####START####8a54a056aaa
+Fix Offset Mistake in ChunkedBlobOutputStreamTests (#74735)
+
+Obvious mistake/oversight here that fails tests for buffers of length `1`.
+####END####
+server/src/test/java/org/elasticsearch/repositories/blobstore/ChunkedBlobOutputStreamTests.java

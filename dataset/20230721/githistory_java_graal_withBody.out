@@ -1,0 +1,1642 @@
+####START####55161f2d487
+[GR-32695] Write DWARF string text as UTF8 rather than ASCII.
+
+PullRequest: graal/9396
+
+####END####
+####START####bc3695c7bbc
+[GR-32030] [GR-32386] Various JCK 17 fixes.
+
+PullRequest: graal/9387
+
+####END####
+####START####e06685886ef
+[GR-27423] Replace UnsafeArrayAccess helper with ByteArraySupport.
+
+PullRequest: graal/9298
+
+####END####
+####START####b731da66b0c
+[GR-32614] Fix image heap method handles registration for constructors
+
+PullRequest: graal/9379
+
+####END####
+####START####a5ace85fae1
+[GR-32560] IOS simulator target.
+
+PullRequest: graal/9329
+
+####END####
+####START####a5531144126
+Fix: finagle-chirper and finagle-http benchmarks.
+
+####END####
+substratevm/src/com.oracle.svm.jni/src/com/oracle/svm/jni/access/JNIReflectionDictionary.java
+substratevm/src/com.oracle.svm.jni/src/com/oracle/svm/jni/functions/JNIFunctions.java
+
+####START####64bff77bee7
+[GR-27682] Store expected memory op size in AArch64Addresses.
+
+PullRequest: graal/7785
+
+####END####
+####START####2f3e39e57c2
+[GR-32410] Update to jvmci-21.3-b01.
+
+PullRequest: graal/9381
+
+####END####
+####START####55c8d92f14e
+remove compilationFailed flag
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+
+####START####01ca280b80b
+add unit test for case where frame descriptor changes
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+espresso/Main.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/BytecodeOSRNode.java
+
+####START####5791663d905
+Merge branch 'master' of upstream into mdsouza/espresso-osr
+
+####END####
+####START####adaaaf66283
+remove redundant 'final' modifier
+
+####END####
+sulong/projects/com.oracle.truffle.llvm.runtime/src/com/oracle/truffle/llvm/runtime/LLVMElemPtrSymbol.java
+
+####START####0e6b37aa3f7
+fix node creation issue
+
+####END####
+sulong/projects/com.oracle.truffle.llvm.parser/src/com/oracle/truffle/llvm/parser/LLVMParser.java
+sulong/projects/com.oracle.truffle.llvm.runtime/src/com/oracle/truffle/llvm/runtime/LLVMElemPtrSymbol.java
+sulong/projects/com.oracle.truffle.llvm.runtime/src/com/oracle/truffle/llvm/runtime/nodes/others/LLVMAccessElemPtrSymbolNode.java
+
+####START####7121d1b5b6b
+Merge MemoryArrayBuffer into WasmMemory.
+
+####END####
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/api/Memory.java
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/api/MemoryArrayBuffer.java
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/memory/WasmMemory.java
+
+####START####0bdddb159b7
+[GR-32215] NetSuite fails with an error creating a polyglot engine.
+
+PullRequest: graal/9282
+
+####END####
+####START####31f7226ed67
+Fix internal comment.
+
+####END####
+truffle/src/com.oracle.truffle.api.instrumentation.test/src/com/oracle/truffle/api/instrumentation/test/InstrumentationEventTest.java
+
+####START####4d32f8bd17c
+[GR-32660] Fixed review comments.
+
+####END####
+substratevm/src/com.oracle.svm.truffle/src/com/oracle/svm/truffle/TruffleFeature.java
+truffle/src/com.oracle.truffle.api.dsl.test/src/com/oracle/truffle/api/dsl/test/processor/LanguageRegistrationTest.java
+truffle/src/com.oracle.truffle.dsl.processor/src/com/oracle/truffle/dsl/processor/LanguageRegistrationProcessor.java
+
+####START####67a04ed627d
+[GR-32660] Removed support for deprecated registration of TruffleLanguage from LanguageCache.
+
+####END####
+substratevm/src/com.oracle.svm.truffle/src/com/oracle/svm/truffle/TruffleFeature.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/InstrumentCache.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/LanguageCache.java
+
+####START####3578e1dc044
+[GR-32660] Removed support for deprecated registration of TruffleInstrument from InstrumentCache.
+
+####END####
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/InstrumentCache.java
+
+####START####5ad3359738c
+[GR-32660] Removed support for deprecated registration of TruffleLanguage and TruffleInstrument from registration processor.
+
+####END####
+truffle/src/com.oracle.truffle.api.dsl.test/src/com/oracle/truffle/api/dsl/test/processor/InstrumentRegistrationTest.java
+truffle/src/com.oracle.truffle.api.dsl.test/src/com/oracle/truffle/api/dsl/test/processor/LanguageRegistrationTest.java
+truffle/src/com.oracle.truffle.api.test/src/com/oracle/truffle/api/test/polyglot/LanguageCacheTest.java
+truffle/src/com.oracle.truffle.dsl.processor/src/com/oracle/truffle/dsl/processor/AbstractRegistrationProcessor.java
+truffle/src/com.oracle.truffle.dsl.processor/src/com/oracle/truffle/dsl/processor/InstrumentRegistrationProcessor.java
+truffle/src/com.oracle.truffle.dsl.processor/src/com/oracle/truffle/dsl/processor/LanguageRegistrationProcessor.java
+
+####START####21ca810a76c
+Print warning if average sample duration is greater than 20% of sample period.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/impl/CPUSamplerCLI.java
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/impl/CPUSamplerInstrument.java
+
+####START####97ac67e622c
+Store expected memory operation size within AArch64Addresses.
+
+####END####
+compiler/src/org.graalvm.compiler.asm.aarch64.test/src/org/graalvm/compiler/asm/aarch64/test/AArch64AddressingModeTest.java
+compiler/src/org.graalvm.compiler.asm.aarch64/src/org/graalvm/compiler/asm/aarch64/AArch64Address.java
+compiler/src/org.graalvm.compiler.asm.aarch64/src/org/graalvm/compiler/asm/aarch64/AArch64Assembler.java
+compiler/src/org.graalvm.compiler.asm.aarch64/src/org/graalvm/compiler/asm/aarch64/AArch64MacroAssembler.java
+compiler/src/org.graalvm.compiler.core.aarch64/src/org/graalvm/compiler/core/aarch64/AArch64AddressLoweringByUse.java
+compiler/src/org.graalvm.compiler.core.aarch64/src/org/graalvm/compiler/core/aarch64/AArch64AddressNode.java
+compiler/src/org.graalvm.compiler.hotspot.aarch64/src/org/graalvm/compiler/hotspot/aarch64/AArch64HotSpotBackend.java
+compiler/src/org.graalvm.compiler.hotspot.aarch64/src/org/graalvm/compiler/hotspot/aarch64/AArch64HotSpotLIRGenerator.java
+compiler/src/org.graalvm.compiler.hotspot.aarch64/src/org/graalvm/compiler/hotspot/aarch64/AArch64HotSpotLoadAddressOp.java
+compiler/src/org.graalvm.compiler.hotspot.aarch64/src/org/graalvm/compiler/hotspot/aarch64/AArch64HotSpotLoadConfigValueOp.java
+compiler/src/org.graalvm.compiler.hotspot.aarch64/src/org/graalvm/compiler/hotspot/aarch64/AArch64HotSpotMove.java
+compiler/src/org.graalvm.compiler.hotspot.aarch64/src/org/graalvm/compiler/hotspot/aarch64/AArch64HotSpotSafepointOp.java
+compiler/src/org.graalvm.compiler.lir.aarch64/src/org/graalvm/compiler/lir/aarch64/AArch64AddressValue.java
+compiler/src/org.graalvm.compiler.lir.aarch64/src/org/graalvm/compiler/lir/aarch64/AArch64ArrayCompareToOp.java
+compiler/src/org.graalvm.compiler.lir.aarch64/src/org/graalvm/compiler/lir/aarch64/AArch64ArrayEqualsOp.java
+compiler/src/org.graalvm.compiler.lir.aarch64/src/org/graalvm/compiler/lir/aarch64/AArch64ArrayIndexOfOp.java
+compiler/src/org.graalvm.compiler.lir.aarch64/src/org/graalvm/compiler/lir/aarch64/AArch64Move.java
+substratevm/src/com.oracle.svm.core.graal.aarch64/src/com/oracle/svm/core/graal/aarch64/AArch64CGlobalDataLoadAddressOp.java
+substratevm/src/com.oracle.svm.core.graal.aarch64/src/com/oracle/svm/core/graal/aarch64/SubstrateAArch64Backend.java
+
+####START####bb3972d4c6a
+Source section filter should consider is root included.
+
+####END####
+truffle/src/com.oracle.truffle.api.instrumentation.test/src/com/oracle/truffle/api/instrumentation/test/SourceSectionFilterTest.java
+truffle/src/com.oracle.truffle.api.instrumentation/src/com/oracle/truffle/api/instrumentation/SourceSectionFilter.java
+
+####START####b46e21211da
+[GR-32618] Add IgnoreAtomicGroups option to TRegex.
+
+PullRequest: graal/9390
+
+####END####
+####START####670a6033603
+[GR-32316] Enhance AVXKind to return regs for partial sizes
+
+PullRequest: graal/9367
+
+####END####
+####START####d17fc5fcd3d
+[GR-30622] Remove the default implementation of hasNextTier.
+
+PullRequest: graal/9341
+
+####END####
+####START####99c3c34f904
+[GR-31135] Add intrinsic for Math.signum and Math.copySign.
+
+PullRequest: graal/8879
+
+####END####
+####START####a79ed69aec8
+Add tests for new SourceSectionFilter#includes method.
+
+####END####
+truffle/src/com.oracle.truffle.api.instrumentation.test/src/com/oracle/truffle/api/instrumentation/test/SourceSectionFilterTest.java
+
+####START####73758e16e93
+Create context sample counter if absent.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/CPUSampler.java
+
+####START####5866a98788c
+Add IgnoreAtomicGroups option to TRegex
+
+####END####
+regex/src/com.oracle.truffle.regex.test/src/com/oracle/truffle/regex/tregex/test/RubyTests.java
+regex/src/com.oracle.truffle.regex/src/com/oracle/truffle/regex/RegexOptions.java
+regex/src/com.oracle.truffle.regex/src/com/oracle/truffle/regex/tregex/parser/flavors/RubyFlavorProcessor.java
+
+####START####5a6303de9d4
+Fix optaining type attribute in RecordAttribute. Pass code length directly to LVT parsing.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/ClassfileParser.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/attributes/RecordAttribute.java
+
+####START####0c329d55d6b
+Fix lookup switch positive number of key conditions, and ordering of handler validation and stackmap parsing.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/verifier/MethodVerifier.java
+
+####START####51be260aef2
+LVT/LVTT  verification triggers iff there is a LVT.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/ClassfileParser.java
+
+####START####e8146d7f6f7
+Better error message for verifier errors.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/ObjectKlass.java
+
+####START####692a189ca49
+Duplicate interface name checks in parser
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/ClassfileParser.java
+
+####START####aca484275f6
+Implement records
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/attributes/RecordAttribute.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/descriptors/Symbol.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/Method.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/ObjectKlass.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/meta/DiffVersionLoadHelper.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/meta/Meta.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/substitutions/Target_java_lang_Class.java
+
+####START####459dc52d729
+Full sanity for local variable tables.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/ClassfileParser.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/attributes/CodeAttribute.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/attributes/Local.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/attributes/LocalVariableTable.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/Method.java
+
+####START####7450f0e5161
+Another sanity check for permitted subclasses attribute. Sanity checks for Record attribute. Reformat classfile verification.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/ClassfileParser.java
+
+####START####af29d3f41af
+Sanity checks for signature attribute. Use shorts for permittedSubclasses. Use short for the signature index.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/ClassfileParser.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/attributes/PermittedSubclassesAttribute.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/attributes/SignatureAttribute.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/substitutions/Target_java_lang_Class.java
+
+####START####77dcfe5754f
+add sanity check to LocalVariableTable parsing
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/ClassfileParser.java
+
+####START####5dc7e7a8b86
+Do not re-execute bootstrap method if a previous resolution failed.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/RuntimeConstantPool.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/constantpool/DynamicConstant.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/constantpool/InvokeDynamicConstant.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+
+####START####a3409e46825
+No fallback for some new stackmap parsing.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/verifier/MethodVerifier.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/verifier/StackMapFrameParser.java
+
+####START####1dd04c81511
+Implement Class.getPermittedSubclasses0.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/ClassfileParser.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/classfile/attributes/PermittedSubclassesAttribute.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/ObjectKlass.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/substitutions/Target_java_lang_Class.java
+
+####START####726b472aa01
+Fix wrong condition in dup2x2
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/verifier/StackFrame.java
+
+####START####996ca30f6d2
+More checks for switch initialization in verifier
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/verifier/MethodVerifier.java
+
+####START####e3d5e72660d
+more style fixes
+
+####END####
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfSectionImpl.java
+
+####START####e59b24f2583
+Update ForceAdversarialLayout javadoc.
+
+####END####
+compiler/src/org.graalvm.compiler.code/src/org/graalvm/compiler/code/DataSection.java
+
+####START####16b2959ddc2
+address review comments
+
+####END####
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfSectionImpl.java
+
+####START####97b9ecea3ef
+Enhance AVXKind to return sizes for partial sizes
+
+The getAVXKind function taking a length in elements only returns a
+register when the length exactly matches the register length. For vector
+registers you may want a register to hold 3 items but the appropriate
+register size is 4. This change updates the API to return the correct
+register size for use in the AMD64 code generator.
+
+####END####
+compiler/src/org.graalvm.compiler.asm.amd64/src/org/graalvm/compiler/asm/amd64/AVXKind.java
+
+####START####e496ef719a4
+Add intrinsic for Math.copySign.
+
+####END####
+compiler/src/org.graalvm.compiler.asm.amd64/src/org/graalvm/compiler/asm/amd64/AMD64Assembler.java
+compiler/src/org.graalvm.compiler.asm.test/src/org/graalvm/compiler/asm/test/AssemblerTest.java
+compiler/src/org.graalvm.compiler.code/src/org/graalvm/compiler/code/CompilationResult.java
+compiler/src/org.graalvm.compiler.code/src/org/graalvm/compiler/code/DataSection.java
+compiler/src/org.graalvm.compiler.core.aarch64/src/org/graalvm/compiler/core/aarch64/AArch64ArithmeticLIRGenerator.java
+compiler/src/org.graalvm.compiler.core.amd64/src/org/graalvm/compiler/core/amd64/AMD64ArithmeticLIRGenerator.java
+compiler/src/org.graalvm.compiler.core.common/src/org/graalvm/compiler/core/common/type/FloatStamp.java
+compiler/src/org.graalvm.compiler.core.test/src/org/graalvm/compiler/core/test/MathCopySignStampTest.java
+compiler/src/org.graalvm.compiler.core.test/src/org/graalvm/compiler/core/test/MathSignTest.java
+compiler/src/org.graalvm.compiler.core.test/src/org/graalvm/compiler/core/test/MathSignumStampTest.java
+compiler/src/org.graalvm.compiler.hotspot.test/src/org/graalvm/compiler/hotspot/test/CheckGraalIntrinsics.java
+compiler/src/org.graalvm.compiler.hotspot/src/org/graalvm/compiler/hotspot/GraalHotSpotVMConfig.java
+compiler/src/org.graalvm.compiler.hotspot/src/org/graalvm/compiler/hotspot/meta/HotSpotGraphBuilderPlugins.java
+compiler/src/org.graalvm.compiler.jtt/src/org/graalvm/compiler/jtt/lang/Math_copySign.java
+compiler/src/org.graalvm.compiler.jtt/src/org/graalvm/compiler/jtt/lang/Math_signum.java
+compiler/src/org.graalvm.compiler.lir.aarch64/src/org/graalvm/compiler/lir/aarch64/AArch64MathCopySignOp.java
+compiler/src/org.graalvm.compiler.lir.aarch64/src/org/graalvm/compiler/lir/aarch64/AArch64MathSignumOp.java
+compiler/src/org.graalvm.compiler.lir.amd64/src/org/graalvm/compiler/lir/amd64/AMD64MathCopySignOp.java
+compiler/src/org.graalvm.compiler.lir.amd64/src/org/graalvm/compiler/lir/amd64/AMD64MathSignumOp.java
+compiler/src/org.graalvm.compiler.lir.amd64/src/org/graalvm/compiler/lir/amd64/vector/AMD64VectorBinary.java
+compiler/src/org.graalvm.compiler.lir/src/org/graalvm/compiler/lir/asm/CompilationResultBuilder.java
+compiler/src/org.graalvm.compiler.lir/src/org/graalvm/compiler/lir/gen/ArithmeticLIRGeneratorTool.java
+compiler/src/org.graalvm.compiler.lir/src/org/graalvm/compiler/lir/ssa/SSAVerifier.java
+compiler/src/org.graalvm.compiler.nodes.test/src/org/graalvm/compiler/nodes/test/FloatStampTest.java
+compiler/src/org.graalvm.compiler.nodes/src/org/graalvm/compiler/nodes/calc/CopySignNode.java
+compiler/src/org.graalvm.compiler.nodes/src/org/graalvm/compiler/nodes/calc/SignumNode.java
+compiler/src/org.graalvm.compiler.replacements.aarch64/src/org/graalvm/compiler/replacements/aarch64/AArch64GraphBuilderPlugins.java
+compiler/src/org.graalvm.compiler.replacements/src/org/graalvm/compiler/replacements/StandardGraphBuilderPlugins.java
+compiler/src/org.graalvm.compiler.truffle.compiler/src/org/graalvm/compiler/truffle/compiler/TruffleCompilationResultBuilderFactory.java
+compiler/src/org.graalvm.micro.benchmarks/src/micro/benchmarks/MathFunctionBenchmark.java
+substratevm/src/com.oracle.svm.core.graal.aarch64/src/com/oracle/svm/core/graal/aarch64/AArch64CGlobalDataLoadAddressOp.java
+substratevm/src/com.oracle.svm.core.graal.llvm/src/com/oracle/svm/core/graal/llvm/LLVMGenerator.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/graal/code/SubstrateBackend.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/image/NativeImageCodeCache.java
+
+####START####928e073d83e
+Allow inlining in LATENCY mode since it's first tier only now.
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.compiler/src/org/graalvm/compiler/truffle/compiler/phases/inlining/AgnosticInliningPhase.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/EngineData.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/PolyglotEngineOptionsTest.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/inlining/InliningTest.java
+
+####START####3fe33b17dc8
+Extending tests of func_type().
+####END####
+wasm/src/org.graalvm.wasm.test/src/org/graalvm/wasm/test/WasmJsApiSuite.java
+
+####START####67b37c3cb52
+WasmJsApiSuite tests should not depend on the (removed/modified) implementation details.
+####END####
+wasm/src/org.graalvm.wasm.test/src/org/graalvm/wasm/test/WasmJsApiSuite.java
+
+####START####06dc06337a0
+Removing some function wrappers that break func_type().
+####END####
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/Linker.java
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/RuntimeState.java
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/WasmFunctionInstance.java
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/WasmInstance.java
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/api/Instance.java
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/api/Table.java
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/nodes/WasmBlockNode.java
+
+####START####958447fd8e5
+Verify initialization for GraalVM libraries
+
+####END####
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/classinitialization/ClassInitializationFeature.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/classinitialization/ClassInitializationOptions.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/code/CompileQueue.java
+
+####START####46c69664ca0
+adapt to VarHandle resolution changes (JDK-8265135)
+
+####END####
+compiler/src/org.graalvm.compiler.core.jdk9.test/src/org/graalvm/compiler/core/jdk9/test/ea/AtomicVirtualizationTests.java
+
+####START####7789cd680b5
+Adding a test of func_type() from WebAssembly embedding interface.
+####END####
+wasm/src/org.graalvm.wasm.test/src/org/graalvm/wasm/test/WasmJsApiSuite.java
+
+####START####e40daaba8b2
+Implementation of func_type() from WebAssembly embedding interface.
+
+####END####
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/api/Module.java
+wasm/src/org.graalvm.wasm/src/org/graalvm/wasm/api/WebAssembly.java
+
+####START####e01ba823eba
+Remove unnecessary class initializations
+
+
+####END####
+compiler/src/org.graalvm.compiler.nodes/src/org/graalvm/compiler/nodes/SimplifyingGraphDecoder.java
+compiler/src/org.graalvm.compiler.phases.common/src/org/graalvm/compiler/phases/common/CanonicalizerPhase.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/classinitialization/EnsureClassInitializedNode.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/SVMHost.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/classinitialization/EarlyClassInitializerAnalysis.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/phases/HostedGraphKit.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/phases/SubstrateClassInitializationPlugin.java
+
+####START####fddae1ea707
+[GR-32324] Support class predefinition via class loaders and partial reflection metadata.
+
+PullRequest: graal/9239
+
+####END####
+####START####137706aa59c
+[GR-24403] [GR-31969] [GR-31991] Add new Static Object Model feature to Truffle.
+
+PullRequest: graal/9153
+
+####END####
+####START####a64851c79b1
+OSR docs + javadoc + linting
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalOSRFrameInstance.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+espresso/Main.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/BytecodeOSRNode.java
+
+####START####b9680847ce1
+Fix image heap method handles registration for constructors
+
+####END####
+substratevm/src/com.oracle.svm.methodhandles/src/com/oracle/svm/methodhandles/MethodHandleFeature.java
+
+####START####51e861328f3
+[GR-32635] Native image build with -Dpolyglot.log.file option fails.
+
+PullRequest: graal/9359
+
+####END####
+####START####59a0d8ddb08
+Invoke ClassLoader on non-loaded supertypes of a predefined class.
+
+####END####
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/hub/PredefinedClassesSupport.java
+
+####START####108f5496e72
+Fix Class.forName(Module, String).
+
+####END####
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/hub/DynamicHub.java
+
+####START####fa87c9226e9
+Verify expected name matches during class definition.
+
+####END####
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/hub/PredefinedClassesSupport.java
+
+####START####d72e67beff8
+Support dynamic proxy classes with (and as) predefined classes.
+
+####END####
+substratevm/src/com.oracle.svm.agent/src/com/oracle/svm/agent/BreakpointInterceptor.java
+substratevm/src/com.oracle.svm.agent/src/com/oracle/svm/agent/tracing/TraceFileWriter.java
+substratevm/src/com.oracle.svm.configure/src/com/oracle/svm/configure/trace/AccessAdvisor.java
+substratevm/src/com.oracle.svm.configure/src/com/oracle/svm/configure/trace/JniProcessor.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/hub/DynamicHub.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/hub/DynamicHubCompanion.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/hub/PredefinedClassesSupport.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/proxy/DynamicProxyRegistry.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/proxy/ProxySubstitutions.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/ClassPredefinitionFeature.java
+substratevm/src/com.oracle.svm.reflect/src/com/oracle/svm/reflect/proxy/DynamicProxySupport.java
+substratevm/src/com.oracle.svm.util/src/com/oracle/svm/util/ClassUtil.java
+
+####START####b36b3b26a73
+Fix Checkstyle annotation access checks.
+
+####END####
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/hub/DynamicHub.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/hub/SunReflectTypeSubstitutions.java
+
+####START####910e5fc8b8f
+Disallow Class.getSimpleName.
+
+####END####
+sdk/src/org.graalvm.nativeimage/src/org/graalvm/nativeimage/hosted/RuntimeClassInitialization.java
+substratevm/src/com.oracle.graal.pointsto/src/com/oracle/graal/pointsto/BigBang.java
+substratevm/src/com.oracle.graal.pointsto/src/com/oracle/graal/pointsto/flow/AnalysisParsedGraph.java
+substratevm/src/com.oracle.graal.pointsto/src/com/oracle/graal/pointsto/flow/builder/TypeFlowGraphBuilder.java
+substratevm/src/com.oracle.graal.pointsto/src/com/oracle/graal/pointsto/phases/InlineBeforeAnalysis.java
+substratevm/src/com.oracle.graal.pointsto/src/com/oracle/graal/pointsto/typestate/PointsToStats.java
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/ObjectFile.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/graal/meta/SubstrateForeignCallLinkage.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/meta/SubstrateObjectConstant.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/option/LocatableMultiOptionValue.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/option/RuntimeOptionValues.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/option/SubstrateOptionsParser.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/thread/JavaThreadsFeature.java
+substratevm/src/com.oracle.svm.graal/src/com/oracle/svm/graal/SubstrateGraalRuntime.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/ExceptionSynthesizer.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/NativeImageGeneratorRunner.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/SecurityServicesFeature.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/c/codegen/CCompilerInvoker.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/c/info/ElementInfo.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/c/info/InfoTreeBuilder.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/c/query/SizeAndSignednessVerifier.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/code/CFunctionCallStubMethod.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/config/ReflectionRegistryAdapter.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/snippets/SubstrateGraphBuilderPlugins.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/substitute/AnnotatedField.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/substitute/AnnotationSubstitutionProcessor.java
+substratevm/src/com.oracle.svm.test/src/com/oracle/svm/test/ServiceLoaderTest.java
+substratevm/src/com.oracle.svm.truffle.nfi/src/com/oracle/svm/truffle/nfi/NativeObjectReplacer.java
+substratevm/src/com.oracle.svm.truffle.tck/src/com/oracle/svm/truffle/tck/PermissionsFeature.java
+substratevm/src/com.oracle.svm.util/src/com/oracle/svm/util/ClassUtil.java
+
+####START####b60e39105b3
+Support class predefinition via class loaders and partial reflection metadata (due to unresolved references); improve error messages.
+
+####END####
+sdk/src/org.graalvm.nativeimage/src/org/graalvm/nativeimage/hosted/RuntimeClassInitialization.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/hub/ClassForNameSupport.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/hub/DynamicHub.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/JavaLangSubstitutions.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/Target_java_lang_ClassLoader.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/Target_java_net_URLClassLoader.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/Target_java_security_SecureClassLoader.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/Target_jdk_internal_loader_BuiltinClassLoader.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/Target_jdk_internal_loader_Loader.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/ClassPredefinitionFeature.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/config/ReflectionRegistryAdapter.java
+substratevm/src/com.oracle.svm.reflect/src/com/oracle/svm/reflect/hosted/ReflectionDataBuilder.java
+
+####START####0c41aede933
+[GR-32549] Fix NPE when using serialization-config involving customTargetConstructorClass.
+
+PullRequest: graal/9361
+
+####END####
+####START####abb9ce3e85c
+Do not add comments at the end of the line.
+
+####END####
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/TutorialTest.java
+
+####START####4f90f5dd3ec
+Fail gracefully before trying to generate classes at Native Image run time.
+
+####END####
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/ArrayBasedShapeGenerator.java
+
+####START####567bbd935c9
+Refactoring to improve readability.
+
+####END####
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/ArrayBasedShapeGenerator.java
+
+####START####6066e51d9d7
+Run targets at beginning of test.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler.test/src/com/oracle/truffle/tools/profiler/test/CPUSamplerTest.java
+
+####START####de9cb90d8d1
+[GR-32635] Fixed review comments.
+
+####END####
+truffle/src/com.oracle.truffle.api.test/src/com/oracle/truffle/api/test/polyglot/ContextPreInitializationTest.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/PolyglotLoggers.java
+
+####START####88af6ee5604
+[GR-32241] Added support for serializing abstract classes.
+
+PullRequest: graal/9363
+
+####END####
+####START####f95f77f8730
+No custom constructor needed if customTargetConstructorClass == "class to be serialized"
+
+####END####
+substratevm/src/com.oracle.svm.reflect/src/com/oracle/svm/reflect/serialize/hosted/SerializationFeature.java
+
+####START####d1b1b1f6355
+[GR-32048] Cache the array class of an AnalysisType once it is first looked up.
+
+PullRequest: graal/9310
+
+####END####
+####START####9f0530ee5f7
+[GR-28455] Add a test for reflection intrinsification in proxies
+
+PullRequest: graal/9355
+
+####END####
+####START####88b60a506bc
+[GR-32620] Verifier fallback for Espresso.
+
+PullRequest: graal/9354
+
+####END####
+####START####d0116d49c78
+Cache the array class of an AnalysisType once it is first looked up
+
+####END####
+substratevm/src/com.oracle.graal.pointsto/src/com/oracle/graal/pointsto/meta/AnalysisType.java
+
+####START####cbf1f397fc6
+[GR-17601] Fix errors detected by MRI Ruby's test_regexp.rb.
+
+PullRequest: graal/9365
+
+####END####
+####START####45a57e39853
+Fix style.
+
+####END####
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/BuilderPropertyTest.java
+
+####START####4ce5eaa9df7
+Add javadoc to protected constructor.
+
+####END####
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/StaticProperty.java
+
+####START####01627ddee7f
+The public API uses Class<?> for the property kind rather than StaticPropertyKind.
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/StaticObjectCompilationTest.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/EspressoLanguage.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/LinkedField.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/LinkedKlassFieldLayout.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/ParserField.java
+substratevm/src/com.oracle.svm.truffle/src/com/oracle/svm/truffle/TruffleFeature.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/BuilderPropertyTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/InheritanceTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/PropertyAccessTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/StaticTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/TutorialTest.java
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/DefaultStaticProperty.java
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/StaticProperty.java
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/StaticPropertyKind.java
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/StaticShape.java
+
+####START####0865494ca94
+lazily initialize osrCompilations
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+
+####START####85dd4acbc2a
+When not running on Native Image, cache generated classes in PolyglotLanguageImpl.
+
+When running on Native Image this is not necessary since these classes are loaded by a static class loader.
+
+####END####
+substratevm/src/com.oracle.svm.truffle/src/com/oracle/svm/truffle/TruffleFeature.java
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/ArrayBasedShapeGenerator.java
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/ShapeGenerator.java
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/StaticShape.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/EngineAccessor.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/PolyglotLanguageInstance.java
+
+####START####4ea6713bbff
+Revert "The generator cache should not leak classes."
+
+This reverts commit d0004664d26e644038b96fd22a96a74c00646fe4.
+
+####END####
+substratevm/src/com.oracle.svm.truffle/src/com/oracle/svm/truffle/TruffleFeature.java
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/ArrayBasedShapeGenerator.java
+
+####START####70e9871f33e
+Use parameterized tests rather than theories.
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/StaticObjectCompilationTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/BuilderPropertyTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/ClassLoaderTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/InheritanceTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/PropertyAccessTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/StaticObjectModelTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/StaticTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/SuperClassAndFactoryTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/TutorialTest.java
+
+####START####ce79a6aacad
+[GR-32467] Initial support for JDK 17.
+
+PullRequest: graal/9319
+
+####END####
+####START####919d5fb8e9b
+Fix gates, address PR comments
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/FrameWithoutBoxing.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalFrameInstance.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalOSRFrameInstance.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalTruffleRuntime.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedOSRLoopNode.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/Method.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoRootNode.java
+truffle/src/com.oracle.truffle.api.test/src/com/oracle/truffle/api/test/FrameTest.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/frame/FrameDescriptor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/DefaultVirtualFrame.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/BytecodeOSRNode.java
+
+####START####e4a1ca80028
+Add method to lookup all active language instance.
+
+####END####
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/PolyglotEngineImpl.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/PolyglotImpl.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/PolyglotLanguageInstance.java
+
+####START####5888bec7198
+[GR-32644] Resource Bundles do not work properly for jars placed on the host class path.
+
+####END####
+truffle/src/com.oracle.truffle.api.test/src/com/oracle/truffle/api/test/polyglot/HostClassLoadingTest.java
+truffle/src/com.oracle.truffle.api.test/src/com/oracle/truffle/api/test/polyglot/HostClassLoadingTestClass4.java
+truffle/src/com.oracle.truffle.host/src/com/oracle/truffle/host/HostClassLoader.java
+
+####START####8ec0e90067c
+Simplify MultiGuardNode duplicate guards
+
+This change enhances the MultiGuardNode canonicalization to remove
+duplicate component guards.
+
+####END####
+compiler/src/org.graalvm.compiler.nodes/src/org/graalvm/compiler/nodes/extended/MultiGuardNode.java
+
+####START####d0004664d26
+The generator cache should not leak classes.
+
+####END####
+substratevm/src/com.oracle.svm.truffle/src/com/oracle/svm/truffle/TruffleFeature.java
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/ArrayBasedShapeGenerator.java
+
+####START####83ca5acffbb
+Fix garbage collection of ASTs sometimes fails InputFilterTest.(GR-32632)
+
+####END####
+truffle/src/com.oracle.truffle.api.instrumentation.test/src/com/oracle/truffle/api/instrumentation/test/InputFilterTest.java
+truffle/src/com.oracle.truffle.api.instrumentation.test/src/com/oracle/truffle/api/instrumentation/test/InstrumentationEventTest.java
+
+####START####dce70b82053
+Throw more precise exceptions.
+
+####END####
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/StaticProperty.java
+truffle/src/com.oracle.truffle.api.staticobject/src/com/oracle/truffle/api/staticobject/StaticShape.java
+
+####START####bdd5b7a2eea
+Improve readability.
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/StaticObjectCompilationTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/BuilderPropertyTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/InheritanceTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/PropertyAccessTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/StaticObjectModelTest.java
+
+####START####7d571f650e9
+Report mismatched argcount in invokeBasic
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/Method.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/methodhandle/MHInvokeBasicNode.java
+
+####START####adedd6e1bec
+Prevent OOB in verifier initialization by checking there is enough bytecodes.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/bytecode/BytecodeSwitch.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/verifier/MethodVerifier.java
+
+####START####24ba6630ab3
+Use more specific test language IDs.
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/StaticObjectCompilationTest.java
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/StaticObjectModelTest.java
+
+####START####dcf43fc0367
+Treat the ] in [] and [^] as \] and not as the end of the char class
+
+####END####
+regex/src/com.oracle.truffle.regex.test/src/com/oracle/truffle/regex/tregex/test/RubyTests.java
+regex/src/com.oracle.truffle.regex/src/com/oracle/truffle/regex/tregex/parser/flavors/RubyFlavorProcessor.java
+
+####START####0c3dc180790
+Restrict character class operations to the encoding's range
+
+####END####
+regex/src/com.oracle.truffle.regex.test/src/com/oracle/truffle/regex/tregex/test/RubyTests.java
+regex/src/com.oracle.truffle.regex/src/com/oracle/truffle/regex/tregex/parser/flavors/RubyFlavorProcessor.java
+
+####START####cad383721c0
+StaticTest checks that the static object model can be used at native image build time.
+
+####END####
+truffle/src/com.oracle.truffle.api.staticobject.test/src/com/oracle/truffle/api/staticobject/test/StaticTest.java
+
+####START####86cb6ccbbcf
+[GR-32565] Fix polyglot context retained size computation.
+
+PullRequest: graal/9346
+
+####END####
+####START####ae70b2cc664
+Fix polyglot context retained size computation.
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime.hotspot/src/org/graalvm/compiler/truffle/runtime/hotspot/AbstractHotSpotTruffleRuntime.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/ObjectSizeCalculator.java
+
+####START####4d3556300c8
+Avoid mentioning the engine key redundantly.
+
+####END####
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/PolyglotEngineOptions.java
+
+####START####fe8595000ee
+Fix typo.
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/FinalBitSetCompilationTest.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/PartialEvaluationTest.java
+
+####START####63f193d47cf
+Move Static Object compilation tests to a single file.
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/StaticObjectCompilationTest.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/staticobject/ConstantFoldingTest.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/staticobject/StaticObjectTestEnvironment.java
+
+####START####652f9349060
+Change language init test to no tag sampling test.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler.test/src/com/oracle/truffle/tools/profiler/test/NoTagSamplingTest.java
+truffle/src/com.oracle.truffle.api.instrumentation/src/com/oracle/truffle/api/instrumentation/SourceSectionFilter.java
+
+####START####9d9628990c7
+Clarify comment.
+
+####END####
+substratevm/src/com.oracle.svm.junit/src/com/oracle/svm/junit/Target_org_junit_runners_model_TestClass.java
+
+####START####b5a018333fd
+style fixes
+
+####END####
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfLineSectionImpl.java
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfSectionImpl.java
+
+####START####0d398e42d72
+support removal of java.net.Inet6Address.cached_scope_id in 11.0.13-oracle
+
+####END####
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/jdk/JNIRegistrationJavaNet.java
+
+####START####f70251f1c6a
+fix Checkstyle warning
+
+####END####
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/graal/snippets/CEntryPointSnippets.java
+
+####START####71bbfc62e93
+write DWARF string text as UTF8 rather than ASCII
+
+####END####
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfAbbrevSectionImpl.java
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfDebugInfo.java
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfFrameSectionImpl.java
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfInfoSectionImpl.java
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfLineSectionImpl.java
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfSectionImpl.java
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/elf/dwarf/DwarfStrSectionImpl.java
+
+####START####b6472a7f2ad
+protected member does not perform access checks in verifier.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/verifier/MethodVerifier.java
+
+####START####480a9f47776
+Make verifier's checks assert style.
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/verifier/MethodVerifier.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/verifier/StackFrame.java
+
+####START####f2a15aeef05
+Remove synthetic frames.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/CPUSampler.java
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/SafepointStackSampler.java
+
+####START####f2fc7f44c35
+Count missing samples.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/CPUSampler.java
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/SafepointStackSampler.java
+
+####START####7a873287c48
+[GR-32635] Native image build with -Dpolyglot.log.file option fails.
+
+####END####
+truffle/src/com.oracle.truffle.api.test/src/com/oracle/truffle/api/test/polyglot/ContextPreInitializationTest.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/PolyglotEngineImpl.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/PolyglotImpl.java
+truffle/src/com.oracle.truffle.polyglot/src/com/oracle/truffle/polyglot/PolyglotLoggers.java
+
+####START####4225f13f7ef
+Added support for serializing abstract classes
+
+also test (compatible with Java 8 and Java11) is added
+
+####END####
+substratevm/src/com.oracle.svm.reflect/src/com/oracle/svm/reflect/serialize/SerializationSupport.java
+substratevm/src/com.oracle.svm.reflect/src/com/oracle/svm/reflect/serialize/hosted/SerializationFeature.java
+substratevm/src/com.oracle.svm.test/src/com/oracle/svm/test/AbstractClassSerializationTest.java
+
+####START####f84153958ff
+[GR-32320] Support comma-separated options correctly.
+
+PullRequest: graal/9308
+
+####END####
+####START####855a8adfd9c
+Merge branch 'master' into js/reflection-intrinsification-for-proxies-fix
+
+####END####
+####START####42795cbba63
+Improve AMD64VectorShuffle assert with message
+
+There is an assert in the AMD64VectorShuffle.ConstShuffleBytesOp class
+which checks to ensure the permuted register and the supplied selector
+array are of compatible lengths. The assert lacks a good diagnostic
+message. This change adds a diagnostic message.
+
+####END####
+compiler/src/org.graalvm.compiler.lir.amd64/src/org/graalvm/compiler/lir/amd64/vector/AMD64VectorShuffle.java
+
+####START####7a063cb42ff
+Remove redundant synchronisation.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/CPUSampler.java
+
+####START####f85218f2631
+Timeout is 10 x sampling period.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/CPUSampler.java
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/SafepointStackSampler.java
+
+####START####668efeda030
+Refactor: Inline.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/SafepointStackSampler.java
+
+####START####dae2dbcce3a
+Adapt to VarHandle changes in JDK 17
+
+
+####END####
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/phases/IntrinsifyMethodHandlesInvocationPlugin.java
+
+####START####379e04c994a
+[GR-32604] Intrinsic graph now treats subword inputs as int.
+
+PullRequest: graal/9348
+
+####END####
+####START####e3e11e4c2e0
+remove volatile, fix gates
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BaseOSRRootNode.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRRootNode.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalOSRFrameInstance.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalTruffleRuntime.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/frame/FrameDescriptor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/DefaultRuntimeAccessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/BytecodeOSRNode.java
+
+####START####a1f168e8cda
+Add frame state transfer helper
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/DefaultRuntimeAccessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/BytecodeOSRNode.java
+
+####START####4520fc464b5
+make metadata thread-safe
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/BytecodeOSRNode.java
+
+####START####7174dbd34c6
+add allowMaterialize flag to FrameDescriptor, disable OSR if a frame can be materialized
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/FrameWithoutBoxing.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/impl/Method.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoRootNode.java
+truffle/src/com.oracle.truffle.api.test/src/com/oracle/truffle/api/test/FrameTest.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/frame/FrameDescriptor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/DefaultVirtualFrame.java
+
+####START####84fcb803f2b
+pare down BytecodeOSRNode interface
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/DefaultRuntimeAccessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/BytecodeOSRNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/Node.java
+
+####START####b881a99c525
+add volatile compilationFailed flag, lazily disable OSR on other threads
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+
+####START####01e49920d64
+remove callProxy, refactor stack walking for legibility
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BaseOSRRootNode.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalFrameInstance.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalTruffleRuntime.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+
+####START####bd086eeb6d2
+pull OSR logic into GraalOSRFrameInstance
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalFrameInstance.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalOSRFrameInstance.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalTruffleRuntime.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+
+####START####019b49d9975
+remove osrEnabled flag
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+
+####START####f31971ba076
+pull bytecode OSR logic out of OptimizedCallTarget; disambiguate loop- and bytecode-based OSR
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRMetadata.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BytecodeOSRRootNode.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedOSRLoopNode.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/BytecodeOSRNodeTest.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/DefaultRuntimeAccessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/BytecodeOSRNode.java
+
+####START####d5ec6baa7de
+remove generic type parameter on OnStackReplaceableNode
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/OnStackReplaceableNodeTest.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/DefaultRuntimeAccessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/OnStackReplaceableNode.java
+
+####START####1c18e600c30
+convert OnStackReplaceableNode to an interface
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/OnStackReplaceableNodeTest.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoInstrumentableNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/IntrinsicSubstitutorNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/NativeMethodNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/DefaultRuntimeAccessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/OnStackReplaceableNode.java
+
+####START####640e454a98a
+doOSR -> executeOSR
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/OnStackReplaceableNodeTest.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoInstrumentableNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/IntrinsicSubstitutorNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/NativeMethodNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/OnStackReplaceableNode.java
+
+####START####114a824b183
+fix native compilation
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/IntrinsicSubstitutorNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/NativeMethodNode.java
+
+####START####5b46a98b731
+Fix Espresso monitor stack copying
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+
+####START####e03422c4059
+uncomment timeout, remove TODO comment
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/OnStackReplaceableNodeTest.java
+
+####START####c8bea9428a7
+Improve stack walking to take the newest OSR frame
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BaseOSRRootNode.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalFrameInstance.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalTruffleRuntime.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedOSRLoopNode.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/OnStackReplaceableNodeTest.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/OnStackReplaceableNode.java
+
+####START####ff5c8bd7aeb
+polish tests, copy over monitor stack
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/OnStackReplaceableNodeTest.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoRootNode.java
+
+####START####b624cfb4f88
+Add BaseOSRRootNode to share special handling of OSR nodes; add tests & address feedback
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/BaseOSRRootNode.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedOSRLoopNode.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/OnStackReplaceableNodeTest.java
+
+####START####062972d62f1
+Add some OnStackReplaceableNode tests
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/OnStackReplaceableNodeTest.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/OnStackReplaceableNode.java
+
+####START####f4aee1be84f
+add comments + copyright notice
+
+####END####
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/OnStackReplaceableNode.java
+
+####START####e9960971cb3
+poll OSR compilation + check whether parent frame is materialized
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+
+####START####0b8159bc0bf
+handle state transfer in Espresso
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/IntrinsicSubstitutorNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/NativeMethodNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/OnStackReplaceableNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/RootNode.java
+
+####START####ab3885aa356
+make OnStackReplaceableNode a class containing OSR state
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoInstrumentableNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/IntrinsicSubstitutorNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/NativeMethodNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/DefaultRuntimeAccessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/OnStackReplaceableNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/RootNode.java
+
+####START####a13b9d65df0
+clean up remnants of Espresso OSR implementation
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/EspressoOptions.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoBaseMethodNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoRootNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/runtime/EspressoContext.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/RootNode.java
+
+####START####a0f453d0aa8
+move OSR to Truffle (wip)
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/GraalRuntimeSupport.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoRootNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/Accessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/impl/DefaultRuntimeAccessor.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/OnStackReplaceableNode.java
+truffle/src/com.oracle.truffle.api/src/com/oracle/truffle/api/nodes/RootNode.java
+
+####START####a06c13ae907
+only disable compilation on invalidation if compilation failed
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+
+####START####59702c7b5f1
+add OSR threshold tuning and listen for node updates
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/EspressoOptions.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/runtime/EspressoContext.java
+
+####START####d8c1670bd89
+Use separate OSR root node
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedOSRLoopNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoRootNode.java
+
+####START####c41f1719236
+prevent optimized call target from adopting BytecodeNode
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+
+####START####8fff0ab6371
+reuse same BytecodeNode
+
+####END####
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/bytecode/BytecodeStream.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoBaseMethodNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoRootNode.java
+
+####START####145bcd1263f
+Espresso OSR POC
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.runtime/src/org/graalvm/compiler/truffle/runtime/OptimizedCallTarget.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/bytecode/BytecodeStream.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/BytecodeNode.java
+espresso/src/com.oracle.truffle.espresso/src/com/oracle/truffle/espresso/nodes/EspressoRootNode.java
+
+####START####dffdbd65eb5
+[GR-28460] Introduce GraphBuilderContext.recursiveInliningDepth.
+
+PullRequest: graal/9344
+
+####END####
+####START####07cd30b866b
+Introduce GraphBuilderContext.recursiveInliningDepth
+
+
+####END####
+compiler/src/org.graalvm.compiler.nodes/src/org/graalvm/compiler/nodes/graphbuilderconf/GraphBuilderContext.java
+compiler/src/org.graalvm.compiler.replacements/src/org/graalvm/compiler/replacements/MethodHandlePlugin.java
+compiler/src/org.graalvm.compiler.replacements/src/org/graalvm/compiler/replacements/PEGraphDecoder.java
+substratevm/src/com.oracle.graal.pointsto/src/com/oracle/graal/pointsto/phases/InlineBeforeAnalysis.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/classinitialization/EarlyClassInitializerAnalysis.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/phases/InlineBeforeAnalysisPolicyImpl.java
+
+####START####c3ce6dfadab
+Fix source section filtering of root nodes.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler.test/src/com/oracle/truffle/tools/profiler/test/LanguageInitSamplingTest.java
+tools/src/com.oracle.truffle.tools.profiler/src/com/oracle/truffle/tools/profiler/SafepointStackSampler.java
+truffle/src/com.oracle.truffle.api.instrumentation/src/com/oracle/truffle/api/instrumentation/SourceSectionFilter.java
+
+####START####af40c2ecb2d
+[GR-28455] Fix for the neo4j benchmark on NI.
+
+PullRequest: graal/9326
+
+####END####
+####START####1253ccff19e
+Fix: Checkstyle errors.
+
+####END####
+substratevm/src/com.oracle.svm.test/src/com/oracle/svm/test/proxy/CustomInvocationHandler.java
+substratevm/src/com.oracle.svm.test/src/com/oracle/svm/test/proxy/ProxyExceptionTest.java
+
+####START####cac7efa3f10
+Fix tests to run with immediate compilation.
+
+####END####
+tools/src/com.oracle.truffle.tools.profiler.test/src/com/oracle/truffle/tools/profiler/test/CPUSamplerTest.java
+tools/src/com.oracle.truffle.tools.profiler.test/src/com/oracle/truffle/tools/profiler/test/ManualSamplingTest.java
+
+####START####ae9ad9bf8e3
+Fix wrong hasNextTier calculation.
+
+####END####
+substratevm/src/com.oracle.svm.truffle/src/com/oracle/svm/truffle/api/SubstrateTruffleRuntime.java
+
+####START####2a3f8ccb6eb
+Added proxy exception test for native image.
+
+####END####
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/snippets/SubstrateGraphBuilderPlugins.java
+substratevm/src/com.oracle.svm.test/src/com/oracle/svm/test/proxy/CustomInvocationHandler.java
+substratevm/src/com.oracle.svm.test/src/com/oracle/svm/test/proxy/CustomProxy.java
+substratevm/src/com.oracle.svm.test/src/com/oracle/svm/test/proxy/DummyClass.java
+substratevm/src/com.oracle.svm.test/src/com/oracle/svm/test/proxy/ProxyExceptionTest.java
+
+####START####23408f36e67
+Intrinsic graph now treats subword inputs as int.
+
+####END####
+compiler/src/org.graalvm.compiler.replacements/src/org/graalvm/compiler/replacements/IntrinsicGraphBuilder.java
+compiler/src/org.graalvm.compiler.replacements/src/org/graalvm/compiler/replacements/StandardGraphBuilderPlugins.java
+
+####START####2c7eeca64d9
+Fix: neo4j benchmark.
+
+####END####
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/snippets/SubstrateGraphBuilderPlugins.java
+
+####START####447b5ed9d75
+Bump year copyright
+
+####END####
+sdk/src/org.graalvm.nativeimage/src/org/graalvm/nativeimage/Platform.java
+
+####START####a81917abc9c
+Update version in comment
+
+####END####
+sdk/src/org.graalvm.nativeimage/src/org/graalvm/nativeimage/Platform.java
+
+####START####23a191207b7
+Add support of iOS simulator (IOS_AMD64)
+
+####END####
+sdk/src/org.graalvm.nativeimage/src/org/graalvm/nativeimage/Platform.java
+substratevm/src/com.oracle.svm.core.graal.llvm/src/com/oracle/svm/core/graal/llvm/util/LLVMTargetSpecific.java
+
+####START####47826c5e5e0
+show full stack trace for errors while running isolate initialization hooks
+
+####END####
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/graal/snippets/CEntryPointSnippets.java
+
+####START####bacb66d4385
+handle class names of the form "L<name>;"
+
+####END####
+substratevm/src/com.oracle.svm.graal.hotspot.libgraal/src/com/oracle/svm/graal/hotspot/libgraal/LibGraalFeature.java
+
+####START####3560abc2d36
+[GR-32464] Cache correct uniqueShortName for deoptimization target methods.
+
+PullRequest: graal/9340
+
+####END####
+####START####33c8c0d6f03
+[GR-31114] Remove SubstrateArraysCopyOfSnippets.
+
+PullRequest: graal/9291
+
+####END####
+####START####ffce6b99ea3
+Fix Native Image substitutions for JDK 17
+
+####END####
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/Target_java_lang_ClassLoader.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/ThreadLocalRandomAccessors.java
+
+####START####f70cba39902
+remove unused VM config fields (GR-10496)
+
+####END####
+compiler/src/org.graalvm.compiler.hotspot/src/org/graalvm/compiler/hotspot/GraalHotSpotVMConfig.java
+
+####START####0da766774e1
+Modify constant method handles list for JDK 17
+
+####END####
+substratevm/src/com.oracle.svm.methodhandles/src/com/oracle/svm/methodhandles/MethodHandleFeature.java
+
+####START####d7f1b808505
+Remove the default implementation of hasNextTier.
+
+####END####
+compiler/src/org.graalvm.compiler.truffle.common/src/org/graalvm/compiler/truffle/common/TruffleCompilationTask.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/AgnosticInliningPhaseTest.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/PartialEvaluationTest.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/PerformanceWarningTest.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/TransferToInterpreterTest.java
+compiler/src/org.graalvm.compiler.truffle.test/src/org/graalvm/compiler/truffle/test/libgraal/JNIExceptionWrapperTest.java
+substratevm/src/com.oracle.svm.truffle/src/com/oracle/svm/truffle/api/SubstrateTruffleRuntime.java
+substratevm/src/com.oracle.svm.truffle/src/com/oracle/svm/truffle/isolated/IsolatedTruffleCompilationTask.java
+
+####START####1ccab6b3934
+[GR-32455] Fix `LLVMCreateEnumAttribute()` parameter to create an `EnumAttribute` instead of an `IntAttribute`.
+
+PullRequest: graal/9290
+
+####END####
+####START####fa9775b2529
+Revert formatting changes introduced by f8ae6771e9c.
+
+####END####
+java-benchmarks/java/org.graalvm.bench.console/src/bench/console/Scalafmt.java
+java-benchmarks/java/org.graalvm.bench.misc/src/bench/misc/Geom.java
+java-benchmarks/java/org.graalvm.bench.misc/src/bench/misc/Stream.java
+java-benchmarks/java/org.graalvm.bench.shootouts/src/bench/shootouts/BinaryTrees.java
+java-benchmarks/java/org.graalvm.bench.shootouts/src/bench/shootouts/ChameneosRedux.java
+java-benchmarks/java/org.graalvm.bench.shootouts/src/bench/shootouts/FannkuchRedux.java
+java-benchmarks/java/org.graalvm.bench.shootouts/src/bench/shootouts/Mandelbrot.java
+java-benchmarks/java/org.graalvm.bench.shootouts/src/bench/shootouts/Meteor.java
+java-benchmarks/java/org.graalvm.bench.shootouts/src/bench/shootouts/NBody.java
+java-benchmarks/java/org.graalvm.bench.shootouts/src/bench/shootouts/PiDigits.java
+java-benchmarks/java/org.graalvm.bench.shootouts/src/bench/shootouts/SpectralNorm.java
+
+####START####461d6fe480c
+Do not execute the analysis only once.
+
+Some transformations might allocate more shape generators.
+
+####END####
+substratevm/src/com.oracle.svm.truffle/src/com/oracle/svm/truffle/TruffleFeature.java
+
+####START####f4ae5cd35e1
+Stylefixes
+
+####END####
+substratevm/src/com.oracle.svm.hosted.jdk8/src/com/oracle/svm/hosted/agent/jdk8/NativeImageBytecodeInstrumentationAgentJDK8.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/agent/NativeImageBytecodeInstrumentationAgentExtension.java
+
+####START####23773788594
+Prefix jdk-specific JDKVersionSpecificResourceBuilders so that qualified naming becomes unnecessary
+
+####END####
+substratevm/src/com.oracle.svm.core.jdk11/src/com/oracle/svm/core/jdk11/JDKVersionSpecificResourceBuilderJDK11OrLater.java
+substratevm/src/com.oracle.svm.core.jdk8/src/com/oracle/svm/core/jdk8/JDKVersionSpecificResourceBuilderJDK8.java
+
+####START####42871874527
+Move java.specification.version check into NativeImageBytecodeInstrumentationAgentJDK8
+
+####END####
+substratevm/src/com.oracle.svm.hosted.jdk8/src/com/oracle/svm/hosted/agent/jdk8/NativeImageBytecodeInstrumentationAgentJDK8.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/agent/NativeImageBytecodeInstrumentationAgent.java
+
+####START####59e1a7cdff1
+Rename NativeImageBytecodeInstrumentationAgentExtension.addClassInstrumentationTransformer
+
+####END####
+substratevm/src/com.oracle.svm.hosted.jdk8/src/com/oracle/svm/hosted/agent/jdk8/NativeImageBytecodeInstrumentationAgentJDK8.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/agent/NativeImageBytecodeInstrumentationAgent.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/agent/NativeImageBytecodeInstrumentationAgentExtension.java
+
+####START####869f6b145bb
+Reword NativeImageBytecodeInstrumentationAgentExtension JavaDoc
+
+####END####
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/agent/NativeImageBytecodeInstrumentationAgentExtension.java
+
+####START####2216b771254
+Add minimal JavaDoc for NativeImageBytecodeInstrumentationAgentExtension service
+
+####END####
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/agent/NativeImageBytecodeInstrumentationAgentExtension.java
+
+####START####abf00a79ccc
+Use ServiceLoader to provide JDK8 specific processing in NativeImageBytecodeInstrumentationAgent
+
+####END####
+substratevm/src/com.oracle.svm.hosted.jdk8/src/com/oracle/svm/hosted/agent/jdk8/NativeImageBytecodeInstrumentationAgentJDK8.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/agent/NativeImageBytecodeInstrumentationAgent.java
+substratevm/src/com.oracle.svm.hosted/src/com/oracle/svm/hosted/agent/NativeImageBytecodeInstrumentationAgentExtension.java
+
+####START####76bc9d38264
+Use custom error message for ClassNotFoundException and rethrow others
+
+####END####
+substratevm/src/com.oracle.svm.driver/src/com/oracle/svm/driver/NativeImage.java
+
+####START####2a3c336d21c
+Reword JavaDoc comments in Metrics
+
+####END####
+substratevm/src/com.oracle.svm.core.containers/src/com/oracle/svm/core/containers/Metrics.java
+
+####START####6456e2de43c
+Use custom RuntimeException for ClassNotFoundException and rethrow others as RuntimeExceptions
+
+####END####
+substratevm/src/com.oracle.svm.configure/src/com/oracle/svm/configure/ConfigurationTool.java
+
+####START####0a8f623a96a
+Only catch NoSuchMethodException to ensure reporting other errors via RuntimeExceptions
+
+####END####
+substratevm/src/com.oracle.objectfile/src/com/oracle/objectfile/ObjectFile.java
+
+####START####5fe007b7882
+Move core.jdk11 and core.jdk8 to respective packages
+
+####END####
+substratevm/src/com.oracle.svm.core.jdk11/src/com/oracle/svm/core/jdk11/Target_java_lang_StackWalker.java
+substratevm/src/com.oracle.svm.core.jdk11/src/com/oracle/svm/core/jdk11/Target_java_util_ServiceLoader.java
+substratevm/src/com.oracle.svm.core.jdk11/src/com/oracle/svm/core/jdk11/Target_java_util_zip_ZipFile.java
+substratevm/src/com.oracle.svm.core.jdk11/src/com/oracle/svm/core/jdk11/Target_sun_misc_Unsafe.java
+substratevm/src/com.oracle.svm.core.jdk8/src/com/oracle/svm/core/jdk8/LocaleSubstitutions.java
+
+####START####3c107d1ae19
+Remove multiReleaseJarVersion use from com.oracle.svm.core
+
+####END####
+substratevm/src/com.oracle.svm.core.jdk11/src/com/oracle/svm/core/jdk11/JDKVersionSpecificResourceBuilder.java
+substratevm/src/com.oracle.svm.core.jdk11/src/com/oracle/svm/core/jdk11/Target_java_util_logging_SimpleFormatter.java
+substratevm/src/com.oracle.svm.core.jdk8/src/com/oracle/svm/core/jdk8/JDKVersionSpecificResourceBuilder.java
+substratevm/src/com.oracle.svm.core.jdk8/src/com/oracle/svm/core/jdk8/Target_java_util_logging_SimpleFormatter.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/JDKVersionSpecificResourceBuilder.java
+substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/jdk/Target_java_lang_ClassLoader.java
