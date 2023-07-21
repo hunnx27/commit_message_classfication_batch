@@ -31,4 +31,8 @@
    cd ../ai_sample_projects/airflow && git log --name-only --oneline --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -200 -- '*.py' '*.md' > githistory_python_airflow_withBody.out && cd -
    ```
    
-   
+2. 깃 커밋의 파일마다 차이점 추출하기
+  ```
+  git diff 641e051a272 server/src/main/java/org/elasticsearch/action/admin/indices/alias/IndicesAliasesRequest.java
+
+  ```
