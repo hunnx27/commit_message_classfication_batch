@@ -1,4 +1,4 @@
-package main.java;
+package main.java.module.autolabel_230721;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,35 +12,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.google.common.io.Files;
-
-import ch.uzh.ifi.seal.changedistiller.ChangeDistiller;
-import ch.uzh.ifi.seal.changedistiller.ChangeDistiller.Language;
-import ch.uzh.ifi.seal.changedistiller.distilling.FileDistiller;
-import ch.uzh.ifi.seal.changedistiller.model.entities.SourceCodeChange;
-import main.java.dto.Commit;
+import main.java.dto.*;
 
 public class Autolabel_Elasticsearch {
 
+	static final String PROJECT_NAME = "elastic";
+	static final String LANGUAGE = "java";
+//	static final String PROJECT_PATH = "D:\\develop2\\workspace_ai\\ai_sample_projects\\elasticsearch";
+	static final String PROJECT_PATH = "D:\\develop_ai\\ai_sample_projects\\elasticsearch";
+//	static final String ROOT_PATH = "D:\\\\develop2\\workspace_ai\\commit_message_classfication_batch\\";
+	static final String ROOT_PATH = "D:\\develop_ai\\commit_message_classfication_batch\\";
+	static final String DATASET_DIR = ROOT_PATH + "dataset\\20230721\\";
+	static final String RESULT_DIR = ROOT_PATH + "result\\20230721\\";
+	static final String INPUT_LOG_FILE_NAME = "githistory_" + LANGUAGE + "_" + PROJECT_NAME + "_withBody.out";
+
+	static final String OUTPUT_NORMAL_FILE_NAME = "githistory_" + LANGUAGE + "_" + PROJECT_NAME + "_normal.out";
+	static final String OUTPUT_NORMAL_GPT_INFO_NAME = "githistory_" + LANGUAGE + "_" + PROJECT_NAME + "_normal_gpt.out"; // 아직 미작업
+	static final String OUTPUT_FULL_INFO_NAME = "githistory_" + LANGUAGE + "_" + PROJECT_NAME + "_fullinfo.out";
+
 	public static void main(String[] args) throws IOException {
 		boolean isDebug = false; // 로그출력여부
-		const String PROJECT_NAME = "elastic";
-		const String LANGUAGE = "java";
-		const String PROJECT_PATH = "D:\\develop2\\workspace_ai\\ai_sample_projects\\elasticsearch";
-		const String ROOT_PATH = "D:\\\\develop2\\workspace_ai\\commit_message_classfication_batch\\";
-		const String DATASET_DIR = ROOT_PATH + "dataset\\20230721\\";
-		const String RESULT_DIR = ROOT_PATH + "result\\20230721\\";
-		const String INPUT_LOG_FILE_NAME = "githistory_" + LANGUAGE + "_" + PROJECT_NAME + "_withBody.out";
-
-		const String OUTPUT_NORMAL_FILE_NAME = "githistory_" + LANGUAGE + "_" + PROJECT_NAME + "_normal.out";
-		const String OUTPUT_NORMAL_GPT_INFO_NAME = "githistory_" + LANGUAGE + "_" + PROJECT_NAME + "_normal_gpt.out"; // 아직 미작업
-		const String OUTPUT_FULL_INFO_NAME = "githistory_" + LANGUAGE + "_" + PROJECT_NAME + "_fullinfo.out";
-
-
 		/**
 		 * Git Log 파일 파싱(객체화)
 		 */
-
 		File file = new File(DATASET_DIR + INPUT_LOG_FILE_NAME);
 		BufferedReader reader = new BufferedReader(new FileReader(file), 16*1024);
 		String str;
@@ -57,6 +51,7 @@ public class Autolabel_Elasticsearch {
 				tmp = new Commit(txtArr[1], new ArrayList());
 				tmpStr = new String("");
 				commits.add(tmp);
+				//commits.add(tmp);
 				isFileStart = false;
 				isTxtStart=true;
 			} else if("####END####".equals(txt)){
@@ -75,6 +70,7 @@ public class Autolabel_Elasticsearch {
 		if(tmp != null) tmp.setTxt(tmpStr);//마지막값입력
 		if(isDebug) System.out.println(commits.size());
 
+		int index = 0;
 		/**
 		 * 커밋 별 필요 파일 생성
 		 */
@@ -84,13 +80,12 @@ public class Autolabel_Elasticsearch {
 			* 커밋
 			*/
 			String hash = commit.getHash();
-			commit.g
 			if(isDebug) System.out.println("###" + hash + "START");
 			List<String> filelist = commit.getFileList();
 
 
 			for(String filepath : filelist){
-				String command  = "git show " + hash + " " + filepath;
+				String command  = "git diff " + hash + " " + filepath;
 				Process p = Runtime.getRuntime().exec(command, null, new File(PROJECT_PATH));
 				BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 				String line;
@@ -108,7 +103,6 @@ public class Autolabel_Elasticsearch {
 				//commit.setDiffGpt(gptResult);
 
 			}
-			if(isDebug) System.out.println(Arrays.toString(charr));
 			if(isDebug) System.out.println("###" + hash + "END");
 		}
 		
@@ -155,12 +149,8 @@ public class Autolabel_Elasticsearch {
 		/**
 		 * (2) 정리된 파일 오토 레이블링(Create CSV) : GPT 학습용 데이터
 		 */
-		String[] bugFix_keys = {"fix","test","issu","use","fail","bug_fix","report","error","npe"};
-		String[] perfImpr_keys = {"test","remov","use","refactor","method","chang","add","improv","expand"};
-		String[] featAdd_keys = {"support","add","implement","allow","use","method","test","set","chang","feat","new"};
-
-		BufferedWriter bw = new BufferedWriter(new FileWriter(RESULT_DIR + OUTPUT_NORMAL_GPT_INFO_NAME));
-		boolean isFirst = true;
+		bw = new BufferedWriter(new FileWriter(RESULT_DIR + OUTPUT_NORMAL_GPT_INFO_NAME));
+		isFirst = true;
 		for(Commit commit : commits) {
 			if(!isFirst) {
 				bw.newLine();
@@ -190,12 +180,8 @@ public class Autolabel_Elasticsearch {
 		/**
 		 * (3) 정리된 파일 오토 레이블링(Create CSV) : 모든 정보 포함(디버그용)
 		 */
-		String[] bugFix_keys = {"fix","test","issu","use","fail","bug_fix","report","error","npe"};
-		String[] perfImpr_keys = {"test","remov","use","refactor","method","chang","add","improv","expand"};
-		String[] featAdd_keys = {"support","add","implement","allow","use","method","test","set","chang","feat","new"};
-
-		BufferedWriter bw = new BufferedWriter(new FileWriter(RESULT_DIR + OUTPUT_FULL_INFO_NAME));
-		boolean isFirst = true;
+		bw = new BufferedWriter(new FileWriter(RESULT_DIR + OUTPUT_FULL_INFO_NAME));
+		isFirst = true;
 		for(Commit commit : commits) {
 			if(!isFirst) {
 				bw.newLine();
@@ -204,7 +190,7 @@ public class Autolabel_Elasticsearch {
 			//String files = "[" + commit.getFileList().stream().map(data -> "'"+data+"'").collect(Collectors.joining(",")) + "]";
 			//String line = String.format("%s,%s,%s", commit.getHash(), commit.getTxt(), files);
 			String commitMessage = commit.getTxt().toLowerCase();
-			String diff = commit.getDiff().toLowerCase();
+			String diff = commit.getDiffPlain().toLowerCase();
 			String diffGpt = commit.getDiffGpt().toLowerCase();
 			int bugFix = Arrays.stream(bugFix_keys).anyMatch(commitMessage::contains)?1:0;
 			int featAdd = Arrays.stream(featAdd_keys).anyMatch(commitMessage::contains)?1:0;
@@ -226,7 +212,8 @@ public class Autolabel_Elasticsearch {
 	}
 	
 	private static void filewrite(String line, String name) throws IOException {
-		String DIR = "D:\\\\develop2\\\\workspace_ai\\\\elasticsearch\\";
+//		String DIR = "D:\\\\develop2\\\\workspace_ai\\\\elasticsearch\\";
+		String DIR = ROOT_PATH;
         BufferedWriter bw = new BufferedWriter(new FileWriter(DIR + name));
 		bw.write(line);
 		bw.flush();
