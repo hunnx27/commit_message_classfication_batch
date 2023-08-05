@@ -24,11 +24,11 @@
    ../ai_sample_projects/platform_frameworks_base
    #
    # 모든프로젝트에서 하기 명령어 실행으로 깃 목록 추출(git bash에서)
-   cd ../ai_sample_projects/platform_frameworks_base && git log --name-only --oneline --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -1000  '*.java' > githistory_java_pfb_withBody.out && cd -
-   cd ../ai_sample_projects/graal && git log --name-only --oneline --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -200 -- '*.java' > githistory_java_graal_withBody.out && cd -
-   cd ../ai_sample_projects/elasticsearch && git log --name-only --oneline --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -200 -- '*.java' > githistory_java_elastic_withBody.out && cd -
-   cd ../ai_sample_projects/DeepFaceLab && git log --name-only --oneline --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -200 -- '*.py' '*.md' > githistory_python_deepface_withBody.out && cd -
-   cd ../ai_sample_projects/airflow && git log --name-only --oneline --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -200 -- '*.py' '*.md' > githistory_python_airflow_withBody.out && cd -
+   cd ../ai_sample_projects/platform_frameworks_base && git log --name-only --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -1000  '*.java' > githistory_java_pfb_withBody.out && cd
+   cd ../ai_sample_projects/graal && git log --name-only --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -200 -- '*.java' > githistory_java_graal_withBody.out && cd
+   cd ../ai_sample_projects/elasticsearch && git log --name-only --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -200 -- '*.java' > githistory_java_elastic_withBody.out && cd
+   cd ../ai_sample_projects/DeepFaceLab && git log --name-only --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -200 -- '*.py' '*.md' > githistory_python_deepface_withBody.out && cd
+   cd ../ai_sample_projects/airflow && git log --name-only --pretty="format:####START####%h%n%B%n####END####" --until="2021-07-21" -200 -- '*.py' '*.md' > githistory_python_airflow_withBody.out && cd
    ```
    
 2. 깃 커밋의 파일마다 차이점 추출하기

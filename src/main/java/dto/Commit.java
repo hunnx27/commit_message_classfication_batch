@@ -16,6 +16,8 @@ public class Commit {
 	int[] charr; // changeDistiller 소스변경내용 배열
 	String diffPlain;
 	String diffGpt;
+	List<String> fileChangeList;
+
 	public String getHash() {
 		return hash;
 	}
@@ -47,6 +49,14 @@ public class Commit {
 
 	public void setDiffPlain(String diffPlain) {
 		this.diffPlain = diffPlain;
+	}
+
+	public List<String> getFileChangeList() {
+		return fileChangeList;
+	}
+
+	public void setFileChangeList(List<String> fileChangeList) {
+		this.fileChangeList = fileChangeList;
 	}
 
 	public String getDiffGpt() {

@@ -1,0 +1,6 @@
+"fix the use of wildcard expressions for data streams in update aliases api (#75526)          prior to this change, supplying a wildcard expression in the `indices` field     of an alias action would always result in a 404, despite data streams existing     that could match with the provided wildcard expression.          closes #75456"
+""||||1||||0||||0
+"make some vector tile body parameters as query parameters (#75522)          following the same structure of the _search api, this changes makes possible to define some     body parameters as query parameters (e.g. defined as url parameters)"
+""||||0||||1||||1
+"configure security for the initial node cli (#74868)          this introduces a new cmd line tool that generates the security configuration     for a new node in a new cluster (as opposed to joining an existing cluster).     the security configuration consists of tls key and certificates, which     are stored in a directory inside the config path, as well as settings appended     to the elasticsearch.yml referencing the aforementioned certs."
+""||||0||||1||||0
